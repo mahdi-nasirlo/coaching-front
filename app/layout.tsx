@@ -1,9 +1,7 @@
 import React from 'react';
 import {Inter} from 'next/font/google';
-import StyledComponentsRegistry from '../lib/AntdRegistry';
 import './globals.css'
-import {ConfigProvider} from "antd";
-import customTheme from "@/theme/theme";
+import StyledComponentsRegistry from "@/lib/AntdRegistry";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -16,9 +14,7 @@ const RootLayout = ({children}: { children: React.ReactNode }) => (
     <html lang="en">
     <body className={inter.className}>
     <StyledComponentsRegistry>
-        <ConfigProvider theme={customTheme}>
-            {children}
-        </ConfigProvider>
+        {children}
     </StyledComponentsRegistry>
     </body>
     </html>

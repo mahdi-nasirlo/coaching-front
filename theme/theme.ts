@@ -4,7 +4,7 @@ const customTheme: ThemeConfig = {
     token: {
         fontSize: 16,
         fontFamily: "IRANSans",
-        colorPrimary: 'red',
+        colorPrimary: '#04b88b',
     },
 };
 
