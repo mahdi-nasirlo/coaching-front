@@ -9,6 +9,7 @@
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 214, 219, 220;
     --background-end-rgb: 255, 255, 255;
+    --dir: "rtl"
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,4 +22,9 @@
 
 body {
     font-family: IRANSans, serif !important;
+    direction: rtl;
+}
+
+.ant-form-item .ant-form-item-row{
+
 }
