@@ -1,7 +1,9 @@
 import React from 'react';
 import {Inter} from 'next/font/google';
 import './globals.css'
-import StyledComponentsRegistry from "@/lib/AntdRegistry";
+import ThemeProvider from "@/providers/theme-provider";
+import AppLayout from "@/components/layout";
+import NextAuthProvider from "@/providers/next-auth-provider";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -13,9 +15,13 @@ export const metadata = {
 const RootLayout = ({children}: { children: React.ReactNode }) => (
     <html lang="en">
     <body className={inter.className}>
-    <StyledComponentsRegistry>
-        {children}
-    </StyledComponentsRegistry>
+    <NextAuthProvider>
+        <ThemeProvider>
+            <AppLayout>
+                {children}
+            </AppLayout>
+        </ThemeProvider>
+    </NextAuthProvider>
     </body>
     </html>
 );

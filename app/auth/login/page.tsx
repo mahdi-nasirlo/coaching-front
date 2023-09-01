@@ -6,6 +6,8 @@ import {loginInterface, loginRequest} from "@/services/auth/login";
 import useForm from "antd/lib/form/hooks/useForm";
 import {useState} from "react";
 import ThemeProvider from "@/providers/theme-provider";
+import {setCookie} from "cookies-next";
+import {useRouter} from "next/navigation";
 
 
 type Status = { status: "success" | "error" | "warning" | "validating" | undefined, msg: string }
@@ -15,9 +17,16 @@ export default function Login() {
     const [accountValidate, setAccountValidate] = useState<Status>({status: undefined, msg: ""})
 
     const [form] = useForm()
+
+    const router = useRouter()
+
     const handleSubmit = (values: loginInterface) => {
 
         const res = loginRequest(values)
+            .then((res) => {
+                setCookie("accessToken", res.data.token)
+                router.push("/")
+            })
             .catch((error) => {
                 setAccountValidate({status: "error", msg: error.response.data.message})
             })

@@ -25,6 +25,9 @@ body {
     direction: rtl;
 }
 
-.ant-form-item .ant-form-item-row{
-
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+    @apply bg-primary-500
 }
