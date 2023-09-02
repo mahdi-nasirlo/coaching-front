@@ -14,11 +14,11 @@ const contentStyle: React.CSSProperties = {
 
 
 function LayoutClient({children}: { children: React.ReactNode }) {
-    return <Layout>
+    return <>
         <LayoutHeader/>
         <Content style={contentStyle}>{children}</Content>
         <Footer>Footer</Footer>
-    </Layout>
+    </>
 }
 
 

@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {Button, Drawer, Menu} from "antd";
-import {BulbOutlined, HomeOutlined} from "@ant-design/icons";
+import {Button, Drawer, Menu, Skeleton} from "antd";
+import {BulbOutlined, HomeOutlined, LoadingOutlined} from "@ant-design/icons";
 import {MenuProps} from "antd/lib";
 import {AcademicCapIcon, CubeIcon} from "@heroicons/react/24/outline";
+import {MenuMode} from "@/Types/components/menu";
 
 const items: MenuProps['items'] = [
     {
@@ -22,32 +23,9 @@ const items: MenuProps['items'] = [
         icon: <AcademicCapIcon width={16} height={16}/>,
         children: [
             {
-                type: 'group',
-                label: 'Item 1',
-                children: [
-                    {
-                        label: 'Option 1',
-                        key: 'setting:1',
-                    },
-                    {
-                        label: 'Option 2',
-                        key: 'setting:2',
-                    },
-                ],
-            },
-            {
-                type: 'group',
-                label: 'Item 2',
-                children: [
-                    {
-                        label: 'Option 3',
-                        key: 'setting:3',
-                    },
-                    {
-                        label: 'Option 4',
-                        key: 'setting:4',
-                    },
-                ],
+                label: (<Skeleton.Input size="small" active/>),
+                key: 'loading-courses',
+                icon: <LoadingOutlined/>,
             },
         ],
     },
@@ -56,11 +34,27 @@ const items: MenuProps['items'] = [
         icon: <CubeIcon width={16} height={16}/>,
         key: 'shop',
     },
+    {
+        label: 'بلاگ',
+        key: 'blog',
+        icon: <AcademicCapIcon width={16} height={16}/>,
+        children: [
+            {
+                label: (<Skeleton.Input size="small" active/>),
+                key: 'loading-blog',
+                icon: <LoadingOutlined/>,
+            },
+        ],
+    },
 ];
 
-const MenuHeaderLayout = () => {
+const MenuHeaderLayout = ({mode}: { mode: MenuMode }) => {
+
+    const [menuItems, setMenuItems] = useState<MenuProps['items']>(items)
+
+    
     return (
-        <Menu className="w-full justify-center" mode="horizontal" items={items}/>
+        <Menu className="w-full justify-center" mode={mode} items={menuItems}/>
     );
 };
 
@@ -74,14 +68,13 @@ export const MobileMenuLayout = () => {
     const onClose = () => {
         setOpen(false);
     };
+
     return <>
         <Button type="primary" onClick={showDrawer}>
             Open
         </Button>
         <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
+            <MenuHeaderLayout mode="inline"/>
         </Drawer>
     </>
 }
