@@ -6,8 +6,7 @@ const {Header} = Layout
 
 function LayoutHeader() {
 
-
-    return <nav className="bg-white lg:px-6 py-2.5 dark:bg-gray-800">
+    return <nav className="bg-white lg:px-6 py-2.5 dark:bg-gray-800 shadow-md">
         <div className="flex flex-row flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <Link href="/" className="flex items-center">
                     <span

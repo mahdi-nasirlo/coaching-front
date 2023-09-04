@@ -31,3 +31,7 @@ button,
 [type='submit'] {
     @apply bg-primary-500
 }
+
+#menu-header {
+    @apply border-0
+}

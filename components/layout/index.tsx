@@ -1,14 +1,14 @@
 import React from "react";
-import LayoutClient from "@/components/layout/layout-client";
 import {Layout} from "antd";
+import LayoutHeader from "@/components/layout/header";
 
 function AppLayout({children}: { children: React.ReactNode }) {
 
     return <>
         <Layout>
-            <LayoutClient>
-                {children}
-            </LayoutClient>
+            <LayoutHeader/>
+            <div>{children}</div>
+            {/*<LayoutFooter/>*/}
         </Layout>
     </>
 }

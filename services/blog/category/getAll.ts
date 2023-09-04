@@ -4,7 +4,8 @@ export const getAllBlogCategory = async () => {
 
     try {
 
-        const res = await baseAxios.get(`/v1/blog/category/getAll`)
+        const res = await baseAxios.get(`/v1/blog/category/getAllMenu`)
+        
 
         return res.data
 

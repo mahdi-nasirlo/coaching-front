@@ -1,17 +1,8 @@
-"use client"
-
 import Image from 'next/image'
 import Link from "next/link";
-import {useSession} from "next-auth/react";
-import {useEffect} from "react";
 
-export default function Home() {
-    const {data: session} = useSession()
-
-    useEffect(() => {
-
-        console.log(session)
-    })
+export default async function Home() {
+    
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
             <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -27,7 +18,7 @@ export default function Home() {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        By{' '}
+                        By
                         <Image
                             src="/vercel.svg"
                             alt="Vercel Logo"
