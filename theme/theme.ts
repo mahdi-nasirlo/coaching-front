@@ -3,8 +3,8 @@ import type {ThemeConfig} from 'antd';
 const customTheme: ThemeConfig = {
     token: {
         fontSize: 16,
-        fontFamily: "IRANSans",
-        colorPrimary: '#04b88b',
+        fontFamily: "IRANSansfanum",
+        colorPrimary: '#ef6f31',
     },
 };
 

@@ -43,24 +43,6 @@ function LayoutHeaders() {
 
 const LayoutHeader = () => {
     return <>
-        <div className="header-top-section section" data-bg-color="#f5f5f5">
-            <div className="container">
-                <div className="row">
-                    <div className="col-xl-8 offset-xl-2">
-                        <div className="header-top-content">
-                            <p>فردا شروع می شود! بزرگترین رویداد سال ماست...</p>
-                            <div className="header-top-countdown">
-                                <div className="ht-icon"><i className="far fa-clock"></i></div>
-                                <div className="pro-countdown-2 d-flex" data-countdown="2020/10/17"></div>
-                            </div>
-                            <a className="btn btn-primary-three btn-hover-secondary-three btn-xs" href="#">دریافت
-                                بلیط</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div className="header-section sticky-header section header-fluid-two header-orange">
             <div className="header-inner">
                 <div className="container position-relative">

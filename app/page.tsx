@@ -1,6 +1,12 @@
+import {Typography} from "antd";
+
 export default async function Home() {
 
     return (
-        <div></div>
+        // <ThemeProvider>
+        <Typography>
+            test
+        </Typography>
+        // </ThemeProvider>
     )
 }
