@@ -7,10 +7,10 @@ export const getAllCoaches = async () => {
         const res = await baseAxios.get(`/v1/coach`)
 
 
-        return res.data
+        return res.data?.data
 
     } catch {
-        return "tests"
+        return []
     }
 
 }

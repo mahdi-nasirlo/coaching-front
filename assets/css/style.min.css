@@ -72,7 +72,7 @@ html {
  height:100%
 }
 body {
- font-family: IRANSansfanum;
+ font-family: IRANSansfanum !important;
  font-size:15px;
  font-weight:400;
  font-style:normal;
@@ -94,7 +94,7 @@ h3,
 h4,
 h5,
 h6 {
- font-family: IRANSansfanum;
+ font-family: IRANSansfanum !important;
  font-weight:700;
  line-height:1.3;
  margin-top:0;
@@ -4358,7 +4358,7 @@ textarea:focus {
  padding:0;
  font-weight:600;
  border:0 none;
- font-family: IRANSansfanum;
+ font-family: IRANSansfanum !important;
  -webkit-appearance:none;
  display:block;
  background:#fff;
@@ -4401,7 +4401,7 @@ textarea:focus {
  letter-spacing:0;
  line-height:1.74;
  font-size:15px;
- font-family: IRANSansfanum;
+ font-family: IRANSansfanum !important;
  border:0 none;
  -webkit-box-shadow:0 20px 40px rgba(0,0,0,.07);
  box-shadow:0 20px 40px rgba(0,0,0,.07);
@@ -4462,7 +4462,7 @@ textarea:focus {
  padding:0;
  font-weight:600;
  border:0 none;
- font-family: IRANSansfanum;
+ font-family: IRANSansfanum !important;
  -webkit-appearance:none;
  display:block;
  background:100% 0!important;
@@ -4505,7 +4505,7 @@ textarea:focus {
  letter-spacing:0;
  line-height:1.74;
  font-size:15px;
- font-family: IRANSansfanum;
+ font-family: IRANSansfanum !important;
  color:#fff;
  border:0 none;
  -webkit-transition:all .3s cubic-bezier(.645,.045,.355,1);
@@ -5005,7 +5005,7 @@ textarea:focus {
  }
 }
 .newsletter-content-wrap .newsletter-title.text-dark .title {
- font-family: IRANSansfanum;
+ font-family: IRANSansfanum !important;
  color:#333;
  font-weight:700;
  text-align:right;
@@ -5091,7 +5091,7 @@ textarea:focus {
  font-size:24px;
  font-weight:700;
  line-height:1;
- font-family: IRANSansfanum;
+ font-family: IRANSansfanum !important;
  display:block;
  margin-bottom:10px;
  color:#3f3a64
@@ -8842,7 +8842,7 @@ letter-spacing:0px; }
  font-weight:700;
  color:#fff;
  display:block;
- font-family: IRANSansfanum;
+ font-family: IRANSansfanum !important;
  margin-bottom:10px
 }
 .intro3-content .title {
@@ -16164,7 +16164,7 @@ letter-spacing:0px;
  font-size:18px;
  line-height:1;
  font-weight:500;
- font-family: IRANSansfanum;
+ font-family: IRANSansfanum !important;
  color:#333;
  margin-bottom:10px
 }
@@ -17599,7 +17599,7 @@ letter-spacing:0px;
  font-size:15px;
  font-weight:700;
  line-height:1.78;
- font-family: IRANSansfanum;
+ font-family: IRANSansfanum !important;
  color:#3f3a64;
  padding-right:30px
 }
@@ -17802,7 +17802,7 @@ letter-spacing:0px;
  font-size:15px;
  font-weight:700;
  line-height:1.78;
- font-family: IRANSansfanum;
+ font-family: IRANSansfanum !important;
  color:#3f3a64;
  padding-right:30px
 }
@@ -19478,7 +19478,7 @@ letter-spacing:0px;
 }
 .sidebar-widget-price-filter .irs--maxCoach .irs .irs-single {
  top:calc(100% + 38px);
- font-family: IRANSansfanum;
+ font-family: IRANSansfanum !important;
 }
 .sidebar-widget-price-filter .btn-price-filter {
  font-size:14px;

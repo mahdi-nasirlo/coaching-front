@@ -20,10 +20,10 @@
     }
 }
 
-body {
-    font-family: IRANSans, serif !important;
-    direction: rtl;
-}
+/*body {*/
+/*    font-family: IRANSans, serif !important;*/
+/*    direction: rtl;*/
+/*}*/
 
 button,
 [type='button'],
