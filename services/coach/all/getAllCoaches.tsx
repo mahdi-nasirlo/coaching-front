@@ -7,7 +7,7 @@ export const getAllCoaches = async () => {
         const res = await baseAxios.get(`/v1/coach`)
 
 
-        return res.data?.data
+        return res.data
 
     } catch {
         return []
