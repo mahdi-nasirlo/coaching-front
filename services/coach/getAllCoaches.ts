@@ -10,7 +10,11 @@ export const getAllCoaches = async () => {
         return res.data
 
     } catch {
+
+        console.log("error: coach get by id")
+
         return []
+
     }
 
 }

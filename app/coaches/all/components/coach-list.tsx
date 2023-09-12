@@ -13,13 +13,13 @@ function CoachList({items}: {
                 <div className="col max-mb-30" data-aos="fade-up">
                     <div className="course-3">
                         <div className="thumbnail">
-                            <Link href="/course-details-standard-sidebar.html" className="image">
+                            <Link href={`coaches/${coach.uuid}`} className="image">
                                 <Image width={50} height={50} src="/assets/images/courses/170/course-1.jpg"
                                        alt="تصویر دوره"/></Link>
                         </div>
                         <div className="info">
                             <span className="price">{coach.hourly_price_formatted} تومان<span> </span></span>
-                            <h3 className="title"><Link href="/course-details-standard-sidebar.html">{coach.name}</Link>
+                            <h3 className="title"><Link href={`/coaches/${coach.uuid}`}>{coach.name}</Link>
                             </h3>
                             <ul className="meta">
                                 <li>تخصص فرد</li>

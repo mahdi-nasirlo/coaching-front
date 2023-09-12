@@ -1,19 +1,18 @@
-import {getAllCoaches} from "@/services/coach/all/getAllCoaches";
 import Link from "next/link";
-import React from "react";
+import {ApiResponse} from "@/Types/app/response";
+import CoachList from "@/app/coaches/all/components/coach-list";
+import {getAllCoaches} from "@/services/coach/getAllCoaches";
 
 
 export default async function Page() {
 
     // const {data: coaches, isLoading, error} = useSWR("/coaches", getAllCoaches)
 
-    const coaches = await getAllCoaches()
-
-    console.log(coaches)
+    const coaches: ApiResponse = await getAllCoaches()
 
     return (
         <>
-            {/*// <!-- Course Top Bar Start -->*/}
+
             <div className="row justify-content-between align-items-center max-mb-20">
                 <div className="col-sm-auto col-12 max-mb-10">
                     <p className="result-count">ما پیدا کردیم<span>22</span> دوره های موجود برای شما</p>
@@ -31,7 +30,7 @@ export default async function Page() {
 
             <div className="row row-cols-lg-2 row-cols-1 max-mb-n30">
 
-                {/*<CoachList items={coaches}/>*/}
+                <CoachList items={coaches.data}/>
 
             </div>
 
@@ -41,7 +40,6 @@ export default async function Page() {
                         بیشتر <i className="fal fa-redo ml-3"></i></Link>
                 </div>
             </div>
-
 
         </>
     )
