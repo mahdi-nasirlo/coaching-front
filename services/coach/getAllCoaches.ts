@@ -4,7 +4,7 @@ export const getAllCoaches = async () => {
 
     try {
 
-        const res = await baseAxios.get(`/v1/coach`)
+        const res = await baseAxios.get(`/coach`)
 
 
         return res.data

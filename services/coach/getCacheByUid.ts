@@ -4,7 +4,7 @@ export const getCacheByUid = async (uid: string) => {
 
     try {
 
-        const res = await baseAxios.get(`/v1/coach/${uid}`)
+        const res = await baseAxios.get(`/coach/${uid}`)
 
         return res.data
 
