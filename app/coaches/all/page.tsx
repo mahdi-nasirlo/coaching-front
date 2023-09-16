@@ -13,7 +13,7 @@ export default async function Page() {
     return (
         <>
 
-            <div className="row justify-content-between align-items-center max-mb-20">
+            <div className="row justify-content-between align-items-center max-mb-20" data-aos="fade-up">
                 <div className="col-sm-auto col-12 max-mb-10">
                     <p className="result-count">ما پیدا کردیم<span>22</span> دوره های موجود برای شما</p>
                 </div>

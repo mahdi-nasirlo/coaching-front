@@ -8,7 +8,7 @@ function Layout({children}: { children: React.ReactNode }) {
             <div className="page-title-section section">
                 <div className="page-title">
                     <div className="container">
-                        <h1 className="title">لیست کوچ ها</h1>
+                        <h1 className="title" data-aos="zoom-in">لیست کوچ ها</h1>
                     </div>
                 </div>
                 <div className="page-breadcrumb">

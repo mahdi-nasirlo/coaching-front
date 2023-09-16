@@ -52,3 +52,73 @@ button,
         background-position: 315px 0, 0 0, 0 190px, 50px 195px;
     }
 }
+
+/*antd styles*/
+
+.ant-select-selection-placeholder {
+    @apply text-right
+}
+
+.ant-form-item-explain-error {
+    @apply text-right
+}
+
+.ant-select-selection-item {
+    @apply text-right
+}
+
+.ant-descriptions-title {
+    @apply text-right
+}
+
+/*antd styles*/
+
+
+#custom-calender .Calendar {
+    box-shadow: unset !important;
+}
+
+.sidebar-entry-course-info {
+    max-width: unset !important;
+    padding: 20px !important;
+}
+
+.Calendar__header {
+    @apply px-0 !important
+}
+
+.Calendar__section {
+    @apply px-1 !important
+}
+
+.Calendar__section.-hiddenNext {
+    margin: 0 -30px !important;
+}
+
+.Calendar__section.-hiddenPrevious {
+    margin: 0 30px !important;
+}
+
+.Calendar__weekDays {
+    @apply p-0 !important
+}
+
+.times-list .ant-row .ant-col .ant-form-item-control-input {
+    @apply p-2 bg-primary-200 border border-primary-600 text-primary-800 rounded-md  !important
+}
+
+.purpleDay:not(.-selectedStart):not(.-selectedBetween):not(.-selectedEnd):not(.-selected) {
+    border: 2px solid rgba(156, 136, 255, 0.7) !important;
+}
+
+.orangeDay:not(.-selectedStart):not(.-selectedBetween):not(.-selectedEnd):not(.-selected) {
+    border: 2px solid rgba(219, 145, 60, 0.7) !important;
+}
+
+.yellowDay:not(.-selectedStart):not(.-selectedBetween):not(.-selectedEnd):not(.-selected) {
+    border: 2px solid rgba(228, 231, 36, 0.7) !important;
+}
+
+.navyBlueDay:not(.-selectedStart):not(.-selectedBetween):not(.-selectedEnd):not(.-selected) {
+    border: 2px solid rgba(52, 73, 94, 0.7) !important;
+}
