@@ -21,7 +21,7 @@ export async function getFetcher(url: string, value: any) {
 
         console.error("Error:", error);
 
-        return []
+        // return []
     }
 
 }

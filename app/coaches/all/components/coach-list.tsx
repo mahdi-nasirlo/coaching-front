@@ -6,6 +6,7 @@ import Image from "next/image";
 function CoachList({items}: {
     items: Coach[]
 }) {
+
     return (
         <>
             {items.map((coach: Coach) => <>

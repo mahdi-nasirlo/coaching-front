@@ -41,7 +41,6 @@ export default async function Page({params}: {
                                             coach.job_experience &&
                                             <li><a data-toggle="tab" href="#job_experience">سوابق شغلی</a></li>
                                         }
-                                        <li><a data-toggle="tab" href="#reviews">نظرات </a></li>
                                     </ul>
                                 </div>
                                 <div className="tab-content">
@@ -123,71 +122,77 @@ export default async function Page({params}: {
                                             {coach.job_experience}
                                         </div>
                                     </div>}
-
-
-                                    <div id="reviews" className="tab-pane fade">
-                                        <div className="course-reviews">
-                                            <div className="course-rating">
-                                                <h3 className="title">نظرات</h3>
-                                            </div>
-                                            <div className="course-reviews-area">
-                                                <ul className="course-reviews-list">
-                                                    <li className="review">
-                                                        <div className="review-container">
-                                                            <div className="review-author">
-                                                                <Image width="50" height="50"
-                                                                       src="/assets/images/review-author/author1.jpg"
-                                                                       alt="author"/>
-                                                            </div>
-                                                            <div className="review-content">
-                                                                <h4 className="title">ادنا واتسون</h4>
-                                                                <div className="review-stars-rated"
-                                                                     title="5 out of 5 stars">
-                                                                    <div className="review-stars empty"></div>
-                                                                </div>
-                                                                <h5 className="review-title">تمام نیازهای من را
-                                                                    بپوشانید </h5>
-                                                                <div className="review-text">
-                                                                    این دوره مواردی را که می خواهیم تغییر دهیم مشخص می
-                                                                    کند و سپس کارهایی را که باید برای ایجاد نتیجه مطلوب
-                                                                    انجام شود ، مشخص می کند. این دوره به من کمک کرد تا
-                                                                    به روشنی مشکلات را تعریف کنم و طیف گسترده تری از راه
-                                                                    حل های با کیفیت را ایجاد کنم. از تحلیل ساختارهای
-                                                                    بیشتر گزینه هایی که منجر به تصمیم گیری بهتر می شوند
-                                                                    پشتیبانی کنید.
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-                                                    <li className="review">
-                                                        <div className="review-container">
-                                                            <div className="review-author">
-                                                                <Image width="50" height="50"
-                                                                       src="/assets/images/review-author/author2.jpg"
-                                                                       alt="author"/>
-                                                            </div>
-                                                            <div className="review-content">
-                                                                <h4 className="title">اوون مسیح</h4>
-                                                                <div className="review-stars-rated"
-                                                                     title="5 out of 5 stars">
-                                                                    <div className="review-stars empty"></div>
-                                                                </div>
-                                                                <h5 className="review-title">جذاب و سرگرم کننده</h5>
-                                                                <div className="review-text">
-                                                                    این دوره مواردی را که می خواهیم تغییر دهیم مشخص می
-                                                                    کند و سپس کارهایی را که باید برای ایجاد نتیجه مطلوب
-                                                                    انجام شود ، مشخص می کند. این دوره به من کمک کرد تا
-                                                                    به روشنی مشکلات را تعریف کنم و طیف گسترده تری از راه
-                                                                    حل های با کیفیت را ایجاد کنم. از تحلیل ساختارهای
-                                                                    بیشتر گزینه هایی که منجر به تصمیم گیری بهتر می شوند
-                                                                    پشتیبانی کنید
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                </div>
+                                <div className="mt-5">
+                                    <div className="course-reviews">
+                                        <div className="course-rating">
+                                            <div className="course-nav-tab">
+                                                <ul className="nav mb-0">
+                                                    <li>
+                                                        <a className="active" data-toggle="tab" href="#instructor">
+                                                            <h3 className="title py-0">نظرات</h3>
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </div>
+                                        </div>
+                                        <div className="course-reviews-area">
+                                            <ul className="course-reviews-list mt-3">
+                                                <li className="review">
+                                                    <div className="review-container">
+                                                        <div className="review-author">
+                                                            <Image width="50" height="50"
+                                                                   src="/assets/images/review-author/author1.jpg"
+                                                                   alt="author"/>
+                                                        </div>
+                                                        <div className="review-content">
+                                                            <h4 className="title">ادنا واتسون</h4>
+                                                            <div className="review-stars-rated"
+                                                                 title="5 out of 5 stars">
+                                                                <div className="review-stars empty"></div>
+                                                            </div>
+                                                            <h5 className="review-title">تمام نیازهای من را
+                                                                بپوشانید </h5>
+                                                            <div className="review-text">
+                                                                این دوره مواردی را که می خواهیم تغییر دهیم مشخص می
+                                                                کند و سپس کارهایی را که باید برای ایجاد نتیجه مطلوب
+                                                                انجام شود ، مشخص می کند. این دوره به من کمک کرد تا
+                                                                به روشنی مشکلات را تعریف کنم و طیف گسترده تری از راه
+                                                                حل های با کیفیت را ایجاد کنم. از تحلیل ساختارهای
+                                                                بیشتر گزینه هایی که منجر به تصمیم گیری بهتر می شوند
+                                                                پشتیبانی کنید.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                                <li className="review">
+                                                    <div className="review-container">
+                                                        <div className="review-author">
+                                                            <Image width="50" height="50"
+                                                                   src="/assets/images/review-author/author2.jpg"
+                                                                   alt="author"/>
+                                                        </div>
+                                                        <div className="review-content">
+                                                            <h4 className="title">اوون مسیح</h4>
+                                                            <div className="review-stars-rated"
+                                                                 title="5 out of 5 stars">
+                                                                <div className="review-stars empty"></div>
+                                                            </div>
+                                                            <h5 className="review-title">جذاب و سرگرم کننده</h5>
+                                                            <div className="review-text">
+                                                                این دوره مواردی را که می خواهیم تغییر دهیم مشخص می
+                                                                کند و سپس کارهایی را که باید برای ایجاد نتیجه مطلوب
+                                                                انجام شود ، مشخص می کند. این دوره به من کمک کرد تا
+                                                                به روشنی مشکلات را تعریف کنم و طیف گسترده تری از راه
+                                                                حل های با کیفیت را ایجاد کنم. از تحلیل ساختارهای
+                                                                بیشتر گزینه هایی که منجر به تصمیم گیری بهتر می شوند
+                                                                پشتیبانی کنید
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
