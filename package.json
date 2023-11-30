@@ -28,6 +28,7 @@
     "loading-attribute-polyfill": "^2.1.0",
     "marked": "^4.2.2",
     "next": "^13.0.3",
+    "next-auth": "^4.24.5",
     "next-pwa": "^5.6.0",
     "next-react-svg": "https://github.com/hasanm95/next-react-svg",
     "next-seo": "^5.14.1",
