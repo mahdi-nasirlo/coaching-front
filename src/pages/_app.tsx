@@ -12,6 +12,7 @@ import "@assets/css/swiper.css";
 
 import { UIProvider } from "../contexts/ui-context";
 import { UserProvider } from "../contexts/user-context";
+import AuthProvider from "../providers/auth-provider";
 
 interface CustomAppProps extends Omit<AppProps, "Component"> {
     Component: AppProps["Component"] & { Layout: ElementType };
@@ -27,7 +28,7 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
         typeof pageProps.layout === "object" ? pageProps.layout : {};
 
     useEffect(() => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+
         document.activeElement instanceof HTMLElement &&
             document.activeElement.blur();
     }, [router]);
@@ -37,14 +38,16 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
     });
 
     return (
-        <UIProvider>
-            <UserProvider>
-                <Layout {...layoutProps}>
-                    <SEO />
-                    <Component {...pageProps} />
-                </Layout>
-            </UserProvider>
-        </UIProvider>
+      <AuthProvider>
+          <UIProvider>
+              <UserProvider>
+                  <Layout {...layoutProps}>
+                      <SEO />
+                      <Component {...pageProps} />
+                  </Layout>
+              </UserProvider>
+          </UIProvider>
+      </AuthProvider>
     );
 };
 
