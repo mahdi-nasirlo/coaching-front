@@ -41,7 +41,8 @@
     "react-hook-form": "^7.39.4",
     "react-hot-toast": "^2.4.1",
     "react-simple-typewriter": "^4.0.5",
-    "swiper": "^8.4.4"
+    "swiper": "^8.4.4",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",

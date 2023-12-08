@@ -1,6 +1,6 @@
-import { ElementType, useEffect } from "react";
-import { useRouter } from "next/router";
-import type { AppProps } from "next/app";
+import {ElementType, useEffect} from "react";
+import {useRouter} from "next/router";
+import type {AppProps} from "next/app";
 import SEO from "@components/seo/deafult-seo";
 import FallbackLayout from "@layout/fallback";
 
@@ -10,9 +10,9 @@ import "@assets/css/fonts.css";
 import "@assets/css/tailwind.css";
 import "@assets/css/swiper.css";
 
-import { UIProvider } from "../contexts/ui-context";
-import { UserProvider } from "../contexts/user-context";
-import AuthProvider from "../providers/auth-provider";
+import {UIProvider} from "../contexts/ui-context";
+import {UserProvider} from "../contexts/user-context";
+import QueryClientProvider from "../providers/query-client-provider";
 
 interface CustomAppProps extends Omit<AppProps, "Component"> {
     Component: AppProps["Component"] & { Layout: ElementType };
@@ -21,7 +21,7 @@ interface CustomAppProps extends Omit<AppProps, "Component"> {
     };
 }
 
-const MyApp = ({ Component, pageProps }: CustomAppProps) => {
+const MyApp = ({Component, pageProps}: CustomAppProps) => {
     const router = useRouter();
     const Layout = Component.Layout || FallbackLayout;
     const layoutProps =
@@ -30,7 +30,7 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
     useEffect(() => {
 
         document.activeElement instanceof HTMLElement &&
-            document.activeElement.blur();
+        document.activeElement.blur();
     }, [router]);
 
     useEffect(() => {
@@ -38,16 +38,16 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
     });
 
     return (
-      <AuthProvider>
-          <UIProvider>
-              <UserProvider>
-                  <Layout {...layoutProps}>
-                      <SEO />
-                      <Component {...pageProps} />
-                  </Layout>
-              </UserProvider>
-          </UIProvider>
-      </AuthProvider>
+        <QueryClientProvider>
+            <UIProvider>
+                <UserProvider>
+                    <Layout {...layoutProps}>
+                        <SEO/>
+                        <Component {...pageProps} />
+                    </Layout>
+                </UserProvider>
+            </UIProvider>
+        </QueryClientProvider>
     );
 };
 

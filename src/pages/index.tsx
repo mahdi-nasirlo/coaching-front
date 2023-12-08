@@ -1,5 +1,7 @@
-import type { NextPage } from "next";
-import { GetStaticProps } from "next";
+"use client"
+
+import type {NextPage} from "next";
+import {GetStaticProps} from "next";
 import Layout from "@layout/layout-01";
 import Wrapper from "@ui/wrapper/wrapper-01";
 import HeroArea from "@containers/hero/layout-01";
@@ -12,12 +14,12 @@ import CourseArea from "@containers/course/layout-01";
 import BlogArea from "@containers/blog/layout-01";
 import BrandArea from "@containers/brand/layout-01";
 
-import { normalizedData } from "@utils/methods";
-import { IBlog, ICourse } from "@utils/types";
+import {normalizedData} from "@utils/methods";
+import {IBlog, ICourse} from "@utils/types";
 
-import { getPageData } from "../lib/page";
-import { getAllBlogs } from "../lib/blog";
-import { getallCourses, getFilteredCourse } from "../lib/course";
+import {getPageData} from "../lib/page";
+import {getAllBlogs} from "../lib/blog";
+import {getallCourses, getFilteredCourse} from "../lib/course";
 
 interface PageContent {
     section: string;
@@ -38,7 +40,7 @@ type PageProps = NextPage<TProps> & {
     Layout: typeof Layout;
 };
 
-const Home: PageProps = ({ data }) => {
+const Home: PageProps = ({data}) => {
     const content = normalizedData<PageContent>(data.page?.content, "section");
 
     return (
@@ -49,8 +51,8 @@ const Home: PageProps = ({ data }) => {
                     popularCourse: data.popularCourse,
                 }}
             />
-            <ServiceArea data={content?.["service-area"]} space="none" />
-            <AboutArea data={content?.["about-area"]} />
+            <ServiceArea data={content?.["service-area"]} space="none"/>
+            <AboutArea data={content?.["about-area"]}/>
             <Wrapper className="tw-py-[100px]">
                 <FunFactArea
                     data={content?.["funfact-area"]}
@@ -61,12 +63,12 @@ const Home: PageProps = ({ data }) => {
                     space="none"
                 />
             </Wrapper>
-            <VideoArea data={content?.["video-area"]} space="none" />
+            <VideoArea data={content?.["video-area"]} space="none"/>
             <CourseArea
-                data={{ ...content?.["course-area"], courses: data.courses }}
+                data={{...content?.["course-area"], courses: data.courses}}
             />
-            <BlogArea data={{ ...content?.["blog-area"], blogs: data.blogs }} />
-            <BrandArea data={content?.["brand-area"]} />
+            <BlogArea data={{...content?.["blog-area"], blogs: data.blogs}}/>
+            <BrandArea data={content?.["brand-area"]}/>
         </>
     );
 };
@@ -93,7 +95,7 @@ export const getStaticProps: GetStaticProps = () => {
         "isPopular",
         true
     );
-    const { blogs } = getAllBlogs(
+    const {blogs} = getAllBlogs(
         ["title", "image", "category", "postedAt", "views"],
         0,
         3
