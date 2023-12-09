@@ -1,8 +1,11 @@
 import getUrlWithParams from "./getUrlWithParams";
+import baseAxois from "./base-axois";
+import {AxiosInstance} from "axios";
 
 
 type Props = {
-    url: { path: string, absolute?: boolean };
+    url: string,
+    axiosInstance?: AxiosInstance;
     params?: Record<string, string | number>;
     data?: any;
     headers?: HeadersInit;
@@ -12,49 +15,65 @@ type Props = {
     token?: string
 }
 
-export const API_URL = `${process.env['NEXT_PUBLIC_BACK_END_URL']}/api/v1`
-
-const apiAddressCreator = (url: string): string => {
-    return API_URL + url
-}
-
-
 async function customFetch(props: Props) {
 
     const {
-        url: {path, absolute},
+        url,
+        axiosInstance,
         params,
         data,
         headers,
         method,
-        cache,
     } = props
 
+    const BaseAxios = axiosInstance || baseAxois
     // const token = tokenFromServerSide ?  tokenFromServerSide  : getToken()
 
-    const finalUrl = getUrlWithParams(path, params)
+    const finalUrl = getUrlWithParams(BaseAxios.getUri() + url, params)
 
-    const apiDestination = absolute ? path : apiAddressCreator(finalUrl)
-    
-    const res = await fetch(
-        apiDestination
-        ,
-        {
+    let logEntry = {
+        timestamp: new Date().toISOString(),
+        method: method || 'GET',
+        path: getUrlWithParams(BaseAxios.getUri(), params),
+        status: 500,
+        message: ''
+    };
+
+    try {
+        const response = await BaseAxios.request({
+            url: finalUrl,
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
+                Authorization: `Bearer ${"token"}`,
                 ...headers
             },
-            method: method || 'GET',
-            cache: cache || "no-store",
-            ...data && {body: JSON.stringify(data)}
+            method: method || "GET",
+            ...data
+        })
+
+        logEntry.status = response.status;
+
+        const responseBody = await response.data;
+
+        if (response.status === 200) {
+            logEntry.message = 'Request successful';
+            return responseBody;
+        } else {
+            logEntry.message = `Request failed with status: ${response.status}`;
+            console.error('Request Error:', logEntry);
+            await Promise.reject(new Error(`Request failed with status: ${response.status}`));
+            return {status: response.status, message: responseBody?.message, data: responseBody}
         }
-    );
+    } catch (error: any) {
+        logEntry.message = error.message;
+        console.error('Request Network/Error:', logEntry);
+        return Promise.reject(error);
+    } finally {
+        console.log('Request Log:', logEntry);
+    }
 
-    const convertedToJson = await res
 
-    return convertedToJson
 }
 
 export default customFetch
