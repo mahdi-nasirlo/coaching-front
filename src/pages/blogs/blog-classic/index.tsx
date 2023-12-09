@@ -5,7 +5,7 @@ import Breadcrumb from "@components/breadcrumb";
 import BlogArea from "@containers/blog-full/layout-03";
 import {BlogMetaType, IBlog} from "@utils/types";
 import {getAllBlogs, getTags} from "../../../lib/blog";
-import customeFetcher from "../../../service/customeFetcher";
+import {getPageBlogPosts} from "../../../@types/api-response/blog";
 
 type TProps = {
     data: {
@@ -54,33 +54,18 @@ BlogClassic.Layout = Layout01;
 
 export const getStaticProps: GetStaticProps = async () => {
 
-    let data = await customeFetcher({url: {path: "/blog/posts"}});
+    let blogs = await getPageBlogPosts();
 
-    data = await data?.json();
-
-    const {blogs, count} = getAllBlogs(
-        [
-            "title",
-            "image",
-            "category",
-            "postedAt",
-            "views",
-            "author",
-            "excerpt"
-        ],
-        0,
-        POSTS_PER_PAGE
-    );
     const {blogs: recentPosts} = getAllBlogs(["title"], 0, 5);
     const tags = getTags();
     return {
         props: {
             data: {
-                blogs,
+                blogs: blogs?.data || [],
                 recentPosts,
                 tags,
                 currentPage: 1,
-                numberOfPages: Math.ceil(count / POSTS_PER_PAGE)
+                numberOfPages: Math.ceil(blogs?.meta.total || 0 / POSTS_PER_PAGE)
             },
             layout: {
                 headerShadow: true,

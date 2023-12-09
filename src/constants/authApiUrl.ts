@@ -8,5 +8,5 @@ export const authApiUrl = {
             password: z.string().min(8),
         }),
         method: "POST"
-    }
+    },
 }

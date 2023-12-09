@@ -62,13 +62,14 @@ async function customFetch(props: Props) {
         } else {
             logEntry.message = `Request failed with status: ${response.status}`;
             console.error('Request Error:', logEntry);
-            await Promise.reject(new Error(`Request failed with status: ${response.status}`));
+            // await Promise.reject(new Error(`Request failed with status: ${response.status}`));
             return {status: response.status, message: responseBody?.message, data: responseBody}
         }
     } catch (error: any) {
         logEntry.message = error.message;
         console.error('Request Network/Error:', logEntry);
-        return Promise.reject(error);
+        // return Promise.reject(error);
+        return undefined
     } finally {
         console.log('Request Log:', logEntry);
     }
