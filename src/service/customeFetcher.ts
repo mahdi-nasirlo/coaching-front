@@ -1,6 +1,7 @@
 import getUrlWithParams from "./getUrlWithParams";
 import baseAxois from "./base-axois";
 import {AxiosHeaders, AxiosInstance} from "axios";
+import {GeneralErrorType} from "../@types/api-response/general";
 
 
 type Props = {
@@ -15,7 +16,7 @@ type Props = {
     token?: string
 }
 
-async function customFetch(props: Props) {
+async function customFetch(props: Props): Promise<GeneralErrorType | any | undefined> {
 
     const {
         url,

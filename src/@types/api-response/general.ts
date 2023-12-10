@@ -25,5 +25,5 @@ export interface General<T> {
 export interface GeneralErrorType {
     message: string,
     status: number,
-    data: any,
+    data?: any,
 }
