@@ -9,7 +9,7 @@ type Props = {
     params?: Record<string, string | number>;
     data?: any;
     headers?: HeadersInit;
-    method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
+    method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | string;
     cache?: RequestCache;
     tokenFromServerSide?: string,
     token?: string

@@ -5,7 +5,7 @@ import {z} from "zod";
 const apiData = authApiUrl.login
 export const getTokenWithEmail = async (props: { data: z.infer<typeof apiData.schema> }) => {
 
-    const res = await customeFetcher({url: {path: apiData.url}, method: apiData.method, data: props.data})
+    const res = await customeFetcher({url: apiData.url, method: apiData.method, data: props.data})
 
     console.log(res)
 
