@@ -1,6 +1,6 @@
 import getUrlWithParams from "./getUrlWithParams";
 import baseAxois from "./base-axois";
-import {AxiosInstance} from "axios";
+import {AxiosHeaders, AxiosInstance} from "axios";
 
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
     axiosInstance?: AxiosInstance;
     params?: Record<string, string | number>;
     data?: any;
-    headers?: HeadersInit;
+    headers?: AxiosHeaders;
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | string;
     cache?: RequestCache;
     tokenFromServerSide?: string,
@@ -34,9 +34,10 @@ async function customFetch(props: Props) {
     let logEntry = {
         timestamp: new Date().toISOString(),
         method: method || 'GET',
-        path: getUrlWithParams(BaseAxios.getUri(), params),
-        status: 500,
-        message: ''
+        path: finalUrl,
+        status: "0",
+        message: '',
+        data: null as any,
     };
 
     try {
@@ -49,10 +50,8 @@ async function customFetch(props: Props) {
                 ...headers
             },
             method: method || "GET",
-            ...data
+            data: data,
         })
-
-        logEntry.status = response.status;
 
         const responseBody = await response.data;
 
@@ -60,20 +59,33 @@ async function customFetch(props: Props) {
             logEntry.message = 'Request successful';
             return responseBody;
         } else {
+
             logEntry.message = `Request failed with status: ${response.status}`;
+            logEntry.status = `${response.status}`;
+
             console.error('Request Error:', logEntry);
-            // await Promise.reject(new Error(`Request failed with status: ${response.status}`));
+
             return {status: response.status, message: responseBody?.message, data: responseBody}
         }
     } catch (error: any) {
-        logEntry.message = error.message;
-        console.error('Request Network/Error:', logEntry);
-        // return Promise.reject(error);
-        return undefined
-    } finally {
-        console.log('Request Log:', logEntry);
-    }
 
+        logEntry.message = error.message;
+        logEntry.status = `${error?.response?.status}`;
+
+        try {
+
+            logEntry.data = JSON.stringify(error?.response?.data)
+
+            console.error('Request Network/Error:', logEntry);
+            return {status: error?.response?.status, message: error?.response?.data?.message}
+
+        } catch (e) {
+
+            return undefined
+
+        }
+
+    }
 
 }
 
