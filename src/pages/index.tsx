@@ -41,6 +41,7 @@ type PageProps = NextPage<TProps> & {
 };
 
 const Home: PageProps = ({data}) => {
+
     const content = normalizedData<PageContent>(data.page?.content, "section");
 
     return (

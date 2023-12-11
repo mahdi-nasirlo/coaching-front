@@ -1,69 +1,70 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { useForm, SubmitHandler } from "react-hook-form";
+import {useState} from "react";
+import {useRouter} from "next/router";
+import {SubmitHandler, useForm} from "react-hook-form";
 import Input from "@ui/form-elements/input";
 import Checkbox from "@ui/form-elements/checkbox";
 import FeedbackText from "@ui/form-elements/feedback";
 import Button from "@ui/button";
-import { hasKey } from "@utils/methods";
-import { useUser } from "@contexts/user-context";
+import {hasKey} from "@utils/methods";
+import {useUser} from "@contexts/user-context";
+import {signIn} from "next-auth/react";
+import toast from "react-hot-toast";
 
 interface IFormValues {
-    username: string;
+    email: string;
     password: string;
 }
 
 const LoginForm = () => {
     const router = useRouter();
     const [serverState, setServerState] = useState("");
-    const { setLogin } = useUser();
+    const {setLogin} = useUser();
     const {
         register,
         handleSubmit,
-        formState: { errors },
-    } = useForm<IFormValues>({
-        defaultValues: {
-            username: "Admin",
-            password: "Admin",
-        },
-    });
+        formState: {errors},
+    } = useForm<IFormValues>();
 
-    const onSubmit: SubmitHandler<IFormValues> = (data) => {
-        if (data.username === "Admin" && data.password === "Admin") {
-            setLogin();
-            setServerState("");
-            if (window?.history?.length > 2) {
-                router.back();
-            }
-        } else {
-            setServerState("Username or password is incorrect");
-        }
+    const onSubmit: SubmitHandler<IFormValues> = async (data) => {
+        const res = signIn("credentials", {email: data.email, password: data.password, redirect: false})
+        console.log(res)
+
+        await toast.promise(res, {error: "اطلاعات کاربری درست نمی باشد", success: "ورود موفق", loading: "loading ..."})
+        // if (data.email === "Admin" && data.password === "Admin") {
+        //     setLogin();
+        //     setServerState("");
+        //     if (window?.history?.length > 2) {
+        //         router.back();
+        //     }
+        // } else {
+        //     setServerState("Email or password is incorrect");
+        // }
     };
 
     return (
-        <div className="tw-bg-white tw-shadow-2xs tw-shadow-heading/10 tw-max-w-[470px] tw-pt-7.5 tw-pb-[50px] tw-px-[50px]">
+        <div
+            className="tw-bg-white tw-shadow-2xs tw-shadow-heading/10 tw-max-w-[470px] tw-pt-7.5 tw-pb-[50px] tw-px-[50px]">
             <h3 className="tw-text-h2 tw-mb-5">Login</h3>
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
                 <div className="tw-mb-7.5">
                     <label
-                        htmlFor="username"
+                        htmlFor="email"
                         className="tw-text-heading tw-text-md"
                     >
-                        Username *
+                        Email *
                     </label>
                     <Input
-                        id="username"
-                        placeholder="Username"
+                        id="email"
+                        placeholder="Email"
                         bg="light"
-                        feedbackText={errors?.username?.message}
-                        state={hasKey(errors, "username") ? "error" : "success"}
-                        showState={!!hasKey(errors, "username")}
-                        {...register("username", {
-                            required: "Username is required",
+                        feedbackText={errors?.email?.message}
+                        state={hasKey(errors, "email") ? "error" : "success"}
+                        showState={!!hasKey(errors, "email")}
+                        {...register("email", {
+                            required: "Email is required",
                         })}
                     />
-                    <small>Default Username: Admin</small>
+                    {/*<small>Default Email: Admin</small>*/}
                 </div>
                 <div className="tw-mb-7.5">
                     <label

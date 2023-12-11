@@ -10,7 +10,7 @@ export default NextAuth({
                 email: {label: "email", type: "email", placeholder: "jsmith", value: "m.nwordpress1223@gmail.com"},
                 password: {label: "Password", type: "password"}
             },
-            authorize: async (credentials) => {
+            async authorize(credentials) {
 
                 const res = await getTokenWithEmail({
                     data:
@@ -20,9 +20,15 @@ export default NextAuth({
                         },
                 })
 
-                console.log(res)
+                if (res?.data?.token) {
 
-                return false
+                    return {name: "test", email: "test", id: "test"}
+
+                } else {
+
+                    return null
+
+                }
             }
         })
     ]

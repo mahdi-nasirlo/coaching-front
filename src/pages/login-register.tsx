@@ -1,14 +1,16 @@
-import { useEffect } from "react";
-import type { GetStaticProps, NextPage } from "next";
-import { useRouter } from "next/router";
+import {useEffect} from "react";
+import type {GetServerSideProps, NextPage} from "next";
+import {useRouter} from "next/router";
 import SEO from "@components/seo/page-seo";
 import Layout from "@layout/layout-01";
 import Breadcrumb from "@components/breadcrumb";
 import LoginForm from "@components/forms/login-form";
 import RegisterForm from "@components/forms/register-form";
 import Spinner from "@ui/spinner";
-import { useUser } from "@contexts/user-context";
-import { useMount } from "@hooks";
+import {useUser} from "@contexts/user-context";
+import {useMount} from "@hooks";
+import {getSession} from "next-auth/react";
+import {redirect} from "next/navigation";
 
 type PageProps = NextPage & {
     Layout: typeof Layout;
@@ -16,7 +18,7 @@ type PageProps = NextPage & {
 
 const LoginRegister: PageProps = () => {
     const mounted = useMount();
-    const { isLoggedIn } = useUser();
+    const {isLoggedIn} = useUser();
     const router = useRouter();
 
     useEffect(() => {
@@ -54,7 +56,12 @@ const LoginRegister: PageProps = () => {
 
 LoginRegister.Layout = Layout;
 
-export const getStaticProps: GetStaticProps = () => {
+export const getServerSideProps: GetServerSideProps = async () => {
+
+    const session = await getSession()
+
+    if (session) redirect("/")
+
     return {
         props: {
             layout: {
