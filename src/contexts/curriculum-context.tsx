@@ -1,5 +1,5 @@
-import { createContext, useContext, useMemo, useReducer } from "react";
-import { ICurriculum } from "@utils/types";
+import {createContext, useContext, useMemo, useReducer} from "react";
+import {ICurriculum} from "@utils/types";
 
 // Curriculum Context
 
@@ -15,7 +15,6 @@ export const CurriculumContext = createContext({} as CurriculumContextType);
 // Curriculum Reducer
 interface CurAction {
     type: "SEARCH_LESSON";
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     payload?: any;
 }
 

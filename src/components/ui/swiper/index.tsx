@@ -1,11 +1,10 @@
-import { forwardRef } from "react";
+import {forwardRef} from "react";
 import cn from "clsx";
-import SwiperCore, { Navigation, Pagination, Autoplay, A11y } from "swiper";
+import SwiperCore, {A11y, Autoplay, Navigation, Pagination} from "swiper";
 // eslint-disable-next-line import/no-unresolved
-import { Swiper, SwiperSlide } from "swiper/react";
+import {Swiper, SwiperSlide} from "swiper/react";
 
 type TOptions = {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     modules?: any[];
     slidesPerView?: number;
     spaceBetween?: number;
@@ -98,7 +97,6 @@ const SwiperSlider = forwardRef<HTMLDivElement, TProps>(
             autoHeight: true,
             breakpoints: {},
             ...options,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             modules: [Navigation, Pagination, A11y, Autoplay, ...modules],
             navigation: options?.navigation
                 ? {

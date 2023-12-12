@@ -11,7 +11,6 @@ export function readFile() {
     const dirContents = fs.readdirSync(dir);
     const files: Array<IData> = [];
     dirContents.forEach((val) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const file: IData = JSON.parse(
             fs.readFileSync(path.join(dir, val), "utf8")
         );
