@@ -10,7 +10,6 @@ import Spinner from "@ui/spinner";
 import {useUser} from "@contexts/user-context";
 import {useMount} from "@hooks";
 import {getSession} from "next-auth/react";
-import {redirect} from "next/navigation";
 
 type PageProps = NextPage & {
     Layout: typeof Layout;
@@ -32,34 +31,41 @@ const LoginRegister: PageProps = () => {
     if (!isLoggedIn) {
         return (
             <>
-                <SEO title="Login Register" />
+                <SEO title="Login Register"/>
                 <Breadcrumb
-                    pages={[{ path: "/", label: "home" }]}
+                    pages={[{path: "/", label: "home"}]}
                     currentPage="Profile"
                     showTitle={false}
                 />
-                <div className="tw-container tw-pb-15 md:tw-pb-20 lg:tw-pb-[100px] tw-grid tw-items-start lg:tw-grid-cols-2 tw-gap-7.5 lg:tw-gap-15">
-                    <LoginForm />
-                    <RegisterForm />
+                <div
+                    className="tw-container tw-pb-15 md:tw-pb-20 lg:tw-pb-[100px] tw-grid tw-items-start lg:tw-grid-cols-2 tw-gap-7.5 lg:tw-gap-15">
+                    <LoginForm/>
+                    <RegisterForm/>
                 </div>
             </>
         );
     }
 
     return (
-        <div className="tw-fixed tw-bg-light-100 tw-top-0 tw-z-50 tw-w-screen tw-h-screen tw-flex tw-justify-center tw-items-center">
-            <Spinner />
+        <div
+            className="tw-fixed tw-bg-light-100 tw-top-0 tw-z-50 tw-w-screen tw-h-screen tw-flex tw-justify-center tw-items-center">
+            <Spinner/>
         </div>
     );
 };
 
 LoginRegister.Layout = Layout;
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
 
-    const session = await getSession()
+    const session = await getSession(context)
 
-    if (session) redirect("/")
+    if (session) return {
+        redirect: {
+            destination: "/",
+            permanent: true
+        }
+    }
 
     return {
         props: {

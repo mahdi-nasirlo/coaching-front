@@ -66,22 +66,22 @@ interface ButtonProps {
 }
 
 const Button = ({
-    children,
-    type,
-    variant,
-    color,
-    size,
-    shape,
-    fullwidth,
-    active,
-    disabled,
-    iconButton,
-    label,
-    className,
-    path,
-    onClick,
-    hover,
-}: ButtonProps) => {
+                    children,
+                    type,
+                    variant,
+                    color,
+                    size,
+                    shape,
+                    fullwidth,
+                    active,
+                    disabled,
+                    iconButton,
+                    label,
+                    className,
+                    path,
+                    onClick,
+                    hover,
+                }: ButtonProps) => {
     const baseClass =
         "tw-font-bold tw-justify-center tw-items-center tw-border tw-border-solid tw-rounded-md tw-transition-colors tw-min-w-max";
     const baseNotFullWidthClass = !fullwidth && "tw-inline-flex";
@@ -196,13 +196,14 @@ const Button = ({
                 onClick={onClick}
                 aria-label={label}
             >
-                {children}
+                {children}asdfasd
             </Anchor>
         );
     }
 
     return (
         <button
+            disabled={disabled}
             type={type}
             className={classnames}
             onClick={onClick}

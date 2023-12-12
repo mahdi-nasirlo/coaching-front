@@ -3,7 +3,9 @@ import Input from "@ui/form-elements/input";
 import Checkbox from "@ui/form-elements/checkbox";
 import Button from "@ui/button";
 import {hasKey} from "@utils/methods";
-import {signIn} from "next-auth/react";
+import {useLogin} from "../../hooks/api/useLogin";
+import Router from "next/router";
+
 
 interface IFormValues {
     email: string;
@@ -11,9 +13,9 @@ interface IFormValues {
 }
 
 const LoginForm = () => {
-    // const router = useRouter();
-    // const [serverState, setServerState] = useState("");
-    // const {setLogin} = useUser();
+
+    const login = useLogin()
+
     const {
         register,
         handleSubmit,
@@ -22,27 +24,12 @@ const LoginForm = () => {
 
     const onSubmit: SubmitHandler<IFormValues> = async (data) => {
 
-        await signIn("credentials", {email: data.email, password: data.password})
+        const res = await login.mutateAsync(data)
 
+        if (res?.ok) {
+            await Router.push(res.url || "/")
+        }
 
-        // await toast.promise(res, {
-        //     loading: 'Loading',
-        //     success: (data) => `Successfully saved ${data.name}`,
-        //     error: (err) => `This just happened: ${err.toString()}`,
-        // })
-        // const res = await signIn("credentials", {email: data.email, password: data.password, redirect: false})
-
-        // toast.promise(res,{error})
-
-        // if (data.email === "Admin" && data.password === "Admin") {
-        //     setLogin();
-        //     setServerState("");
-        //     if (window?.history?.length > 2) {
-        //         router.back();
-        //     }
-        // } else {
-        //     setServerState("Email or password is incorrect");
-        // }
     };
 
     return (
@@ -68,7 +55,6 @@ const LoginForm = () => {
                             required: "Email is required",
                         })}
                     />
-                    {/*<small>Default Email: Admin</small>*/}
                 </div>
                 <div className="tw-mb-7.5">
                     <label
@@ -90,10 +76,9 @@ const LoginForm = () => {
                             required: "Password is required",
                         })}
                     />
-                    <small>Default Password: Admin</small>
                 </div>
-                <Checkbox name="remember" id="remember" label="Remember me" />
-                <Button type="submit" fullwidth className="tw-mt-7.5">
+                <Checkbox name="remember" id="remember" label="Remember me"/>
+                <Button disabled={true} type="submit" fullwidth className="tw-mt-7.5">
                     Log In
                 </Button>
                 {/*{serverState && <FeedbackText>{serverState}</FeedbackText>}*/}

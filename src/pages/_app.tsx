@@ -15,6 +15,7 @@ import "@assets/css/swiper.css";
 import {UIProvider} from "../contexts/ui-context";
 import {UserProvider} from "../contexts/user-context";
 import QueryClientProvider from "../providers/query-client-provider";
+import AuthProvider from "../providers/auth-provider";
 
 interface CustomAppProps extends Omit<AppProps, "Component"> {
     Component: AppProps["Component"] & { Layout: ElementType };
@@ -40,17 +41,19 @@ const MyApp = ({Component, pageProps}: CustomAppProps) => {
     });
 
     return (
-        <QueryClientProvider>
-            <UIProvider>
-                <UserProvider>
-                    <Layout {...layoutProps}>
-                        <SEO/>
-                        <Component {...pageProps} />
-                        <Toaster/>
-                    </Layout>
-                </UserProvider>
-            </UIProvider>
-        </QueryClientProvider>
+        <AuthProvider>
+            <QueryClientProvider>
+                <UIProvider>
+                    <UserProvider>
+                        <Layout {...layoutProps}>
+                            <SEO/>
+                            <Component {...pageProps} />
+                            <Toaster/>
+                        </Layout>
+                    </UserProvider>
+                </UIProvider>
+            </QueryClientProvider>
+        </AuthProvider>
     );
 };
 

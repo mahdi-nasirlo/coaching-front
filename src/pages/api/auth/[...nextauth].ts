@@ -1,8 +1,8 @@
-import NextAuth from "next-auth";
+import NextAuth, {AuthOptions} from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import {getTokenWithEmail} from "../../../lib/api/auth";
 
-export default NextAuth({
+export const authOptions: AuthOptions = {
     providers: [
         CredentialsProvider({
             name: "Credentials",
@@ -20,8 +20,12 @@ export default NextAuth({
                         },
                 })
 
+
+                console.log("test 1")
+
                 if (res?.data?.token) {
 
+                    console.log("test 2")
                     return {name: "test", email: "test", id: "test"}
 
                 } else {
@@ -36,4 +40,6 @@ export default NextAuth({
         signIn: "/login-register",
         error: "/login-register"
     }
-});
+}
+
+export default NextAuth(authOptions);
