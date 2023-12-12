@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import StarRating from "@ui/star-rating";
-import { ImageType } from "@utils/types";
+import {ImageType} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = {
     name: string;
@@ -29,7 +30,7 @@ const Testimonial = ({
             <div className="tw-flex tw-items-center tw-mb-5">
                 {image?.src && (
                     <figure className="image tw-flex-auto0 tw-w-[90px]">
-                        <img
+                        <Image
                             src={image.src}
                             alt={image?.alt || name}
                             width={image?.width || 90}

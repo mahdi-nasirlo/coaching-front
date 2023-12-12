@@ -1,10 +1,11 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Section from "@ui/section";
 import Video from "@ui/video-with-poster/video-02";
 import Shape2 from "@assets/svgs/shape-2.svg";
-import { scrollUpVariants } from "@utils/variants";
-import { ImageType, TSection, VideoType } from "@utils/types";
-import { useUI } from "@contexts/ui-context";
+import {scrollUpVariants} from "@utils/variants";
+import {ImageType, TSection, VideoType} from "@utils/types";
+import {useUI} from "@contexts/ui-context";
+import Image from "@ui/image";
 
 const AnimatedVideo = motion(Video);
 
@@ -52,7 +53,7 @@ const VideoArea = ({ data: { images, video }, space, bg }: TProps) => {
                         y: trans2().y,
                     }}
                 >
-                    <img
+                    <Image
                         src="/images/shape-animation/shape-3.png"
                         alt="shape"
                         loading="lazy"
@@ -78,7 +79,7 @@ const VideoArea = ({ data: { images, video }, space, bg }: TProps) => {
                         y: trans1().y,
                     }}
                 >
-                    <img
+                    <Image
                         src="/images/shape-animation/shape-1.png"
                         alt=""
                         loading="lazy"

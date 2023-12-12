@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react/prefer-stateless-function */
-/* eslint-disable @typescript-eslint/naming-convention */
 declare module "react-modal-video" {
     export default class ModalVideo extends React.Component<ModalProps, any> {}
 

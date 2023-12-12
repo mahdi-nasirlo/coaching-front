@@ -1,16 +1,17 @@
-import { useState } from "react";
+import {useState} from "react";
 import clsx from "clsx";
 import dynamic from "next/dynamic";
-import { VideoType } from "@utils/types";
+import {VideoType} from "@utils/types";
+import Image from "@ui/image";
 
-const ModalVideo = dynamic(() => import("../video-modal"), { ssr: false });
+const ModalVideo = dynamic(() => import("../video-modal"), {ssr: false});
 
 type TProps = VideoType & {
     label?: string;
     className?: string;
 };
 
-const VideoButton = ({ label, className, videoId }: TProps) => {
+const VideoButton = ({label, className, videoId}: TProps) => {
     const [isOpen, setOpen] = useState(false);
     return (
         <>
@@ -23,7 +24,7 @@ const VideoButton = ({ label, className, videoId }: TProps) => {
                 )}
                 onClick={() => setOpen(true)}
             >
-                <img
+                <Image
                     className="icon tw-w-16 md:tw-w-auto"
                     src="/images/icons/icon-youtube-play.png"
                     alt="youtube play"

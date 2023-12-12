@@ -1,12 +1,13 @@
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Shape2 from "@assets/svgs/shape-2.svg";
 import SectionTitle from "@components/section-title";
 import Accordion from "@ui/accordion";
 import BottomShape from "@components/ui/bottom-shape/shape-02";
-import { ImageType, ItemType, SectionTitleType } from "@utils/types";
-import { useUI } from "@contexts/ui-context";
-import { scrollUpVariants } from "@utils/variants";
+import {ImageType, ItemType, SectionTitleType} from "@utils/types";
+import {useUI} from "@contexts/ui-context";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = {
     data: {
@@ -46,7 +47,7 @@ const FaqArea = ({
                     variants={scrollUpVariants}
                 >
                     {images?.[0]?.src && (
-                        <img
+                        <Image
                             src={images[0].src}
                             alt={images[0]?.alt || "About"}
                             width={393}

@@ -1,12 +1,14 @@
 import Section from "@ui/section";
-import Social, { SocialLink } from "@components/ui/social";
+import Social, {SocialLink} from "@components/ui/social";
+import Image from "@ui/image";
 
 const ProfileBio = () => {
     return (
         <Section className="profile-area" space="bottom">
-            <div className="tw-container tw-grid tw-grid-cols-1 md:tw-grid-cols-12 tw-gap-7.5 tw-items-start lg:tw-items-center">
+            <div
+                className="tw-container tw-grid tw-grid-cols-1 md:tw-grid-cols-12 tw-gap-7.5 tw-items-start lg:tw-items-center">
                 <figure className="tw-col-span-full md:tw-col-span-6 xl:tw-col-span-5">
-                    <img
+                    <Image
                         className="tw-w-full"
                         src="/images/profile/profile.jpeg"
                         alt="profile"

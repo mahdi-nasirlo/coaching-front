@@ -1,13 +1,14 @@
-import { useMemo } from "react";
-import { motion } from "framer-motion";
+import {useMemo} from "react";
+import {motion} from "framer-motion";
 import Section from "@ui/section";
-import SwiperSlider, { SwiperSlide } from "@ui/swiper";
+import SwiperSlider, {SwiperSlide} from "@ui/swiper";
 import Testimonial from "@components/testimonial/testimonial-05";
 import SectionTitle from "@components/section-title";
 import Shape2 from "@assets/svgs/shape-2.svg";
-import { useUI } from "@contexts/ui-context";
-import { ItemType, SectionTitleType, TSection } from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {useUI} from "@contexts/ui-context";
+import {ItemType, SectionTitleType, TSection} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 const AnimatedSectionTitle = motion(SectionTitle);
 const AnimatedSwiperSlider = motion(SwiperSlider);
@@ -85,7 +86,7 @@ const TestimonialArea = ({
                         y: trans2().y,
                     }}
                 >
-                    <img src="/images/shape-animation/shape-3.png" alt="" />
+                    <Image src="/images/shape-animation/shape-3.png" alt=""/>
                 </motion.div>
             </div>
         </Section>

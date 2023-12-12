@@ -1,12 +1,13 @@
-import Social, { SocialLink } from "@ui/social";
-import { IInstructor } from "@utils/types";
+import Social, {SocialLink} from "@ui/social";
+import {IInstructor} from "@utils/types";
+import Image from "@ui/image";
 
-const BlogAuthor = ({ name, image, bio, socials }: IInstructor) => {
+const BlogAuthor = ({name, image, bio, socials}: IInstructor) => {
     return (
         <div className="blog-author tw-mt-10 tw-flex tw-flex-wrap tw-justify-center md:tw-justify-start">
             <div className="tw-text-center tw-max-w-[140px] tw-min-w-[100px] tw-shrink-0">
                 {image?.src && (
-                    <img
+                    <Image
                         alt={image?.alt || name}
                         src={image.src}
                         className="tw-rounded-full"

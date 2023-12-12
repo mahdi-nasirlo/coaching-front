@@ -1,9 +1,10 @@
-import { useState } from "react";
+import {useState} from "react";
 import dayjs from "dayjs";
-import { Modal, ModalBody } from "@ui/modal";
+import {Modal, ModalBody} from "@ui/modal";
 import Input from "@ui/form-elements/input";
 import Button from "@ui/button";
-import { ImageType } from "@utils/types";
+import {ImageType} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = {
     show: boolean;
@@ -32,7 +33,7 @@ const MeetingBookingModal = ({
                 <h3 className="tw-text-xl tw-mb-7">{title}</h3>
                 <div className="tw-mb-7.5">
                     {thumbnail?.src && (
-                        <img
+                        <Image
                             src={thumbnail.src}
                             alt={thumbnail?.alt || title}
                             width="410"

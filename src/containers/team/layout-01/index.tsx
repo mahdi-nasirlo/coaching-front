@@ -1,11 +1,12 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Section from "@ui/section";
 import Shape2 from "@assets/svgs/shape-2.svg";
 import SectionTitle from "@components/section-title";
 import Button from "@ui/button";
-import { ButtonType, SectionTitleType, TSection } from "@utils/types";
-import { useUI } from "@contexts/ui-context";
-import { scrollUpVariants } from "@utils/variants";
+import {ButtonType, SectionTitleType, TSection} from "@utils/types";
+import {useUI} from "@contexts/ui-context";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = TSection & {
     data: {
@@ -15,7 +16,7 @@ type TProps = TSection & {
 };
 
 const TeamArea = ({
-    data: { section_title, buttons },
+                      data: {section_title, buttons},
     space,
     bg,
     titleSize,
@@ -31,7 +32,7 @@ const TeamArea = ({
                     viewport={{ once: true, amount: 0.4 }}
                     variants={scrollUpVariants}
                 >
-                    <img
+                    <Image
                         src="/images/team/home-3-team-image.png"
                         alt="team"
                         className="tw-mx-auto"
@@ -52,7 +53,7 @@ const TeamArea = ({
                             y: trans2().y,
                         }}
                     >
-                        <img
+                        <Image
                             src="/images/shape-animation/shape-3.png"
                             alt="shape"
                             loading="lazy"
@@ -78,7 +79,7 @@ const TeamArea = ({
                             y: trans1().y,
                         }}
                     >
-                        <img
+                        <Image
                             src="/images/shape-animation/shape-1.png"
                             alt=""
                             loading="lazy"
@@ -93,7 +94,7 @@ const TeamArea = ({
                             y: trans1().y,
                         }}
                     >
-                        <img
+                        <Image
                             src="/images/shape-animation/cta-shape-01.png"
                             alt=""
                         />

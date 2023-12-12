@@ -1,10 +1,11 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Section from "@ui/section";
 import MottoText from "@ui/motto-text";
 import SectionTitle from "@components/section-title";
-import { useUI } from "@contexts/ui-context";
-import { ImageType, MottoType, SectionTitleType, TSection } from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {useUI} from "@contexts/ui-context";
+import {ImageType, MottoType, SectionTitleType, TSection} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = TSection & {
     data: {
@@ -51,7 +52,7 @@ const AboutArea = ({
                             viewport={{ once: true, amount: 0.1 }}
                             variants={scrollUpVariants}
                         >
-                            <img
+                            <Image
                                 src={images[0].src}
                                 alt={images[0]?.alt || "About One"}
                                 width={570}
@@ -63,7 +64,7 @@ const AboutArea = ({
                     )}
                     {images?.[1]?.src && (
                         <div className="tw-absolute tw-z-20 tw-top-[-90px] tw-right-0 3xl:tw-right-[-73px]">
-                            <img
+                            <Image
                                 src={images[1].src}
                                 alt={images[1]?.alt || "About Two"}
                                 width={190}
@@ -92,7 +93,7 @@ const AboutArea = ({
                             y: trans1().y,
                         }}
                     >
-                        <img
+                        <Image
                             src="/images/shape-animation/about-shape-1.png"
                             alt=""
                         />
@@ -104,7 +105,7 @@ const AboutArea = ({
                             y: trans1().y,
                         }}
                     >
-                        <img
+                        <Image
                             src="/images/shape-animation/nwesletter-shape-2.png"
                             alt=""
                         />
@@ -116,7 +117,7 @@ const AboutArea = ({
                             y: trans1().y,
                         }}
                     >
-                        <img src="/images/shape-animation/shape-1.png" alt="" />
+                        <Image src="/images/shape-animation/shape-1.png" alt=""/>
                     </motion.div>
                 </div>
             </div>

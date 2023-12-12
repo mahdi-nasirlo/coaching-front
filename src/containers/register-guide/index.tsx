@@ -1,17 +1,13 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Section from "@ui/section";
 import SectionTitle from "@components/section-title";
 import ListWithCheck from "@ui/list-with-check";
 import Button from "@ui/button";
 import Shape2 from "@assets/svgs/shape-2.svg";
-import { useUI } from "@contexts/ui-context";
-import {
-    ButtonType,
-    ImageType,
-    SectionTitleType,
-    TSection,
-} from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {useUI} from "@contexts/ui-context";
+import {ButtonType, ImageType, SectionTitleType, TSection,} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 const AnimatedSectionTitle = motion(SectionTitle);
 const AnimatedListWithCheck = motion(ListWithCheck);
@@ -72,7 +68,7 @@ const RegisterGuideArea = ({
                     variants={scrollUpVariants}
                 >
                     {images?.[0]?.src && (
-                        <img
+                        <Image
                             src={images[0].src}
                             alt={images[0]?.alt || "register guide"}
                             width={459}
@@ -96,7 +92,7 @@ const RegisterGuideArea = ({
                             y: trans2().y,
                         }}
                     >
-                        <img
+                        <Image
                             src="/images/shape-animation/shape-3.png"
                             alt="shape"
                             loading="lazy"

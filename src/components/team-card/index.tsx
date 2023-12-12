@@ -1,6 +1,7 @@
-import { forwardRef } from "react";
-import Social, { SocialLink } from "@ui/social";
-import { ImageType, ISocial } from "@utils/types";
+import {forwardRef} from "react";
+import Social, {SocialLink} from "@ui/social";
+import {ImageType, ISocial} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = {
     image: ImageType;
@@ -10,12 +11,12 @@ type TProps = {
 };
 
 const TeamCard = forwardRef<HTMLDivElement, TProps>(
-    ({ image, name, designation, socials }, ref) => {
+    ({image, name, designation, socials}, ref) => {
         return (
             <div className="team-member tw-group" ref={ref}>
                 <figure className="tw-relative tw-overflow-hidden">
                     {image?.src && (
-                        <img
+                        <Image
                             className="tw-w-full tw-transition-transform tw-duration-1000 tw-ease-out group-hover:tw-scale-110"
                             src={image.src}
                             alt={image?.alt || name}

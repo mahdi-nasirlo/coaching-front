@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import Anchor from "@ui/anchor";
 import Badge from "@ui/badge";
-import { TMegaMenu } from "@utils/types";
+import {TMegaMenu} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = {
     className?: string;
@@ -9,7 +10,7 @@ type TProps = {
     isExpand: boolean;
 };
 
-const Megamenu = ({ menu, isExpand, className }: TProps) => {
+const Megamenu = ({menu, isExpand, className}: TProps) => {
     return (
         <div
             className={clsx(
@@ -56,7 +57,7 @@ const Megamenu = ({ menu, isExpand, className }: TProps) => {
                     {banner && (
                         <Anchor path={banner.path} tabIndex={isExpand ? 0 : -1}>
                             {banner.image?.src && (
-                                <img
+                                <Image
                                     src={banner.image.src}
                                     alt={banner.image?.alt || "Banner"}
                                 />

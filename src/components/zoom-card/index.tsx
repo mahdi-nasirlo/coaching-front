@@ -1,8 +1,9 @@
-import { forwardRef } from "react";
+import {forwardRef} from "react";
 import clsx from "clsx";
-import { IZoomMeeting } from "@utils/types";
+import {IZoomMeeting} from "@utils/types";
 import Anchor from "@components/ui/anchor";
-import { minutesToHours } from "@utils/methods";
+import {minutesToHours} from "@utils/methods";
+import Image from "@ui/image";
 
 type TProps = Pick<
     IZoomMeeting,
@@ -29,7 +30,7 @@ const ZoomCard = forwardRef<HTMLDivElement, TProps>(
                 <div className="tw-relative tw-overflow-hidden tw-rounded-t max-w-full tw-h-[230px]">
                     {thumbnail?.src && (
                         <figure className="tw-transition-transform tw-duration-1500 group-hover:tw-scale-110 tw-h-full">
-                            <img
+                            <Image
                                 className="tw-w-full tw-h-full tw-object-cover"
                                 src={thumbnail.src}
                                 alt={thumbnail?.alt || "Event"}

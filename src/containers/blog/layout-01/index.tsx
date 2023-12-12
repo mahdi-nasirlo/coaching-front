@@ -1,13 +1,14 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Section from "@ui/section";
 import BlogCard01 from "@components/blog-card/blog-01";
 import BlogCard02 from "@components/blog-card/blog-02";
 import MottoText from "@components/ui/motto-text";
 import SectionTitle from "@components/section-title";
 import Shape2 from "@assets/svgs/shape-2.svg";
-import { useUI } from "@contexts/ui-context";
-import { scrollUpVariants } from "@utils/variants";
-import { MottoType, SectionTitleType, IBlog, TSection } from "@utils/types";
+import {useUI} from "@contexts/ui-context";
+import {scrollUpVariants} from "@utils/variants";
+import {IBlog, MottoType, SectionTitleType, TSection} from "@utils/types";
+import Image from "@ui/image";
 
 const AnimatedSectionTitle = motion(SectionTitle);
 
@@ -34,7 +35,7 @@ const BlogArea = ({
             bg={bg}
         >
             <div className="tw-absolute tw-inset-0 tw-flex jtw-ustify-center tw-items-center">
-                <img
+                <Image
                     src="/images/bg/maxcoach-shape-03.png"
                     alt="shape"
                     loading="lazy"
@@ -130,7 +131,7 @@ const BlogArea = ({
                         y: trans2().y,
                     }}
                 >
-                    <img
+                    <Image
                         src="/images/shape-animation/shape-3.png"
                         alt="shape"
                         loading="lazy"

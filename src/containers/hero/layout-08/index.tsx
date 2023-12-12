@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
-import { ImageType, HeadingType } from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {motion} from "framer-motion";
+import {HeadingType, ImageType} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = {
     data: {
@@ -9,12 +10,12 @@ type TProps = {
     };
 };
 
-const HeroArea = ({ data: { images, headings } }: TProps) => {
+const HeroArea = ({data: {images, headings}}: TProps) => {
     return (
         <section className="hero-area tw-relative tw-py-15 md:tw-py-20 lg:tw-py-[100px] xl:tw-py-[200px]">
             {images?.[0]?.src && (
                 <div className="tw-absolute tw-inset-0 -tw-z-1">
-                    <img
+                    <Image
                         src={images[0].src}
                         alt={images[0]?.alt || "Hero BG"}
                         width={1903}

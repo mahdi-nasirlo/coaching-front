@@ -1,7 +1,8 @@
-import { forwardRef } from "react";
+import {forwardRef} from "react";
 import clsx from "clsx";
 import Anchor from "@ui/anchor";
-import { ICourse } from "@utils/types";
+import {ICourse} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = Pick<
     ICourse,
@@ -44,7 +45,7 @@ const CourseCard02 = forwardRef<HTMLDivElement, TProps>(
             >
                 <figure className="tw-relative tw-overflow-hidden">
                     {thumbnail?.src && (
-                        <img
+                        <Image
                             className="tw-w-full tw-rounded-t tw-transition-transform tw-duration-1000 tw-ease-out group-hover:tw-scale-110"
                             src={thumbnail.src}
                             alt={thumbnail?.alt || "Course"}

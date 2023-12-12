@@ -1,9 +1,10 @@
-import { useMemo, useState } from "react";
-import SwiperCore, { EffectFade } from "swiper";
-import { motion } from "framer-motion";
-import SwiperSlider, { SwiperSlide } from "@components/ui/swiper";
-import { ItemType } from "@utils/types";
-import { fadeInUp } from "@utils/variants";
+import {useMemo, useState} from "react";
+import SwiperCore, {EffectFade} from "swiper";
+import {motion} from "framer-motion";
+import SwiperSlider, {SwiperSlide} from "@components/ui/swiper";
+import {ItemType} from "@utils/types";
+import {fadeInUp} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = {
     data: {
@@ -11,7 +12,7 @@ type TProps = {
     };
 };
 
-const HeroArea = ({ data: { items } }: TProps) => {
+const HeroArea = ({data: {items}}: TProps) => {
     const [activeIdx, setActiveId] = useState(0);
     const onSlideChange = (swiper: SwiperCore) => {
         const { activeIndex } = swiper;
@@ -49,7 +50,7 @@ const HeroArea = ({ data: { items } }: TProps) => {
                     <div className="tw-relative tw-z-1 tw-w-full tw-h-[450px] md:tw-h-[500px] lg:tw-h-[600px] xl:tw-h-[700px] tw-flex tw-items-end">
                         {images?.[0]?.src && (
                             <div className="tw-absolute tw-inset-0 tw-object-cover">
-                                <img
+                                <Image
                                     src={images[0].src}
                                     alt=""
                                     className="tw-w-full tw-h-full tw-object-cover"

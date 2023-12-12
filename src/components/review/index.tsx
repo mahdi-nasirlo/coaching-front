@@ -1,5 +1,6 @@
 import StarRating from "@ui/star-rating";
-import { ImageType } from "@utils/types";
+import {ImageType} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = {
     user: {
@@ -16,7 +17,7 @@ const Review = ({ user, rating, title, review }: TProps) => {
         <div className="review tw-flex tw-flex-wrap">
             {user?.avatar?.src && (
                 <figure className="tw-w-[80px] tw-h-[80px] child:tw-rounded-full">
-                    <img
+                    <Image
                         src={user.avatar.src}
                         alt={user.avatar?.alt || user.name}
                     />

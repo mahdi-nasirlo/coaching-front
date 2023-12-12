@@ -1,10 +1,11 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Section from "@ui/section";
 import SectionTitle from "@components/section-title";
 import ServiceCard from "@components/icon-box/icon-box-02";
-import { scrollUpVariants } from "@utils/variants";
-import { useUI } from "@contexts/ui-context";
-import { SectionTitleType, ItemType, ImageType, TSection } from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import {useUI} from "@contexts/ui-context";
+import {ImageType, ItemType, SectionTitleType, TSection} from "@utils/types";
+import Image from "@ui/image";
 
 const AnimatedSectionTitle = motion(SectionTitle);
 const AnimatedServiceCard = motion(ServiceCard);
@@ -58,7 +59,7 @@ const ServiceArea = ({
             <div className="tw-pt-15 md:tw-pt-20 lg:tw-pt-[100px] tw-bg-transparent tw-bg-lightGradient tw-mb-8">
                 <div className="tw-container tw-relative tw-z-1 -tw-bottom-8 -tw-mt-8">
                     {images?.[0]?.src && (
-                        <img
+                        <Image
                             src={images[0].src}
                             alt={images[0]?.alt || "Services"}
                             width={1118}

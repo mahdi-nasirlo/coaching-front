@@ -1,6 +1,7 @@
-import { forwardRef, useEffect, useRef, useState } from "react";
+import {forwardRef, useEffect, useRef, useState} from "react";
 import clsx from "clsx";
-import { ImageType } from "@utils/types";
+import {ImageType} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = {
     image: ImageType;
@@ -9,7 +10,7 @@ type TProps = {
 };
 
 const Item = forwardRef<HTMLDivElement, TProps>(
-    ({ image, name, designation }, ref) => {
+    ({image, name, designation}, ref) => {
         const [elWidth, setElWidth] = useState(0);
         const imgRef = useRef<HTMLImageElement>(null);
         useEffect(() => {
@@ -30,7 +31,7 @@ const Item = forwardRef<HTMLDivElement, TProps>(
             >
                 {image?.src && (
                     <div className="tw-relative tw-w-full tw-h-full before:tw-absolute before:tw-content-[''] before:tw-z-1 before:tw-inset-0 before:tw-transition-all before:tw-duration-500 before:tw-bg-black/50 before:tw-opacity-0 group-hover:before:tw-opacity-100">
-                        <img
+                        <Image
                             src={image.src}
                             alt=""
                             className="tw-w-full tw-h-full tw-object-cover"

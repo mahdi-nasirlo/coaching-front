@@ -1,10 +1,11 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Section from "@ui/section";
-import { useUI } from "@contexts/ui-context";
+import {useUI} from "@contexts/ui-context";
 import SectionTitle from "@components/section-title";
 import NewsletterForm from "@components/forms/newsletter-form";
-import { SectionTitleType, TSection } from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {SectionTitleType, TSection} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = TSection & {
     data: {
@@ -12,8 +13,8 @@ type TProps = TSection & {
     };
 };
 
-const NewsletterArea = ({ data: { section_title }, space, bg }: TProps) => {
-    const { trans1, trans2 } = useUI();
+const NewsletterArea = ({data: {section_title}, space, bg}: TProps) => {
+    const {trans1, trans2} = useUI();
     return (
         <Section className="newsletter-area" space={space} bg={bg}>
             <motion.div
@@ -45,7 +46,7 @@ const NewsletterArea = ({ data: { section_title }, space, bg }: TProps) => {
                         y: trans1().y,
                     }}
                 >
-                    <img
+                    <Image
                         src="/images/shape-animation/nwesletter-shape-1.png"
                         alt=""
                     />
@@ -57,7 +58,7 @@ const NewsletterArea = ({ data: { section_title }, space, bg }: TProps) => {
                         y: trans2().y,
                     }}
                 >
-                    <img
+                    <Image
                         src="/images/shape-animation/nwesletter-shape-2.png"
                         alt=""
                     />

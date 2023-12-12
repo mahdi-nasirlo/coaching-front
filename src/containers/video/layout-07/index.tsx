@@ -4,10 +4,11 @@ import SectionTitle from "@components/section-title";
 import BottomShape from "@ui/bottom-shape/shape-02";
 import Video from "@ui/video-with-poster/video-02";
 import Shape2 from "@assets/svgs/shape-2.svg";
-import { motion } from "framer-motion";
-import { useUI } from "@contexts/ui-context";
-import { scrollUpVariants } from "@utils/variants";
-import { ImageType, SectionTitleType, TSection, VideoType } from "@utils/types";
+import {motion} from "framer-motion";
+import {useUI} from "@contexts/ui-context";
+import {scrollUpVariants} from "@utils/variants";
+import {ImageType, SectionTitleType, TSection, VideoType} from "@utils/types";
+import Image from "@ui/image";
 
 const AnimatedSectionTitle = motion(SectionTitle);
 const AnimatedVideo = motion(Video);
@@ -78,7 +79,7 @@ const VideoArea = ({
                         y: trans2().y,
                     }}
                 >
-                    <img
+                    <Image
                         src="/images/shape-animation/shape-3.png"
                         alt="shape"
                         loading="lazy"
@@ -104,7 +105,7 @@ const VideoArea = ({
                         y: trans1().y,
                     }}
                 >
-                    <img
+                    <Image
                         src="/images/shape-animation/shape-1.png"
                         alt=""
                         loading="lazy"

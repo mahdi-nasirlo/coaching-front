@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useRef } from "react";
-import { createCustomEqual, deepEqual } from "fast-equals";
-import { isLatLngLiteral } from "@googlemaps/typescript-guards";
+import {useEffect, useRef} from "react";
+import {createCustomEqual, deepEqual} from "fast-equals";
+import {isLatLngLiteral} from "@googlemaps/typescript-guards";
 
 const deepCompareEqualsForMaps = createCustomEqual(() => ({
     areObjectsEqual: (a, b) => {
@@ -23,7 +22,6 @@ function useDeepCompareMemoize(value: any) {
     const ref = useRef();
 
     if (!deepCompareEqualsForMaps(value, ref.current)) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         ref.current = value;
     }
 

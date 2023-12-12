@@ -1,16 +1,17 @@
 import clsx from "clsx";
-import { ISpeaker } from "@utils/types";
+import {ISpeaker} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = Omit<ISpeaker, "id"> & {
     className?: string;
 };
 
-const SpeakerCard = ({ className, name, designation, image }: TProps) => {
+const SpeakerCard = ({className, name, designation, image}: TProps) => {
     return (
         <div className={clsx("speaker tw-text-center", className)}>
             <div className="tw-mb-7 tw-w-[170px] tw-h-[170px] tw-mx-auto">
                 {image?.src && (
-                    <img
+                    <Image
                         src={image.src}
                         alt={image?.alt || name}
                         width="200"

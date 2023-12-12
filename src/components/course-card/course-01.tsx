@@ -1,8 +1,9 @@
-import { forwardRef } from "react";
+import {forwardRef} from "react";
 import clsx from "clsx";
 import dayjs from "dayjs";
 import Anchor from "@ui/anchor";
-import { ICourse } from "@utils/types";
+import {ICourse} from "@utils/types";
+import Image from "@ui/image";
 
 interface TProps
     extends Pick<
@@ -43,7 +44,7 @@ const CourseCard = forwardRef<HTMLDivElement, TProps>(
             >
                 <figure className="tw-relative tw-overflow-hidden">
                     {thumbnail?.src && (
-                        <img
+                        <Image
                             src={thumbnail.src}
                             alt={thumbnail?.alt || title}
                             width={thumbnail?.width || 370}

@@ -1,6 +1,7 @@
 import Anchor from "@ui/anchor";
-import Social, { SocialLink } from "@components/ui/social";
-import { IInstructor } from "@utils/types";
+import Social, {SocialLink} from "@components/ui/social";
+import {IInstructor} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = IInstructor;
 
@@ -9,7 +10,7 @@ const OverviewPanel = ({ name, image, designation, bio, socials }: TProps) => {
         <div className="instructor tw-grid tw-gap-7.5 md:tw-grid-cols-3 lg:tw-gap-[50px]">
             <figure className="md:tw-col-[1/1]">
                 {image.src && (
-                    <img
+                    <Image
                         src={image.src}
                         alt={image?.alt || name}
                         width={238}

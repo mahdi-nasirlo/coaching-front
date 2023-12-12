@@ -1,5 +1,6 @@
 import clsx from "clsx";
-import { ImageType, ItemType } from "@utils/types";
+import {ImageType, ItemType} from "@utils/types";
+import Image from "next/image";
 
 type TProps = Pick<
     ItemType,
@@ -31,7 +32,7 @@ const Testimonial = ({
             <div className="tw-inline-flex tw-flex-wrap tw-items-center tw-pt-1 md:tw-pt-6">
                 {image?.src && (
                     <div className="tw-shrink-0 tw-mr-5 tw-w-[70px]">
-                        <img
+                        <Image
                             className="tw-rounded-full"
                             src={image.src}
                             alt={image?.alt || name}

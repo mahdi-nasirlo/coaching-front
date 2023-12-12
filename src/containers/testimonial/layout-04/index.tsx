@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Section from "@ui/section";
 import SectionTitle from "@components/section-title";
 import Button from "@ui/button";
@@ -6,9 +6,10 @@ import Testimonial03 from "@components/testimonial/testimonial-03";
 import Testimonial04 from "@components/testimonial/testimonial-04";
 import RatingBox from "@components/testimonial/rating-box";
 import Shape2 from "@assets/svgs/shape-2.svg";
-import { useUI } from "@contexts/ui-context";
-import { ButtonType, ItemType, SectionTitleType, TSection } from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {useUI} from "@contexts/ui-context";
+import {ButtonType, ItemType, SectionTitleType, TSection} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = TSection & {
     data: {
@@ -70,7 +71,7 @@ const TestimonialArea = ({
                             y: trans2().y,
                         }}
                     >
-                        <img
+                        <Image
                             src="/images/shape-animation/shape-3.png"
                             alt="shape"
                             loading="lazy"
@@ -120,7 +121,7 @@ const TestimonialArea = ({
                             y: trans1().y,
                         }}
                     >
-                        <img
+                        <Image
                             src="/images/shape-animation/nwesletter-shape-2.png"
                             alt=""
                         />

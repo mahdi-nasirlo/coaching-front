@@ -1,18 +1,19 @@
 import clsx from "clsx";
 import Anchor from "@ui/anchor";
-import { IInstructor } from "@utils/types";
+import {IInstructor} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = {
     author: IInstructor;
     className?: string;
 };
 
-const AuthorMeta = ({ author, className }: TProps) => {
+const AuthorMeta = ({author, className}: TProps) => {
     return (
         <div className={clsx("post-author tw-mb-[5px]", className)}>
             <Anchor path={author.path} className="tw-flex tw-items-center">
                 {author.image?.src && (
-                    <img
+                    <Image
                         alt={author.image?.alt || "Avatar"}
                         src={author.image.src}
                         className="tw-w-8 tw-h-8 tw-rounded-full tw-mr-2"

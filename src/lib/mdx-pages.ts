@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import fs from "fs";
-import { join } from "path";
+import {join} from "path";
 import matter from "gray-matter";
 
 const directory = join(process.cwd(), "src/data/mdx-pages");

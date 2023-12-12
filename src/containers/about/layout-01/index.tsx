@@ -1,15 +1,10 @@
 import Section from "@ui/section";
 import SectionTitle from "@components/section-title";
 import Anchor from "@ui/anchor";
-import { motion } from "framer-motion";
-import { scrollUpVariants } from "@utils/variants";
-import {
-    SectionTitleType,
-    TextType,
-    AnchorType,
-    ImageType,
-    TSection,
-} from "@utils/types";
+import {motion} from "framer-motion";
+import {scrollUpVariants} from "@utils/variants";
+import {AnchorType, ImageType, SectionTitleType, TextType, TSection,} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = TSection & {
     data: {
@@ -39,7 +34,7 @@ const QuoteArea = ({
                     >
                         <figure className="tw-relative tw-flex-auto0 tw-w-[270px] -tw-ml-[135px] tw-translate-y-[50px] tw-hidden lg:tw-block">
                             {images?.[0]?.src && (
-                                <img
+                                <Image
                                     src={images[0].src}
                                     alt={images[0]?.alt || "About"}
                                     width={270}

@@ -1,16 +1,12 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Section from "@ui/section";
 import SectionTitle from "@components/section-title";
 import Button from "@ui/button";
 import Shape2 from "@assets/svgs/shape-2.svg";
-import { useUI } from "@contexts/ui-context";
-import {
-    ButtonType,
-    ImageType,
-    SectionTitleType,
-    TSection,
-} from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {useUI} from "@contexts/ui-context";
+import {ButtonType, ImageType, SectionTitleType, TSection,} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = TSection & {
     data: {
@@ -38,7 +34,7 @@ const AppDownloadArea = ({
                     variants={scrollUpVariants}
                 >
                     {images?.[0]?.src && (
-                        <img
+                        <Image
                             src={images[0].src}
                             alt={images[0]?.alt || "App Download"}
                             width={380}
@@ -63,7 +59,7 @@ const AppDownloadArea = ({
                             y: trans2().y,
                         }}
                     >
-                        <img
+                        <Image
                             src="/images/shape-animation/cta-shape-01.png"
                             alt=""
                         />
@@ -86,7 +82,7 @@ const AppDownloadArea = ({
                             y: trans1().y,
                         }}
                     >
-                        <img src="/images/shape-animation/shape-1.png" alt="" />
+                        <Image src="/images/shape-animation/shape-1.png" alt=""/>
                     </motion.div>
                 </motion.div>
                 <motion.div

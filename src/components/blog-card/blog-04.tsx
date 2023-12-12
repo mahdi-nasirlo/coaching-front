@@ -1,7 +1,8 @@
-import { forwardRef } from "react";
+import {forwardRef} from "react";
 import clsx from "clsx";
 import Anchor from "@ui/anchor";
-import { BlogMetaType, IBlog } from "@utils/types";
+import {BlogMetaType, IBlog} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = Pick<IBlog, "image" | "path" | "title" | "postedAt" | "views"> & {
     className?: string;
@@ -9,7 +10,7 @@ type TProps = Pick<IBlog, "image" | "path" | "title" | "postedAt" | "views"> & {
 };
 
 const BlogCard = forwardRef<HTMLDivElement, TProps>(
-    ({ className, image, path, title, postedAt, views, category }, ref) => {
+    ({className, image, path, title, postedAt, views, category}, ref) => {
         return (
             <div
                 className={clsx(
@@ -21,7 +22,7 @@ const BlogCard = forwardRef<HTMLDivElement, TProps>(
                 <div className="tw-relative tw-overflow-hidden tw-rounded-t tw-h-[240px] sm:tw-h-64 md:tw-h-[225px] lg:tw-h-[185px] xl:tw-h-[250px]">
                     {image?.src && (
                         <div className="tw-transition-transform tw-duration-1500 tw-h-full group-hover:tw-scale-110">
-                            <img
+                            <Image
                                 className="tw-w-full tw-h-full tw-object-cover"
                                 src={image.src}
                                 alt={image?.alt || title}

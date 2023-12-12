@@ -1,16 +1,11 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import clsx from "clsx";
 import Button from "@ui/button";
 import MottoText from "@ui/motto-text";
-import { useUI } from "@contexts/ui-context";
-import {
-    HeadingType,
-    TextType,
-    ButtonType,
-    ImageType,
-    MottoType,
-} from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {useUI} from "@contexts/ui-context";
+import {ButtonType, HeadingType, ImageType, MottoType, TextType,} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = {
     data: {
@@ -74,7 +69,7 @@ const HeroArea = ({
                             viewport={{ once: true, amount: 0.1 }}
                             variants={scrollUpVariants}
                         >
-                            <img
+                            <Image
                                 src={images[0].src}
                                 alt={images[0]?.alt || "Hero"}
                                 width={570}
@@ -92,7 +87,7 @@ const HeroArea = ({
                         }}
                     >
                         <span data-depth="3">
-                            <img
+                            <Image
                                 src="/images/shape-animation/about-shape-1.png"
                                 alt=""
                             />
@@ -106,7 +101,7 @@ const HeroArea = ({
                             y: trans2().y,
                         }}
                     >
-                        <img
+                        <Image
                             src="/images/shape-animation/about-shape-1.png"
                             alt=""
                         />
@@ -129,7 +124,7 @@ const HeroArea = ({
                             y: trans1().y,
                         }}
                     >
-                        <img src="/images/shape-animation/shape-1.png" alt="" />
+                        <Image src="/images/shape-animation/shape-1.png" alt=""/>
                     </motion.div>
                     <motion.div
                         className="tw-absolute tw-z-1 tw-w-15 tw-bottom-[140px] tw-right-2.5 sm:tw-bottom-[314px] sm:tw-right-7.5 md:tw-w-auto md:tw-right-[70px]"
@@ -138,7 +133,7 @@ const HeroArea = ({
                             y: trans1().y,
                         }}
                     >
-                        <img
+                        <Image
                             src="/images/shape-animation/nwesletter-shape-2.png"
                             alt=""
                         />

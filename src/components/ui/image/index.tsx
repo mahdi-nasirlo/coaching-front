@@ -1,15 +1,15 @@
+import type {ImageProps} from "next/image";
 import Image from "next/image";
-import type { ImageProps } from "next/image";
 
 const normalizeSrc = (src: string) => {
     return src.startsWith("/") ? src.slice(1) : src;
 };
 
 const cloudflareLoader = ({
-    src,
-    width,
-    quality,
-}: {
+                              src,
+                              width,
+                              quality,
+                          }: {
     src: string;
     width: number;
     quality?: number;
@@ -34,7 +34,7 @@ const myLoader = ({
     return `${src}?w=${width}&q=${quality || 75}`;
 };
 
-const MyImage = (props: ImageProps) => {
+const MyImage = (props: ImageProps & { ref?: any }) => {
     return (
         <Image
             loader={
@@ -43,6 +43,7 @@ const MyImage = (props: ImageProps) => {
                     : myLoader
             }
             {...props}
+            alt={props.alt}
         />
     );
 };

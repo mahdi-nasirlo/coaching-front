@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { createContext, useContext, useMemo, useReducer } from "react";
+import {createContext, useContext, useMemo, useReducer} from "react";
 
 const COURSESTORE_KEY = "maxCourse";
 const AUTH_KEY = "maxAuth";
@@ -56,7 +54,6 @@ const init = () => {
 
 interface UserAction {
     type: "LOGIN" | "ENROLL_COURSE" | "LESSON_COMPLETE";
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     payload?: any;
 }
 

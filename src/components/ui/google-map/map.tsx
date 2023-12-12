@@ -1,15 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-    Children,
-    cloneElement,
-    isValidElement,
-    ReactElement,
-    ReactNode,
-    useEffect,
-    useRef,
-    useState,
-} from "react";
-import { useDeepCompareEffectForMaps } from "./utils";
+import {Children, cloneElement, isValidElement, ReactElement, ReactNode, useEffect, useRef, useState,} from "react";
+import {useDeepCompareEffectForMaps} from "./utils";
 
 type MapProps = google.maps.MapOptions & {
     children?: ReactNode;

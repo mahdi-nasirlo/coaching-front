@@ -1,14 +1,10 @@
-import {useState} from "react";
-import {useRouter} from "next/router";
 import {SubmitHandler, useForm} from "react-hook-form";
 import Input from "@ui/form-elements/input";
 import Checkbox from "@ui/form-elements/checkbox";
-import FeedbackText from "@ui/form-elements/feedback";
 import Button from "@ui/button";
 import {hasKey} from "@utils/methods";
-import {useUser} from "@contexts/user-context";
-import {signIn} from "next-auth/react";
 import toast from "react-hot-toast";
+import {getTokenWithEmail} from "../../lib/api/auth";
 
 interface IFormValues {
     email: string;
@@ -16,9 +12,9 @@ interface IFormValues {
 }
 
 const LoginForm = () => {
-    const router = useRouter();
-    const [serverState, setServerState] = useState("");
-    const {setLogin} = useUser();
+    // const router = useRouter();
+    // const [serverState, setServerState] = useState("");
+    // const {setLogin} = useUser();
     const {
         register,
         handleSubmit,
@@ -26,10 +22,25 @@ const LoginForm = () => {
     } = useForm<IFormValues>();
 
     const onSubmit: SubmitHandler<IFormValues> = async (data) => {
-        const res = signIn("credentials", {email: data.email, password: data.password, redirect: false})
-        console.log(res)
 
-        await toast.promise(res, {error: "اطلاعات کاربری درست نمی باشد", success: "ورود موفق", loading: "loading ..."})
+        const res = getTokenWithEmail({
+            data:
+                {
+                    email: `${data?.email}`,
+                    password: `${data?.password}`,
+                },
+        })
+
+
+        await toast.promise(res, {
+            loading: 'Loading',
+            success: (data) => `Successfully saved ${data.name}`,
+            error: (err) => `This just happened: ${err.toString()}`,
+        })
+        // const res = await signIn("credentials", {email: data.email, password: data.password, redirect: false})
+
+        // toast.promise(res,{error})
+
         // if (data.email === "Admin" && data.password === "Admin") {
         //     setLogin();
         //     setServerState("");
@@ -92,7 +103,7 @@ const LoginForm = () => {
                 <Button type="submit" fullwidth className="tw-mt-7.5">
                     Log In
                 </Button>
-                {serverState && <FeedbackText>{serverState}</FeedbackText>}
+                {/*{serverState && <FeedbackText>{serverState}</FeedbackText>}*/}
             </form>
         </div>
     );

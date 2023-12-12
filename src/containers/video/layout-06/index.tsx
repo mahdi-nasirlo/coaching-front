@@ -1,16 +1,12 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Video from "@ui/video-with-poster/video-02";
 import MottoText from "@ui/motto-text";
 import SectionTitle from "@components/section-title";
 import Shape2 from "@assets/svgs/shape-2.svg";
-import { useUI } from "@contexts/ui-context";
-import {
-    ImageType,
-    MottoType,
-    SectionTitleType,
-    VideoType,
-} from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {useUI} from "@contexts/ui-context";
+import {ImageType, MottoType, SectionTitleType, VideoType,} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 const AnimatedVideo = motion(Video);
 
@@ -61,7 +57,7 @@ const VideoArea = ({
                             y: trans2().y,
                         }}
                     >
-                        <img src="/images/shape-animation/shape-3.png" alt="" />
+                        <Image src="/images/shape-animation/shape-3.png" alt=""/>
                     </motion.div>
                     <motion.div
                         className="tw-absolute tw-z-20 tw-top-0 -tw-right-2.5 md:tw-right-7.5"
@@ -81,7 +77,7 @@ const VideoArea = ({
                             y: trans1().y,
                         }}
                     >
-                        <img src="/images/shape-animation/shape-1.png" alt="" />
+                        <Image src="/images/shape-animation/shape-1.png" alt=""/>
                     </motion.div>
                 </div>
                 <motion.div

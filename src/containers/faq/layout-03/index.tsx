@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
-import { ImageType, ItemType } from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {motion} from "framer-motion";
+import {ImageType, ItemType} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = {
     data: {
@@ -9,7 +10,7 @@ type TProps = {
     };
 };
 
-const FaqArea = ({ data: { images, items } }: TProps) => {
+const FaqArea = ({data: {images, items}}: TProps) => {
     return (
         <div className="faq-area tw-pt-15 md:tw-pt-20 lg:tw-pt-[100px]">
             <div className="tw-container">
@@ -21,14 +22,14 @@ const FaqArea = ({ data: { images, items } }: TProps) => {
                     variants={scrollUpVariants}
                 >
                     {images?.[0]?.src && (
-                        <img
+                        <Image
                             src={images[0].src}
                             alt={images[0]?.alt || "Faq"}
                             className="tw-rounded tw-w-full tw-h-full tw-object-cover"
                         />
                     )}
                     {images?.[1]?.src && (
-                        <img
+                        <Image
                             src={images[1].src}
                             alt={images[1]?.alt || "Faq"}
                             className="tw-rounded tw-w-full tw-h-full tw-object-cover"

@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import VideoButton from "@ui/video-button";
-import { ImageType, VideoType } from "@utils/types";
+import {ImageType, VideoType} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = {
     poster: ImageType;
@@ -8,7 +9,7 @@ type TProps = {
     className?: string;
 };
 
-const Video01 = ({ poster, video, className }: TProps) => {
+const Video01 = ({poster, video, className}: TProps) => {
     return (
         <div
             className={clsx(
@@ -17,7 +18,7 @@ const Video01 = ({ poster, video, className }: TProps) => {
             )}
         >
             {poster?.src && (
-                <img
+                <Image
                     className="tw-w-full tw-transition-transform tw-duration-1500 group-hover:tw-scale-110"
                     src={poster.src}
                     alt={poster?.alt || "video poster"}
