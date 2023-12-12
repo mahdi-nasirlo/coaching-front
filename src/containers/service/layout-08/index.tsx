@@ -1,9 +1,10 @@
 import clsx from "clsx";
 import SectionTitle from "@components/section-title";
 import ServiceCard from "@components/icon-box/icon-box-02";
-import { motion } from "framer-motion";
-import { scrollUpVariants } from "@utils/variants";
-import { SectionTitleType, ItemType, ImageType } from "@utils/types";
+import {motion} from "framer-motion";
+import {scrollUpVariants} from "@utils/variants";
+import {ImageType, ItemType, SectionTitleType} from "@utils/types";
+import Image from "@ui/image";
 
 const AnimatedSerctionTitle = motion(SectionTitle);
 const AnimatedServiceCard = motion(ServiceCard);
@@ -72,7 +73,7 @@ const ServiceArea = ({
                         variants={scrollUpVariants}
                     >
                         {images?.[0]?.src && (
-                            <img
+                            <Image
                                 src={images[0].src}
                                 alt={images[0]?.alt || "Service"}
                                 width={602}

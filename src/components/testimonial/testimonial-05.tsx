@@ -1,5 +1,6 @@
 import clsx from "clsx";
-import { ImageType } from "@utils/types";
+import {ImageType} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = {
     description: string;
@@ -25,7 +26,7 @@ const Testimonial05 = ({
         >
             <figure className="tw-w-[140px] tw-h-[140px] xl:tw-w-[200px] xl:tw-h-[200px]">
                 {image?.src && (
-                    <img
+                    <Image
                         src={image.src}
                         alt={image?.alt || name}
                         className="tw-w-full tw-h-full tw-rounded-full"

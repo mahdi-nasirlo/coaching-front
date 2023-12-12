@@ -1,4 +1,4 @@
-import type {GetStaticProps, NextPage} from "next";
+import type {GetServerSideProps, NextPage} from "next";
 import SEO from "@components/seo/page-seo";
 import Layout01 from "@layout/layout-01";
 import Breadcrumb from "@components/breadcrumb";
@@ -52,7 +52,7 @@ const BlogClassic: PageProps = ({
 
 BlogClassic.Layout = Layout01;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
 
     let blogs = await getPageBlogPosts();
 

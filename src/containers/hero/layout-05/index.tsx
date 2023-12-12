@@ -1,9 +1,10 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Button from "@ui/button";
 import BottomShape from "@ui/bottom-shape/shape-04";
-import { ButtonType, HeadingType, ImageType, TextType } from "@utils/types";
+import {ButtonType, HeadingType, ImageType, TextType} from "@utils/types";
 import clsx from "clsx";
-import { scrollUpVariants } from "@utils/variants";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = {
     data: {
@@ -53,7 +54,7 @@ const HeroArea = ({ data: { headings, texts, buttons, images } }: TProps) => {
                     variants={scrollUpVariants}
                 >
                     {images?.[0]?.src && (
-                        <img
+                        <Image
                             src={images[0].src}
                             alt={images[0]?.alt || "hero"}
                         />

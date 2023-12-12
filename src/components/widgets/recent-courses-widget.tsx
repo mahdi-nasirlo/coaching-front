@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import Anchor from "@ui/anchor";
-import { ICourse } from "@utils/types";
+import {ICourse} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = {
     recentCourses: Pick<
@@ -10,7 +11,7 @@ type TProps = {
     className?: string;
 };
 
-const RecentCoursesWidget = ({ recentCourses, className }: TProps) => {
+const RecentCoursesWidget = ({recentCourses, className}: TProps) => {
     return (
         <div className={clsx("recent-courses-widget", className)}>
             <h2 className="tw-mb-7.5 tw-text-h3">Recent Courses</h2>
@@ -24,7 +25,7 @@ const RecentCoursesWidget = ({ recentCourses, className }: TProps) => {
                         <div className="tw-max-w-[100px] tw-h-[100px] tw-rounded-full tw-overflow-hidden tw-relative">
                             {thumbnail?.src && (
                                 <>
-                                    <img
+                                    <Image
                                         className="tw-w-full tw-h-full tw-object-cover"
                                         src={thumbnail.src}
                                         alt={thumbnail?.alt || title}

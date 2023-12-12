@@ -26,7 +26,7 @@ export default NextAuth({
 
                 } else {
 
-                    return null
+                    throw new Error(res?.message || "credential try not successfully")
 
                 }
             }

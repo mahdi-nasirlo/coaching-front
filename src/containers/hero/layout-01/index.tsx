@@ -1,17 +1,12 @@
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Button from "@ui/button";
 import CourseCard from "@components/course-card/course-01";
 import BottomShape from "@ui/bottom-shape/shape-01";
-import { scrollUpVariants } from "@utils/variants";
-import { useUI } from "@contexts/ui-context";
-import {
-    HeadingType,
-    TextType,
-    ButtonType,
-    ImageType,
-    ICourse,
-} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import {useUI} from "@contexts/ui-context";
+import {ButtonType, HeadingType, ICourse, ImageType, TextType,} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = {
     data: {
@@ -33,7 +28,7 @@ const HeroArea = ({
             <h1 className="tw-sr-only">Home Page</h1>
             <div className="bgimg tw-absolute tw-inset-0 -tw-z-10 tw-hidden md:tw-block">
                 {images?.[0]?.src && (
-                    <img
+                    <Image
                         src={images[0].src}
                         alt={images[0]?.alt || "bg"}
                         loading="eager"
@@ -85,7 +80,7 @@ const HeroArea = ({
                         viewport={{ once: true, amount: 0.1 }}
                         variants={scrollUpVariants}
                     >
-                        <img
+                        <Image
                             className="tw-absolute tw-left-0 -tw-top-7.5 tw-max-w-[100px] tw-z-1 sm:tw-relative sm:tw-left-auto sm:tw-top-auto sm:tw-z-20 sm:tw-self-end sm:tw-flex-auto sm:tw-ml-auto tw-mr-5 sm:tw-mb-[100px] sm:tw-max-w-[120px] md:-tw-mr-7.5 md:-tw-ml-[60px] lg:tw-max-w-[186px]"
                             src="/images/intro/intro1/intro-popular-course.png"
                             alt="popular"
@@ -112,7 +107,7 @@ const HeroArea = ({
                                 y: trans1().y,
                             }}
                         >
-                            <img
+                            <Image
                                 src="/images/shape-animation/shape-1.png"
                                 alt=""
                                 width={136}

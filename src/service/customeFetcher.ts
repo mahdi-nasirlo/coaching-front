@@ -73,18 +73,12 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
         logEntry.message = error.message;
         logEntry.status = `${error?.response?.status}`;
 
-        try {
+        logEntry.data = JSON.stringify(error?.response?.data)
 
-            logEntry.data = JSON.stringify(error?.response?.data)
+        console.error('Request Network/Error:', logEntry);
 
-            console.error('Request Network/Error:', logEntry);
-            return {status: error?.response?.status, message: error?.response?.data?.message}
-
-        } catch (e) {
-
-            return undefined
-
-        }
+        throw new Error("test")
+        // throw new Error("request field")
 
     }
 

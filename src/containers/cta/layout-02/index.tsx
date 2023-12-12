@@ -1,9 +1,10 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Section from "@ui/section";
 import Button from "@ui/button";
-import { useUI } from "@contexts/ui-context";
-import { ButtonType, SectionTitleType, TSection } from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {useUI} from "@contexts/ui-context";
+import {ButtonType, SectionTitleType, TSection} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = TSection & {
     data: {
@@ -12,8 +13,8 @@ type TProps = TSection & {
     };
 };
 
-const CtaArea = ({ data: { section_title, buttons }, space, bg }: TProps) => {
-    const { trans1, trans2 } = useUI();
+const CtaArea = ({data: {section_title, buttons}, space, bg}: TProps) => {
+    const {trans1, trans2} = useUI();
     return (
         <Section className="cta-area" space={space} bg={bg}>
             <motion.div
@@ -63,7 +64,7 @@ const CtaArea = ({ data: { section_title, buttons }, space, bg }: TProps) => {
                         y: trans1().y,
                     }}
                 >
-                    <img
+                    <Image
                         src="/images/shape-animation/cta-shape-01.png"
                         alt=""
                     />
@@ -75,7 +76,7 @@ const CtaArea = ({ data: { section_title, buttons }, space, bg }: TProps) => {
                         y: trans1().y,
                     }}
                 >
-                    <img
+                    <Image
                         src="/images/shape-animation/nwesletter-shape-2.png"
                         alt=""
                     />

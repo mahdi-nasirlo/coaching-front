@@ -1,5 +1,6 @@
 import clsx from "clsx";
-import { ImageType } from "@utils/types";
+import {ImageType} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = {
     name: string;
@@ -25,7 +26,7 @@ const Testimonial = ({
         >
             {image?.src && (
                 <figure className="image tw-flex-auto0 tw-w-[70px]">
-                    <img
+                    <Image
                         src={image.src}
                         alt={image?.alt || name}
                         width={image?.width || 70}

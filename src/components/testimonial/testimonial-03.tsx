@@ -1,5 +1,6 @@
 import clsx from "clsx";
-import { ImageType, ItemType } from "@utils/types";
+import {ImageType, ItemType} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = Pick<ItemType, "description" | "name" | "designation"> & {
     image: ImageType;
@@ -7,9 +8,9 @@ type TProps = Pick<ItemType, "description" | "name" | "designation"> & {
 };
 
 const Testimonial03 = ({
-    description,
-    name,
-    designation,
+                           description,
+                           name,
+                           designation,
     image,
     className,
 }: TProps) => {
@@ -22,7 +23,7 @@ const Testimonial03 = ({
         >
             {image?.src && (
                 <div className="tw-mb-7.5 child:tw-mx-auto">
-                    <img
+                    <Image
                         src={image.src}
                         width={image?.width || 140}
                         height={image?.height || 140}

@@ -1,6 +1,7 @@
-import { forwardRef } from "react";
+import {forwardRef} from "react";
 import Anchor from "@ui/anchor";
-import { ImageType } from "@utils/types";
+import {ImageType} from "@utils/types";
+import Image from "@ui/image";
 
 export type ImageBoxProps = {
     image: ImageType;
@@ -18,7 +19,7 @@ const ImageBox = forwardRef<HTMLDivElement, ImageBoxProps>(
                 className="image-box tw-relative tw-group tw-text-center"
             >
                 {image?.src && (
-                    <img
+                    <Image
                         src={image.src}
                         alt={image?.alt || title}
                         className="tw-mb-6 tw-mx-auto"

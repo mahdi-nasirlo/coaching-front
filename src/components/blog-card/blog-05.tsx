@@ -1,11 +1,12 @@
-import { forwardRef } from "react";
+import {forwardRef} from "react";
 import clsx from "clsx";
 import Anchor from "@ui/anchor";
 import AuthorMeta from "@components/blog-meta/author";
 import BlogMetaItem from "@components/blog-meta/meta-item";
-import { IBlog } from "@utils/types";
+import {IBlog} from "@utils/types";
 import Button from "@components/ui/button";
 import SocialShare from "@components/social-share/layout-03";
+import Image from "@ui/image";
 
 type TProps = Pick<
     IBlog,
@@ -47,7 +48,7 @@ const BlogCard = forwardRef<HTMLDivElement, TProps>(
                 <div className="tw-relative tw-group tw-overflow-hidden tw-rounded tw-max-h-[300px] md:tw-max-h-[400px]">
                     {image?.src && (
                         <figure className="tw-transition-transform tw-duration-1500 tw-h-full group-hover:tw-scale-110">
-                            <img
+                            <Image
                                 className="tw-w-full tw-h-full tw-object-cover"
                                 src={image.src}
                                 alt={image?.alt || title}

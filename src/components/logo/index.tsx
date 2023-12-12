@@ -1,5 +1,6 @@
 import Link from "next/link";
 import clsx from "clsx";
+import Image from "@ui/image";
 
 type TProps = {
     variant?: "dark" | "light";
@@ -10,7 +11,7 @@ const Logo = ({ variant, className }: TProps) => {
     return (
         <Link href="/" className={clsx("tw-inline-block", className)}>
             {variant === "dark" && (
-                <img
+                <Image
                     src="/images/logo/dark-logo.png"
                     alt="Logo"
                     width={158}
@@ -18,7 +19,7 @@ const Logo = ({ variant, className }: TProps) => {
                 />
             )}
             {variant === "light" && (
-                <img
+                <Image
                     src="/images/logo/light-logo.png"
                     alt="Logo"
                     width={158}

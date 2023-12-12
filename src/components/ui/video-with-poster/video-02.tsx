@@ -1,7 +1,8 @@
-import { forwardRef } from "react";
+import {forwardRef} from "react";
 import clsx from "clsx";
 import VideoButton from "@ui/video-button";
-import { ImageType, VideoType } from "@utils/types";
+import {ImageType, VideoType} from "@utils/types";
+import Image from "@ui/image";
 
 type TProps = {
     poster: ImageType;
@@ -10,7 +11,7 @@ type TProps = {
 };
 
 const Video02 = forwardRef<HTMLDivElement, TProps>(
-    ({ poster, video, className }, ref) => {
+    ({poster, video, className}, ref) => {
         return (
             <div
                 className={clsx(
@@ -20,7 +21,7 @@ const Video02 = forwardRef<HTMLDivElement, TProps>(
                 ref={ref}
             >
                 {poster?.src && (
-                    <img
+                    <Image
                         className="tw-w-full tw-transition-transform tw-duration-1500 group-hover:tw-scale-110"
                         src={poster.src}
                         alt={poster?.alt || "video poster"}

@@ -1,9 +1,10 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Section from "@ui/section";
 import SectionTitle from "@components/section-title";
 import NewsletterForm from "@components/forms/newsletter-form";
-import { SectionTitleType, TSection } from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {SectionTitleType, TSection} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = TSection & {
     data: {
@@ -12,15 +13,15 @@ type TProps = TSection & {
 };
 
 const NewsletterArea = ({
-    data: { section_title },
-    space,
+                            data: {section_title},
+                            space,
     bg,
     titleSize,
 }: TProps) => {
     return (
         <Section className="tw-relative" space={space} bg={bg}>
             <div className="tw-absolute tw-inset-0 -tw-z-1 child:tw-w-full child:tw-h-full child:tw-object-cover">
-                <img src="/images/bg/subscribe-bg.jpg" alt="newsletter BG" />
+                <Image src="/images/bg/subscribe-bg.jpg" alt="newsletter BG"/>
             </div>
             <motion.div
                 className="tw-container tw-relative"

@@ -3,6 +3,8 @@ import {useRouter} from "next/router";
 import type {AppProps} from "next/app";
 import SEO from "@components/seo/deafult-seo";
 import FallbackLayout from "@layout/fallback";
+import {Toaster} from "react-hot-toast";
+
 
 import "@assets/css/font-awesome.min.css";
 import "@assets/css/font-linea.css";
@@ -44,6 +46,7 @@ const MyApp = ({Component, pageProps}: CustomAppProps) => {
                     <Layout {...layoutProps}>
                         <SEO/>
                         <Component {...pageProps} />
+                        <Toaster/>
                     </Layout>
                 </UserProvider>
             </UIProvider>

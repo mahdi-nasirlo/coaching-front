@@ -5,24 +5,25 @@ import BlogMetaItem from "@components/blog-meta/meta-item";
 import SocialShare from "@components/social-share/layout-03";
 import TagMeta from "@components/blog-meta/tags";
 import MarkdownRenderer from "@components/markdown-renderer";
-import { IBlog } from "@utils/types";
+import {IBlog} from "@utils/types";
+import Image from "@ui/image";
 
 const BlogDetails = ({
-    image,
-    title,
-    category,
-    author,
-    postedAt,
-    views,
-    content,
-    tags,
+                         image,
+                         title,
+                         category,
+                         author,
+                         postedAt,
+                         views,
+                         content,
+                         tags,
 }: IBlog) => {
     return (
         <article className="blog-details tw-pb-7.5 tw-mb-10 tw-border-b tw-border-b-gray-500">
             <div className="entry-header tw-mb-5">
                 {image?.src && (
                     <figure className="tw-mb-7">
-                        <img
+                        <Image
                             className="tw-w-full tw-object-cover tw-rounded"
                             src={image.src}
                             alt={image?.alt || title}

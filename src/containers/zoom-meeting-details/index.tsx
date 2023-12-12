@@ -1,7 +1,8 @@
-import { IZoomMeeting } from "@utils/types";
+import {IZoomMeeting} from "@utils/types";
 import ZoomInfo from "@components/widgets/zoom-info-widget";
 import HTMLContent from "@components/html-content";
 import CountdownTimer from "@ui/countdown-timer/layout-02";
+import Image from "@ui/image";
 
 type TProps = Pick<
     IZoomMeeting,
@@ -36,7 +37,7 @@ const ZoomMeetingDetails = ({
                     <div className="tw-col-span-full lg:tw-col-[1/3]">
                         {thumbnail?.src && (
                             <figure className="tw-mb-7.5 tw-h-[400px]">
-                                <img
+                                <Image
                                     src={thumbnail.src}
                                     alt={thumbnail?.alt || "zoom meeting"}
                                     width="770"

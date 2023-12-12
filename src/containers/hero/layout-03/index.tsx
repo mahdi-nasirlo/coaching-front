@@ -1,8 +1,9 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import clsx from "clsx";
 import Button from "@ui/button";
-import { ButtonType, HeadingType, ImageType } from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {ButtonType, HeadingType, ImageType} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = {
     data: {
@@ -12,12 +13,12 @@ type TProps = {
     };
 };
 
-const HeroArea = ({ data: { headings, buttons, images } }: TProps) => {
+const HeroArea = ({data: {headings, buttons, images}}: TProps) => {
     return (
         <div className="hero-area tw-relative tw-py-[120px] md:tw-py-[150px] lg:tw-py-[170px] xl:tw-py-[240px]">
             <div className="tw-absolute tw-inset-0 -tw-z-10">
                 {images?.[0]?.src && (
-                    <img
+                    <Image
                         src={images[0].src}
                         alt={images[0]?.alt || "bg"}
                         loading="eager"

@@ -1,7 +1,8 @@
 import dayjs from "dayjs";
 import CountdownTimer from "@components/ui/countdown-timer/layout-01";
-import { IEvent } from "@utils/types";
+import {IEvent} from "@utils/types";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import Image from "@ui/image";
 
 dayjs.extend(customParseFormat);
 
@@ -12,7 +13,7 @@ const HeroSection = ({ thumbnail, title, start_date, start_time }: TProps) => {
         <div className="tw-relative tw-bg-heading tw-py-[100px] md:tw-pt-[232px] md:tw-pb-[184px] tw-max-h-[760px]">
             <div className="tw-absolute tw-inset-0 after:tw-absolute after:tw-content-[''] after:tw-inset-0 after:tw-bg-black/40">
                 {thumbnail?.src && (
-                    <img
+                    <Image
                         className="tw-w-full tw-h-full tw-object-cover"
                         src={thumbnail.src}
                         alt={thumbnail?.alt || title}

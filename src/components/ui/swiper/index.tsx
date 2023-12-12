@@ -1,7 +1,7 @@
 import {forwardRef} from "react";
 import cn from "clsx";
 import SwiperCore, {A11y, Autoplay, Navigation, Pagination} from "swiper";
-// eslint-disable-next-line import/no-unresolved
+
 import {Swiper, SwiperSlide} from "swiper/react";
 
 type TOptions = {

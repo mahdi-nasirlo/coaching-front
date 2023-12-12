@@ -1,7 +1,8 @@
-import { TMegaMenu } from "@utils/types";
+import {TMegaMenu} from "@utils/types";
 import clsx from "clsx";
 import Anchor from "@ui/anchor";
 import Badge from "@ui/badge";
+import Image from "@ui/image";
 
 type TProps = React.HTMLAttributes<HTMLDivElement> & {
     className?: string;
@@ -64,7 +65,7 @@ const Megamenu = ({ className, align, menu, ...rest }: TProps) => {
                     {banner && (
                         <Anchor path={banner.path}>
                             {banner.image?.src && (
-                                <img
+                                <Image
                                     src={banner.image.src}
                                     alt={banner.image?.alt || "Banner"}
                                 />

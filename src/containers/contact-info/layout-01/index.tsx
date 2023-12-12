@@ -1,9 +1,10 @@
 import clsx from "clsx";
 import Section from "@ui/section";
-import { motion } from "framer-motion";
-import { useUI } from "@contexts/ui-context";
-import { ImageType, ItemType, SectionTitleType, TSection } from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {motion} from "framer-motion";
+import {useUI} from "@contexts/ui-context";
+import {ImageType, ItemType, SectionTitleType, TSection} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = TSection & {
     data: {
@@ -13,7 +14,7 @@ type TProps = TSection & {
     };
 };
 
-const ContactInfo = ({ data: { section_title, items, images } }: TProps) => {
+const ContactInfo = ({data: {section_title, items, images}}: TProps) => {
     const { trans1, trans2 } = useUI();
     return (
         <Section className="contact-info-area" space="none">
@@ -68,7 +69,7 @@ const ContactInfo = ({ data: { section_title, items, images } }: TProps) => {
                     variants={scrollUpVariants}
                 >
                     {images?.[0]?.src && (
-                        <img
+                        <Image
                             src={images[0].src}
                             alt={images[0]?.alt || "Hero"}
                             width={570}
@@ -85,7 +86,7 @@ const ContactInfo = ({ data: { section_title, items, images } }: TProps) => {
                         }}
                     >
                         <span data-depth="3">
-                            <img
+                            <Image
                                 src="/images/shape-animation/about-shape-1.png"
                                 alt=""
                             />
@@ -99,7 +100,7 @@ const ContactInfo = ({ data: { section_title, items, images } }: TProps) => {
                             y: trans2().y,
                         }}
                     >
-                        <img
+                        <Image
                             src="/images/shape-animation/about-shape-1.png"
                             alt=""
                         />
@@ -122,7 +123,7 @@ const ContactInfo = ({ data: { section_title, items, images } }: TProps) => {
                             y: trans1().y,
                         }}
                     >
-                        <img src="/images/shape-animation/shape-1.png" alt="" />
+                        <Image src="/images/shape-animation/shape-1.png" alt=""/>
                     </motion.div>
                     <motion.div
                         className="tw-absolute tw-z-1 tw-w-15 tw-bottom-[140px] tw-right-2.5 sm:tw-bottom-[314px] sm:tw-right-7.5 md:tw-w-auto md:tw-right-[70px]"
@@ -131,7 +132,7 @@ const ContactInfo = ({ data: { section_title, items, images } }: TProps) => {
                             y: trans1().y,
                         }}
                     >
-                        <img
+                        <Image
                             src="/images/shape-animation/nwesletter-shape-2.png"
                             alt=""
                         />

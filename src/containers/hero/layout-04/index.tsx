@@ -1,18 +1,13 @@
-import { useState } from "react";
+import {useState} from "react";
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import dynamic from "next/dynamic";
-import { Typewriter } from "react-simple-typewriter";
+import {Typewriter} from "react-simple-typewriter";
 import Button from "@ui/button";
 import BottomShape from "@components/ui/bottom-shape/shape-02";
-import {
-    ButtonType,
-    HeadingType,
-    ImageType,
-    TextType,
-    VideoType,
-} from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {ButtonType, HeadingType, ImageType, TextType, VideoType,} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 const ModalVideo = dynamic(() => import("../../../components/ui/video-modal"), {
     ssr: false,
@@ -40,7 +35,7 @@ const HeroArea = ({
             <div className="hero-area tw-relative tw-pt-[100px] tw-pb-[130px] md:tw-py-[170px] xl:tw-pt-[270px] xl:tw-pb-[248px]">
                 {images?.[0]?.src && (
                     <div className="tw-absolute tw-inset-0 -tw-z-10">
-                        <img
+                        <Image
                             src={images[0].src}
                             alt={images[0]?.alt || "bg"}
                             loading="eager"

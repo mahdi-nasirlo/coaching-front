@@ -1,16 +1,11 @@
 import clsx from "clsx";
-import { useScroll, motion, useTransform } from "framer-motion";
+import {motion, useScroll, useTransform} from "framer-motion";
 import Button from "@ui/button";
 import Video from "@ui/video-with-poster/video-01";
 import BottomShape from "@ui/bottom-shape/shape-05";
-import {
-    ButtonType,
-    HeadingType,
-    ImageType,
-    TextType,
-    VideoType,
-} from "@utils/types";
-import { scrollUpVariants } from "@utils/variants";
+import {ButtonType, HeadingType, ImageType, TextType, VideoType,} from "@utils/types";
+import {scrollUpVariants} from "@utils/variants";
+import Image from "@ui/image";
 
 type TProps = {
     data: {
@@ -64,7 +59,7 @@ const HeroArea = ({
                         className="tw-col-span-2 tw-relative tw-z-1 md:tw-left-0 md:tw-top-0 xl:tw-w-[410px] xl:tw-h-[504px] xl:tw-left-[-168px] xl:tw-bottom-32 tw-hidden md:tw-block"
                     >
                         {images?.[0]?.src && (
-                            <img
+                            <Image
                                 src={images[0].src}
                                 alt={images[0]?.alt || "Hero Parallax"}
                                 width={410}
@@ -84,7 +79,7 @@ const HeroArea = ({
                         className="tw-col-span-2 tw-relative tw-z-1 md:tw-right-0 md:tw-bottom-0 xl:tw-w-[230px] xl:tw-h-[353px] xl:tw-right-5 xl:-tw-bottom-8 tw-hidden md:tw-block"
                     >
                         {images?.[2]?.src && (
-                            <img
+                            <Image
                                 src={images[2].src}
                                 alt={images[2]?.alt || "Hero Parallax"}
                                 width={230}

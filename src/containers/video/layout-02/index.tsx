@@ -1,19 +1,14 @@
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Section from "@ui/section";
 import SectionTitle from "@components/section-title";
 import MottoText from "@ui/motto-text";
 import Video from "@ui/video-with-poster/video-02";
 import BottomShape from "@ui/bottom-shape/shape-03";
 import Shape2 from "@assets/svgs/shape-2.svg";
-import { useUI } from "@contexts/ui-context";
-import { scrollUpVariants } from "@utils/variants";
-import {
-    ImageType,
-    MottoType,
-    SectionTitleType,
-    TSection,
-    VideoType,
-} from "@utils/types";
+import {useUI} from "@contexts/ui-context";
+import {scrollUpVariants} from "@utils/variants";
+import {ImageType, MottoType, SectionTitleType, TSection, VideoType,} from "@utils/types";
+import Image from "@ui/image";
 
 const AnimatedSectionTitle = motion(SectionTitle);
 const AnimatedMottoText = motion(MottoText);
@@ -66,7 +61,7 @@ const VideoArea = ({
                             y: trans2().y,
                         }}
                     >
-                        <img src="/images/shape-animation/shape-3.png" alt="" />
+                        <Image src="/images/shape-animation/shape-3.png" alt=""/>
                     </motion.div>
                     <motion.div
                         className="tw-absolute tw-z-20 tw-top-0 -tw-right-2.5 md:tw-right-7.5"
@@ -86,7 +81,7 @@ const VideoArea = ({
                             y: trans1().y,
                         }}
                     >
-                        <img src="/images/shape-animation/shape-1.png" alt="" />
+                        <Image src="/images/shape-animation/shape-1.png" alt=""/>
                     </motion.div>
                 </div>
                 <div className="lg:tw-col-span-4 lg:tw-pl-5 xl:tw-pl-15">
