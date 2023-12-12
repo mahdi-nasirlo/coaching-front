@@ -77,8 +77,7 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
 
         console.error('Request Network/Error:', logEntry);
 
-        throw new Error("test")
-        // throw new Error("request field")
+        throw new Error(error.response.data.message || error.message)
 
     }
 

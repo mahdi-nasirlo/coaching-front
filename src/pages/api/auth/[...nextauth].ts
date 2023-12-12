@@ -31,5 +31,9 @@ export default NextAuth({
                 }
             }
         })
-    ]
+    ],
+    pages: {
+        signIn: "/login-register",
+        error: "/login-register"
+    }
 });

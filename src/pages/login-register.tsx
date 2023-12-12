@@ -25,7 +25,6 @@ const LoginRegister: PageProps = () => {
         if (isLoggedIn) {
             void router.push("/profile");
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [router]);
 
     if (!mounted) return null;

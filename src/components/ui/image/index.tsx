@@ -42,6 +42,8 @@ const MyImage = (props: ImageProps & { ref?: any }) => {
                     ? cloudflareLoader
                     : myLoader
             }
+            width={props.width || 200}
+            height={props.height || 200}
             {...props}
             alt={props.alt}
         />
