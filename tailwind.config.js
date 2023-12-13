@@ -1,20 +1,58 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-extraneous-dependencies */
+
+const {fontFamily} = require("tailwindcss/defaultTheme")
+
 module.exports = {
     content: ["./src/**/*.tsx"],
+    darkMode: ["class"],
     prefix: "tw-",
     theme: {
+        container: {
+            center: true,
+            padding: "2rem",
+            screens: {
+                "2xl": "1400px",
+            },
+        },
         extend: {
             colors: {
+                border: "hsl(var(--border))",
+                input: "hsl(var(--input))",
+                ring: "hsl(var(--ring))",
                 transparent: "transparent",
                 current: "currentColor",
+                background: "hsl(var(--background))",
+                foreground: "hsl(var(--foreground))",
                 primary: {
                     DEFAULT: "#20AD96",
                     light: "#8fd6ca",
+                    foreground: "hsl(var(--primary-foreground))",
                 },
                 secondary: {
                     DEFAULT: "#3F3A64",
                     light: "#8C89A2",
+                    foreground: "hsl(var(--secondary-foreground))",
+                },
+                destructive: {
+                    DEFAULT: "hsl(var(--destructive))",
+                    foreground: "hsl(var(--destructive-foreground))",
+                },
+                muted: {
+                    DEFAULT: "hsl(var(--muted))",
+                    foreground: "hsl(var(--muted-foreground))",
+                },
+                accent: {
+                    DEFAULT: "hsl(var(--accent))",
+                    foreground: "hsl(var(--accent-foreground))",
+                },
+                popover: {
+                    DEFAULT: "hsl(var(--popover))",
+                    foreground: "hsl(var(--popover-foreground))",
+                },
+                card: {
+                    DEFAULT: "hsl(var(--card))",
+                    foreground: "hsl(var(--card-foreground))",
                 },
                 body: "#696969",
                 heading: "#333333",
@@ -118,6 +156,7 @@ module.exports = {
                 },
             }),
             fontFamily: {
+                sans: ["var(--font-sans)", ...fontFamily.sans],
                 body: ["Poppins", "sans-serif"],
                 heading: ["Poppins", "sans-serif"],
                 playfair: ["Playfair Display", "serif"],
@@ -163,6 +202,9 @@ module.exports = {
             },
             borderRadius: {
                 DEFAULT: "0.313rem",
+                lg: `var(--radius)`,
+                md: `calc(var(--radius) - 2px)`,
+                sm: "calc(var(--radius) - 4px)",
             },
             spacing: {
                 1.3: "0.313rem",
@@ -218,6 +260,14 @@ module.exports = {
                 0: "0ms",
             },
             keyframes: {
+                "accordion-down": {
+                    from: {height: "0"},
+                    to: {height: "var(--radix-accordion-content-height)"},
+                },
+                "accordion-up": {
+                    from: {height: "var(--radix-accordion-content-height)"},
+                    to: {height: "0"},
+                },
                 headerSlideDown: {
                     "0%": {
                         transform: "translateY(-100%)",
@@ -259,6 +309,8 @@ module.exports = {
                 headerSlideDown: "headerSlideDown .95s ease forwards",
                 gradationMask: "gradationMask 3s linear infinite",
                 rotatePlane: "rotatePlane 1.2s infinite ease-in-out",
+                "accordion-down": "accordion-down 0.2s ease-out",
+                "accordion-up": "accordion-up 0.2s ease-out",
             },
             backgroundImage: {
                 darkGradient:
@@ -275,7 +327,8 @@ module.exports = {
         container: false,
     },
     plugins: [
-        function addVariantFunc({ addVariant }) {
+        require("tailwindcss-animate"),
+        function addVariantFunc({addVariant}) {
             addVariant("child", "& > *");
             addVariant("nextIcon", "& > i");
             addVariant("child-hover", "& > *:hover");
@@ -283,7 +336,7 @@ module.exports = {
             addVariant("third", "&:nth-child(3)");
         },
         require("@tailwindcss/typography"),
-        function addComponentsFunc({ addComponents }) {
+        function addComponentsFunc({addComponents}) {
             addComponents({
                 ".container": {
                     maxWidth: "100%",

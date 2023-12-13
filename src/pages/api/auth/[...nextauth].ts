@@ -21,11 +21,8 @@ export const authOptions: AuthOptions = {
                 })
 
 
-                console.log("test 1")
-
                 if (res?.data?.token) {
-
-                    console.log("test 2")
+                    
                     return {name: "test", email: "test", id: "test"}
 
                 } else {

@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
 import dynamic from "next/dynamic";
 import clsx from "clsx";
 import Logo from "@components/logo";
 import SearchForm from "@components/forms/search-form";
 import MainMenu from "@components/menu/main-menu";
 import BurgerButton from "@ui/burger-button";
-import Anchor from "@ui/anchor";
 import menu from "@data/menu";
-import { useSticky } from "@hooks";
+import {useSticky} from "@hooks";
+import UserNav from "@layout/headers/components/user-nav";
 
 const MobileMenu = dynamic(() => import("../../components/menu/mobile-menu"), {
     ssr: false,
@@ -82,18 +82,21 @@ const Header = ({ shadow, fluid, transparent, mode }: TProps) => {
                             color={mode}
                         />
                         <div className="tw-flex tw-justify-end tw-items-center">
-                            <Anchor
-                                path="/profile"
-                                className={clsx(
-                                    "tw-inline-block tw-px-2.5 tw-py-1.5",
-                                    mode === "light" &&
-                                        "tw-text-white hover:tw-text-white",
-                                    mode === "dark" && "tw-text-dark-50"
-                                )}
-                                aria-label="User Profile"
-                            >
-                                <i className="far fa-user-circle tw-text-lg" />
-                            </Anchor>
+                            <div>
+                                <UserNav/>
+                            </div>
+                            {/*<Anchor*/}
+                            {/*    path="/profile"*/}
+                            {/*    className={clsx(*/}
+                            {/*        "tw-inline-block tw-px-2.5 tw-py-1.5",*/}
+                            {/*        mode === "light" &&*/}
+                            {/*            "tw-text-white hover:tw-text-white",*/}
+                            {/*        mode === "dark" && "tw-text-dark-50"*/}
+                            {/*    )}*/}
+                            {/*    aria-label="User Profile"*/}
+                            {/*>*/}
+                            {/*    <i className="far fa-user-circle tw-text-lg" />*/}
+                            {/*</Anchor>*/}
                             <div className="tw-hidden md:tw-block md:tw-max-w-[250px] md:tw-pl-2.5">
                                 <SearchForm
                                     bg={transparent ? "white" : "light"}

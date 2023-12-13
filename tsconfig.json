@@ -30,6 +30,7 @@
       "@layout/*": ["layouts/*"],
       "@ui/*": ["components/ui/*"],
       "@utils/*": ["utils/*"],
+      "@/lib/*": ["lib/*"],
       "@widgets/*": ["components/widgets/*"],
     }
   },

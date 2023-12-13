@@ -26,6 +26,8 @@ const LoginForm = () => {
 
         const res = await login.mutateAsync(data)
 
+        console.log(res)
+
         if (res?.ok) {
             await Router.push(res.url || "/")
         }
@@ -53,6 +55,10 @@ const LoginForm = () => {
                         showState={!!hasKey(errors, "email")}
                         {...register("email", {
                             required: "Email is required",
+                            pattern: {
+                                value: /\S+@\S+\.\S+/,
+                                message: "Entered value does not match email format",
+                            },
                         })}
                     />
                 </div>
@@ -78,7 +84,7 @@ const LoginForm = () => {
                     />
                 </div>
                 <Checkbox name="remember" id="remember" label="Remember me"/>
-                <Button disabled={true} type="submit" fullwidth className="tw-mt-7.5">
+                <Button type="submit" fullwidth className="tw-mt-7.5">
                     Log In
                 </Button>
                 {/*{serverState && <FeedbackText>{serverState}</FeedbackText>}*/}
