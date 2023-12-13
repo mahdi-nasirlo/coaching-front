@@ -1,10 +1,10 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-extraneous-dependencies */
 
-const {fontFamily} = require("tailwindcss/defaultTheme")
+const { fontFamily } = require("tailwindcss/defaultTheme");
 
 module.exports = {
-    content: ["./src/**/*.tsx"],
+    content: ["./src/**/*.tsx", "./src/components/ui/v2/**/*.tsx"],
     darkMode: ["class"],
     prefix: "tw-",
     theme: {
@@ -178,23 +178,23 @@ module.exports = {
                 heading: 1.3,
             },
             boxShadow: {
-                xs: "4px 4px 8px",
-                "2xs": "0 0 10px",
-                sm: "0 3px 9px",
-                "2sm": "0 0 20px",
-                "3sm": "0 2px 20px",
-                md: "0 0 30px",
-                "2md": "0 2px 29px",
-                "3md": "0 8px 20px 0",
-                "4md": "0 10px 30px",
-                lg: "0 0 40px",
-                "2lg": "0 16px 40px -40px",
-                "3lg": "0 2px 45px 0",
-                xl: "0 20px 50px",
-                "2xl": "0 15px 50px",
-                "3xl": "0 30px 50px",
-                "4xl": "0 14px 59px",
-                xxl: "0 130px 50px -100px",
+                // xs: "4px 4px 8px",
+                // "2xs": "0 0 10px",
+                // sm: "0 3px 9px",
+                // "2sm": "0 0 20px",
+                // "3sm": "0 2px 20px",
+                // md: "0 0 30px",
+                // "2md": "0 2px 29px",
+                // "3md": "0 8px 20px 0",
+                // "4md": "0 10px 30px",
+                // lg: "0 0 40px",
+                // "2lg": "0 16px 40px -40px",
+                // "3lg": "0 2px 45px 0",
+                // xl: "0 20px 50px",
+                // "2xl": "0 15px 50px",
+                // "3xl": "0 30px 50px",
+                // "4xl": "0 14px 59px",
+                // xxl: "0 130px 50px -100px",
             },
             letterSpacing: {
                 tightest: "-0.125rem",
@@ -261,12 +261,12 @@ module.exports = {
             },
             keyframes: {
                 "accordion-down": {
-                    from: {height: "0"},
-                    to: {height: "var(--radix-accordion-content-height)"},
+                    from: { height: "0" },
+                    to: { height: "var(--radix-accordion-content-height)" },
                 },
                 "accordion-up": {
-                    from: {height: "var(--radix-accordion-content-height)"},
-                    to: {height: "0"},
+                    from: { height: "var(--radix-accordion-content-height)" },
+                    to: { height: "0" },
                 },
                 headerSlideDown: {
                     "0%": {
@@ -328,7 +328,7 @@ module.exports = {
     },
     plugins: [
         require("tailwindcss-animate"),
-        function addVariantFunc({addVariant}) {
+        function addVariantFunc({ addVariant }) {
             addVariant("child", "& > *");
             addVariant("nextIcon", "& > i");
             addVariant("child-hover", "& > *:hover");
@@ -336,7 +336,7 @@ module.exports = {
             addVariant("third", "&:nth-child(3)");
         },
         require("@tailwindcss/typography"),
-        function addComponentsFunc({addComponents}) {
+        function addComponentsFunc({ addComponents }) {
             addComponents({
                 ".container": {
                     maxWidth: "100%",
