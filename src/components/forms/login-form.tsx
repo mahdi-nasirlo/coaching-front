@@ -1,10 +1,12 @@
 import {SubmitHandler, useForm} from "react-hook-form";
 import Input from "@ui/form-elements/input";
 import Checkbox from "@ui/form-elements/checkbox";
-import Button from "@ui/button";
 import {hasKey} from "@utils/methods";
 import {useLogin} from "../../hooks/api/useLogin";
 import Router from "next/router";
+import Button from "@ui/button";
+import {useSession} from "next-auth/react";
+import {useEffect} from "react";
 
 
 interface IFormValues {
@@ -15,6 +17,14 @@ interface IFormValues {
 const LoginForm = () => {
 
     const login = useLogin()
+
+    const session = useSession()
+
+    useEffect(() => {
+
+        if (session.status === "authenticated") Router.push("/")
+        
+    }, [session.status])
 
     const {
         register,
@@ -50,6 +60,7 @@ const LoginForm = () => {
                         id="email"
                         placeholder="Email"
                         bg="light"
+                        disabled={login.isPending}
                         feedbackText={errors?.email?.message}
                         state={hasKey(errors, "email") ? "error" : "success"}
                         showState={!!hasKey(errors, "email")}
@@ -74,6 +85,7 @@ const LoginForm = () => {
                         type="password"
                         placeholder="Password"
                         bg="light"
+                        disabled={login.isPending}
                         autoComplete="true"
                         feedbackText={errors?.password?.message}
                         state={hasKey(errors, "password") ? "error" : "success"}
@@ -84,10 +96,9 @@ const LoginForm = () => {
                     />
                 </div>
                 <Checkbox name="remember" id="remember" label="Remember me"/>
-                <Button type="submit" fullwidth className="tw-mt-7.5">
+                <Button disabled={login.isPending} type="submit" fullwidth className="tw-mt-7.5">
                     Log In
                 </Button>
-                {/*{serverState && <FeedbackText>{serverState}</FeedbackText>}*/}
             </form>
         </div>
     );

@@ -22,8 +22,8 @@ export const authOptions: AuthOptions = {
 
 
                 if (res?.data?.token) {
-                    
-                    return {name: "test", email: "test", id: "test"}
+
+                    return {name: "test", email: credentials?.email, id: "test"}
 
                 } else {
 

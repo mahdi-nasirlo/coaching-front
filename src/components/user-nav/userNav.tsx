@@ -1,6 +1,4 @@
-"use client";
-
-import React from "react";
+import React from 'react';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -9,18 +7,43 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuShortcut,
-    DropdownMenuTrigger,
+    DropdownMenuTrigger
 } from "@ui/v2/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@ui/v2/avatar";
+import {Avatar, AvatarFallback} from "@ui/v2/avatar";
+import {Skeleton} from "@ui/v2/skeleton";
+import Anchor from "@ui/anchor";
+import clsx from "clsx";
+import {signOut, useSession} from "next-auth/react";
 
-const UserNav = () => {
+const UserNav = ({mode}: {
+    mode?: "light" | "dark"
+}) => {
+
+    const session = useSession()
+
+    if (session.status === "loading") return <Skeleton
+        className="tw-w-12 tw-h-12 tw-rounded-full tw-border tw-border-gray-600"
+    />
+
     return (
-        <div>
-            <DropdownMenu>
+        <>
+            {session.status === "unauthenticated" && <Anchor
+                path="/profile"
+                className={clsx(
+                    "tw-inline-block tw-px-2.5 tw-py-1.5",
+                    mode === "light" &&
+                    "tw-text-white hover:tw-text-white",
+                    mode === "dark" && "tw-text-dark-50"
+                )}
+                aria-label="User Profile"
+            >
+                <i className="far fa-user-circle tw-text-2xl"/>
+            </Anchor>}
+            {session.status === "authenticated" && <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Avatar className="tw-h-8 tw-w-8 tw-cursor-pointer">
-                        <AvatarImage src="/avatars/01.png" alt="@shadcn" />
-                        <AvatarFallback>SC</AvatarFallback>
+                        {/*<AvatarImage src="/avatars/01.png" alt="@shadcn"/>*/}
+                        <AvatarFallback>{createInitials(session?.data?.user?.name)}</AvatarFallback>
                     </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
@@ -31,14 +54,14 @@ const UserNav = () => {
                     <DropdownMenuLabel className="tw-font-normal">
                         <div className="tw-flex tw-flex-col tw-space-y-1">
                             <p className="tw-text-sm tw-font-medium tw-leading-none">
-                                shadcn
+                                {session.data.user?.name}
                             </p>
                             <p className="tw-text-xs tw-leading-none twe-text-muted-foreground">
-                                m@example.com
+                                {session.data.user?.email}
                             </p>
                         </div>
                     </DropdownMenuLabel>
-                    <DropdownMenuSeparator />
+                    <DropdownMenuSeparator/>
                     <DropdownMenuGroup>
                         <DropdownMenuItem>
                             Profile
@@ -54,15 +77,23 @@ const UserNav = () => {
                         </DropdownMenuItem>
                         <DropdownMenuItem>New Team</DropdownMenuItem>
                     </DropdownMenuGroup>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>
+                    <DropdownMenuSeparator/>
+                    <DropdownMenuItem onClick={() => signOut()}>
                         Log out
                         <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
                     </DropdownMenuItem>
                 </DropdownMenuContent>
-            </DropdownMenu>
-        </div>
+            </DropdownMenu>}
+        </>
     );
 };
+
+function createInitials(name: string | undefined | null) {
+    return name
+        ?.split(' ')    // Split the name into an array of words
+        .map((part: string) => part[0])    // Map each word to its first character
+        .join('')    // Join all the first characters together
+        .toUpperCase();    // Convert to uppercase
+}
 
 export default UserNav;
