@@ -1,7 +1,9 @@
 import clsx from "clsx";
 import Anchor from "@ui/anchor";
+import {CSSProperties} from "react";
 
 type TProps = {
+    style?: CSSProperties,
     className?: string;
     pages: Array<{
         path: string;
@@ -13,20 +15,22 @@ type TProps = {
 };
 
 const Breadcrumb = ({
-    className,
-    pages,
-    currentPage,
-    showTitle,
-    title,
-}: TProps) => {
+                        style,
+                        className,
+                        pages,
+                        currentPage,
+                        showTitle,
+                        title,
+                    }: TProps) => {
     return (
         <div
+            style={style}
             className={clsx(
+                className,
                 "page-title-area tw-relative",
                 showTitle &&
-                    "tw-pt-15 tw-pb-10 md:tw-pt-20 md:tw-pb-15 lg:tw-pt-[100px] lg:tw-pb-20",
+                "tw-pt-15 tw-pb-10 md:tw-pt-20 md:tw-pb-15 lg:tw-pt-[100px] lg:tw-pb-20",
                 !showTitle && "tw-pb-10 md:tw-pb-15 lg:tw-pb-20",
-                className
             )}
         >
             {showTitle && (
@@ -48,7 +52,7 @@ const Breadcrumb = ({
             >
                 <nav className="tw-container" aria-label="breadcrumbs">
                     <ul className="breadcrumb tw-flex tw-flex-wrap tw-py-3">
-                        {pages.map(({ path, label }) => (
+                        {pages.map(({path, label}) => (
                             <li
                                 key={label}
                                 className="tw-text-md first:before:tw-hidden before:tw-content-['/'] before:tw-mx-3.8 before:tw-color-body"

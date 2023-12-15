@@ -1,6 +1,6 @@
-import type { Dispatch, SetStateAction } from "react";
+import type {Dispatch, SetStateAction} from "react";
 import dayjs from "dayjs";
-import { ICourse, IEvent, SectionType } from "./types";
+import {ICourse, IEvent, SectionType} from "./types";
 
 export const normalizedData = <T extends object>(
     data: T[],
@@ -164,10 +164,10 @@ export const minutesToHours = (minutes: number): string => {
 export const flatDeep = <T>(arr: any[], d = 1): T[] => {
     return d > 0
         ? arr.reduce((acc, val) => {
-              return acc.concat(
-                  Array.isArray(val) ? flatDeep<T>(val, d - 1) : val
-              );
-          }, [])
+            return acc.concat(
+                Array.isArray(val) ? flatDeep<T>(val, d - 1) : val
+            );
+        }, [])
         : arr.slice();
 };
 
@@ -224,4 +224,16 @@ export const nextFocus = (elements: HTMLElement[], forward = true) => {
     }
 
     elements[nextIndex]?.focus();
+};
+
+export const addIndexToData = (data: any[] | undefined, keyName: string = "Row", startFrom: number = 1) => {
+
+    if (data && data?.length) {
+        return data?.map((item: any, index: number) => ({
+            ...item,
+            [keyName]: index + startFrom, // Auto-incrementing index starting from 1
+        }))
+    }
+
+    return [];
 };

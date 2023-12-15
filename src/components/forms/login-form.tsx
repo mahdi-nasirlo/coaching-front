@@ -7,6 +7,7 @@ import Router from "next/router";
 import Button from "@ui/button";
 import {useSession} from "next-auth/react";
 import {useEffect} from "react";
+import {useSearchParams} from "next/navigation";
 
 
 interface IFormValues {
@@ -16,6 +17,8 @@ interface IFormValues {
 
 const LoginForm = () => {
 
+    const searchParams = useSearchParams()
+
     const login = useLogin()
 
     const session = useSession()
@@ -23,7 +26,7 @@ const LoginForm = () => {
     useEffect(() => {
 
         if (session.status === "authenticated") Router.push("/")
-        
+
     }, [session.status])
 
     const {
@@ -39,7 +42,7 @@ const LoginForm = () => {
         console.log(res)
 
         if (res?.ok) {
-            await Router.push(res.url || "/")
+            await Router.push(searchParams.get("callbackUrl") || res.url || "/")
         }
 
     };

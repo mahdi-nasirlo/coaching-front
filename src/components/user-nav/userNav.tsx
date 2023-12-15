@@ -64,7 +64,9 @@ const UserNav = ({mode}: {
                     <DropdownMenuSeparator/>
                     <DropdownMenuGroup>
                         <DropdownMenuItem>
-                            Profile
+                            <Anchor path={"/account/dashboard"}>
+                                Profile
+                            </Anchor>
                             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                         </DropdownMenuItem>
                         <DropdownMenuItem>
