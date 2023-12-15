@@ -16,6 +16,7 @@ type PageProps = NextPage & {
 };
 
 const LoginRegister: PageProps = () => {
+
     const mounted = useMount();
     const {isLoggedIn} = useUser();
     const router = useRouter();
@@ -24,6 +25,7 @@ const LoginRegister: PageProps = () => {
         if (isLoggedIn) {
             void router.push("/profile");
         }
+
     }, [router]);
 
     if (!mounted) return null;

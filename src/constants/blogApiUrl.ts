@@ -26,6 +26,29 @@ export const blogApiUrl = {
                 excerpt: string,
                 path: string
             }
+        },
+        admin: {
+            getPage: {
+                url: "/admin/blog/post/getPage",
+                type: z.object({
+                    "title": z.string(),
+                    "path": z.string(),
+                    "view": z.number(),
+                    "postedAt": z.string(),
+                })
+            },
+            create: {
+                url: "/blog/post/create",
+                type: z.object({
+                    title: z.string().min(3),
+                    slug: z.string().min(4),
+                    content: z.string().optional(),
+                    seo_title: z.string().optional(),
+                    seo_description: z.string().optional(),
+                    blog_category_id: z.number().optional(),
+                    author_id: z.number().optional()
+                })
+            }
         }
     }
 }
