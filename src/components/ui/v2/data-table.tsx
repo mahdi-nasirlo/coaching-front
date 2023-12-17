@@ -1,28 +1,72 @@
 "use client"
 
-import {ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable} from "@tanstack/react-table"
+import {
+    ColumnDef,
+    flexRender,
+    getCoreRowModel,
+    OnChangeFn,
+    PaginationState,
+    TableOptions,
+    useReactTable
+} from "@tanstack/react-table"
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@ui/v2/table";
 import {addIndexToData} from "@utils/methods";
-import {Button} from "@ui/v2/button";
+import {DataTablePagination} from "@ui/v2/pagniation-controller";
 
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
+    pagination?: {
+        pageCount: number,
+        manualPagination: boolean,
+        setPagination: OnChangeFn<PaginationState>,
+        state: PaginationState
+    }
 }
 
 export function DataTable<TData, TValue>({
                                              columns,
                                              data,
+                                             pagination
                                          }: DataTableProps<TData, TValue>) {
 
 
-    const table = useReactTable({
+    let tableOption: TableOptions<any> = {
         data: addIndexToData(data),
         columns,
         getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-    })
+        manualPagination: pagination !== undefined,
+        onPaginationChange: pagination?.setPagination,
+        state: {
+            pagination: {
+                pageIndex: pagination?.state.pageIndex || 0,
+                pageSize: pagination?.state.pageSize || 5
+            },
+        },
+        pageCount: pagination?.pageCount || 1
+    }
+
+    // let tableState: TableState
+
+    // if (pagination) {
+    //     // tableState = {
+    //     //     pagination: {
+    //     //         pageIndex: pagination.state.pageSize,
+    //     //
+    //     //     }
+    //     // }
+    //     tableOption = {
+    //         ...tableOption,
+    //         // getPaginationRowModel: getPaginationRowModel(),
+    //         onPaginationChange: pagination.setPagination,
+    //         manualPagination: pagination.manualPagination,
+    //         pageCount: pagination.pageCount,
+    //         state: tableState
+    //     }
+    // }
+
+    const table = useReactTable(tableOption)
 
     return (
         <div>
@@ -70,25 +114,7 @@ export function DataTable<TData, TValue>({
                     </TableBody>
                 </Table>
             </div>
-
-            <div className="tw-flex tw-items-center tw-justify-end tw-space-x-2 tw-py-4">
-                <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => table.previousPage()}
-                    disabled={!table.getCanPreviousPage()}
-                >
-                    Previous
-                </Button>
-                <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => table.nextPage()}
-                    disabled={!table.getCanNextPage()}
-                >
-                    Next
-                </Button>
-            </div>
+            {pagination && <DataTablePagination table={table}/>}
         </div>
     )
 }

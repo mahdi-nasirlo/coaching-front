@@ -4,12 +4,24 @@ import {Separator} from "@ui/v2/separator";
 import {DataTable} from "@ui/v2/data-table";
 import {columns} from "@containers/Account/blog-post/columns";
 import CreateForm from "@containers/Account/blog-post/create-form";
+import {PaginationState} from "@tanstack/react-table";
 
 ""
 
 const Index = () => {
 
-    const getPosts = useGetPageBlogPostAdmin()
+    const [{pageIndex, pageSize}, setPagination] =
+        React.useState<PaginationState>({
+            pageIndex: 0,
+            pageSize: 10,
+        })
+
+    const fetchDataOptions = {
+        pageIndex,
+        pageSize,
+    }
+
+    const getPosts = useGetPageBlogPostAdmin({paginationState: fetchDataOptions})
 
     return (
         <div>
@@ -25,7 +37,16 @@ const Index = () => {
                 Blog Post List
             </h1>
             <Separator className="tw-mb-6"/>
-            <DataTable columns={columns} data={getPosts.data?.data || []}/>
+            <DataTable
+                columns={columns}
+                data={getPosts.data?.data || []}
+                pagination={{
+                    pageCount: getPosts.data?.meta?.last_page,
+                    manualPagination: true,
+                    state: fetchDataOptions,
+                    setPagination: setPagination
+                }}
+            />
         </div>
     );
 };
