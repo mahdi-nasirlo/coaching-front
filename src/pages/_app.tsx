@@ -45,10 +45,10 @@ const MyApp = ({Component, pageProps}: CustomAppProps) => {
             <QueryClientProvider>
                 <UIProvider>
                     <UserProvider>
+                        <Toaster containerStyle={{zIndex: 999999}}/>
                         <Layout {...layoutProps}>
                             <SEO/>
                             <Component {...pageProps} />
-                            <Toaster/>
                         </Layout>
                     </UserProvider>
                 </UIProvider>

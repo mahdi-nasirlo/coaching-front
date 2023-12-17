@@ -43,8 +43,6 @@ async function axiosFetcher(props: axiosFetcherType) {
         data,
     })
 
-    console.log(notifyConf)
-
     if (notify) {
         await toast.promise(res,
             {

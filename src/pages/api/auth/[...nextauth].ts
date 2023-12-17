@@ -1,6 +1,8 @@
-import NextAuth, {AuthOptions} from "next-auth";
+import NextAuth, {AuthOptions, User} from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import {getTokenWithEmail} from "../../../lib/api/auth";
+import {AdapterUser} from "next-auth/adapters";
+import {JWT} from "next-auth/jwt";
 
 export const authOptions: AuthOptions = {
     providers: [
@@ -20,10 +22,9 @@ export const authOptions: AuthOptions = {
                         },
                 })
 
-
                 if (res?.data?.token) {
 
-                    return {name: "test", email: credentials?.email, id: "test"}
+                    return {name: "test", email: credentials?.email, id: "test", accessToken: res?.data?.token}
 
                 } else {
 
@@ -33,6 +34,35 @@ export const authOptions: AuthOptions = {
             }
         })
     ],
+    callbacks: {
+        jwt: ({user, token}: {
+            user: User | (AdapterUser & { accessToken?: string, token_type?: string }),
+            token: JWT
+        }) => {
+
+            if (user && 'accessToken' in user && user.accessToken) {
+
+                return {
+                    ...token,
+                    accessToken: `${user.accessToken}`
+                };
+            }
+
+            return token;
+        },
+        session: ({session, token}) => {
+
+            if (token && token.accessToken) {
+                console.log(token)
+                return {
+                    accessToken: token.accessToken,
+                    ...session
+                }
+            }
+
+            return session
+        }
+    },
     pages: {
         signIn: "/login-register",
         error: "/login-register"

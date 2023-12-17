@@ -28,7 +28,7 @@ const UserNav = ({mode}: {
     return (
         <>
             {session.status === "unauthenticated" && <Anchor
-                path="/profile"
+                path="/login-register"
                 className={clsx(
                     "tw-inline-block tw-px-2.5 tw-py-1.5",
                     mode === "light" &&

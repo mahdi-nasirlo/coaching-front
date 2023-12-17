@@ -1,6 +1,7 @@
 import type {Dispatch, SetStateAction} from "react";
 import dayjs from "dayjs";
 import {ICourse, IEvent, SectionType} from "./types";
+import {getSession} from "next-auth/react";
 
 export const normalizedData = <T extends object>(
     data: T[],
@@ -236,4 +237,25 @@ export const addIndexToData = (data: any[] | undefined, keyName: string = "Row",
     }
 
     return [];
+};
+
+let cachedSession: any = null;
+let cacheTimer: any = null;
+export const getSessionToken = async () => {
+
+    if (cachedSession) {
+        return cachedSession;
+    }
+
+    const session = await getSession();
+    
+    // @ts-ignore
+    cachedSession = session?.accessToken || null;
+
+    if (cacheTimer) clearTimeout(cacheTimer);
+    cacheTimer = setTimeout(() => {
+        cachedSession = null;
+    }, 1000 * 60 * 5);
+
+    return cachedSession;
 };
