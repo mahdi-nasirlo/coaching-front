@@ -77,7 +77,12 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
 
         console.error('Request Network/Error:', logEntry);
 
-        throw new Error(error.response.data.message || error.message)
+        return {
+            message: error?.response?.data?.message || error.message,
+            status: error?.response?.status || error.status,
+            ok: error?.response?.status === 200,
+            data: error?.response?.data
+        }
 
     }
 
