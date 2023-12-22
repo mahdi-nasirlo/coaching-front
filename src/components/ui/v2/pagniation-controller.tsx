@@ -34,7 +34,7 @@ export function DataTablePagination<TData>({
                     className={cn(
                         itemClassname,
                         table.getCanNextPage() && "tw-opacity-55 tw-cursor-not-allowed",
-                        "tw-text-neutral-600 tw-border-gray-600 tw-border tw-bg-gray-100 tw-rounded-lg tw-cursor-pointer"
+                        "tw-text-neutral-600 tw-border-gray-200 tw-border tw-bg-gray-100 tw-rounded-lg tw-cursor-pointer"
                     )}
                     onClick={() => table.setPageIndex(pageIndex - 1)}
                 >
@@ -53,7 +53,7 @@ export function DataTablePagination<TData>({
                                 itemClassname,
                                 pageNumber === (pageIndex + 1) ?
                                     "tw-bg-primary tw-text-white hover:tw-text-gray-300 hover:tw-bg-primary tw-border-primary tw-border tw-cursor-default" :
-                                    "tw-text-neutral-600 tw-border-gray-600 tw-border tw-bg-gray-100 tw-rounded-lg tw-cursor-pointer",
+                                    "tw-text-neutral-600 tw-border-gray-300 tw-border tw-bg-gray-100 tw-rounded-lg tw-cursor-pointer",
                             )}
                             onClick={() => {
                                 if (pageNumber !== (pageIndex + 1))
@@ -68,7 +68,7 @@ export function DataTablePagination<TData>({
                     className={cn(
                         itemClassname,
                         table.getCanPreviousPage() && "tw-opacity-55 tw-cursor-not-allowed",
-                        "tw-text-neutral-600 tw-border-gray-600 tw-border tw-bg-gray-100 tw-rounded-lg tw-cursor-pointer"
+                        "tw-text-neutral-600 tw-border-gray-200 tw-border tw-bg-gray-100 tw-rounded-lg tw-cursor-pointer"
                     )}
                     onClick={() => table.setPageIndex(pageIndex + 1)}
                 >

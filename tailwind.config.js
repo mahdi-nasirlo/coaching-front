@@ -1,7 +1,8 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-extraneous-dependencies */
 
-const { fontFamily } = require("tailwindcss/defaultTheme");
+const {fontFamily} = require("tailwindcss/defaultTheme")
+const colors = require('tailwindcss/colors');
 
 module.exports = {
     content: ["./src/**/*.tsx", "./src/components/ui/v2/**/*.tsx"],
@@ -17,9 +18,9 @@ module.exports = {
         },
         extend: {
             colors: {
+                ...colors,
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
-                ring: "hsl(var(--ring))",
                 transparent: "transparent",
                 current: "currentColor",
                 background: "hsl(var(--background))",
@@ -97,22 +98,6 @@ module.exports = {
                     DEFAULT: "#f6b500",
                     100: "#ffbb00",
                 },
-                gray: {
-                    100: "#faf8f6",
-                    200: "#f5f5f5",
-                    300: "#7e7e7e",
-                    350: "#e0e0e0",
-                    400: "#ababab",
-                    450: "#F3F3F3",
-                    500: "#EEEEEE",
-                    550: "#ededed",
-                    600: "#e8e8e8",
-                    650: "#e7e7e7",
-                    700: "#9b9b9b",
-                    750: "#F1F1F1",
-                    800: "#b6b7d2",
-                    850: "#666666",
-                },
                 blue: {
                     100: "#7288e8",
                 },
@@ -143,7 +128,7 @@ module.exports = {
                 tan: "#d2a98e",
                 mishcka: "#e2e2e8",
             },
-            typography: ({ theme }) => ({
+            typography: ({theme}) => ({
                 DEFAULT: {
                     css: {
                         "--tw-prose-body": theme("colors.body"),
@@ -215,13 +200,13 @@ module.exports = {
                 37: "9.375rem",
             },
             screens: {
-                maxSm: { max: "575px" },
+                maxSm: {max: "575px"},
                 // => @media (max-width: 575px) { ... }
-                maxXl: { max: "1199px" },
+                maxXl: {max: "1199px"},
                 // => @media (max-width: 1199px) { ... }
-                maxLg: { max: "991px" },
+                maxLg: {max: "991px"},
                 // => @media (max-width: 991px) { ... }
-                smToMd: { min: "576px", max: "767px" },
+                smToMd: {min: "576px", max: "767px"},
                 sm: "576px",
                 // => @media (min-width: 576px) { ... }
 
@@ -261,12 +246,12 @@ module.exports = {
             },
             keyframes: {
                 "accordion-down": {
-                    from: { height: "0" },
-                    to: { height: "var(--radix-accordion-content-height)" },
+                    from: {height: "0"},
+                    to: {height: "var(--radix-accordion-content-height)"},
                 },
                 "accordion-up": {
-                    from: { height: "var(--radix-accordion-content-height)" },
-                    to: { height: "0" },
+                    from: {height: "var(--radix-accordion-content-height)"},
+                    to: {height: "0"},
                 },
                 headerSlideDown: {
                     "0%": {
@@ -328,7 +313,7 @@ module.exports = {
     },
     plugins: [
         require("tailwindcss-animate"),
-        function addVariantFunc({ addVariant }) {
+        function addVariantFunc({addVariant}) {
             addVariant("child", "& > *");
             addVariant("nextIcon", "& > i");
             addVariant("child-hover", "& > *:hover");
@@ -336,7 +321,7 @@ module.exports = {
             addVariant("third", "&:nth-child(3)");
         },
         require("@tailwindcss/typography"),
-        function addComponentsFunc({ addComponents }) {
+        function addComponentsFunc({addComponents}) {
             addComponents({
                 ".container": {
                     maxWidth: "100%",

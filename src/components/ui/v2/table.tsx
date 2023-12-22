@@ -5,10 +5,12 @@ import Spinner from "@ui/spinner";
 
 const Table = React.forwardRef<
     HTMLTableElement,
-    React.HTMLAttributes<HTMLTableElement> & { loading?: boolean }
+    React.HTMLAttributes<HTMLTableElement> & {
+    loading?: boolean
+}
 >(({loading, className, ...props}, ref) => (
     <div
-        className="tw-bg-white tw-relative tw-w-full tw-overflow-auto tw-rounded-lg tw-border-gray-500 tw-border tw-shadow-sm">
+        className="tw-bg-white tw-relative tw-w-full tw-overflow-auto tw-rounded-lg tw-border-gray-200 tw-border tw-shadow-sm">
         {loading && <>
             <div
                 className="tw-flex tw-items-center tw-absolute tw-inset-0 tw-z-10 tw-justify-center">
@@ -18,7 +20,7 @@ const Table = React.forwardRef<
         </>}
         <table
             ref={ref}
-            className={cn("tw-w-full tw-border-gray-600 tw-caption-bottom tw-text-sm", className)}
+            className={cn("tw-w-full tw-border-gray-200 tw-caption-bottom tw-text-sm", className)}
             {...props}
         />
     </div>
@@ -30,7 +32,7 @@ const TableHeader = React.forwardRef<
     React.HTMLAttributes<HTMLTableSectionElement>
 >(({className, ...props}, ref) => (
     <thead ref={ref}
-           className={cn("[&_tr]:tw-border-b-gray-600 tw-text-white tw-rounded-lg", className)} {...props} />
+           className={cn("[&_tr]:tw-border-b-gray-200 tw-text-white tw-rounded-lg", className)} {...props} />
 ))
 TableHeader.displayName = "TableHeader"
 
@@ -68,7 +70,7 @@ const TableRow = React.forwardRef<
     <tr
         ref={ref}
         className={cn(
-            "tw-border-b tw-border-gray-500 tw-transition-colors hover:tw-bg-muted/50 data-[state=selected]:tw-bg-muted",
+            "tw-border-b tw-border-gray-200 tw-transition-colors hover:tw-bg-muted/50 data-[state=selected]:tw-bg-muted",
             className
         )}
         {...props}
