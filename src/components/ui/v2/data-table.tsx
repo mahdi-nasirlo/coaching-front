@@ -12,7 +12,7 @@ import {
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@ui/v2/table";
 import {addIndexToData} from "@utils/methods";
 import {DataTablePagination} from "@ui/v2/pagniation-controller";
-import Empty from "../../../hooks/empty";
+import Empty from "./empty";
 import cn from "clsx";
 
 const alignClassname: { [key in "center" | "right" | "left"]: string } = {
