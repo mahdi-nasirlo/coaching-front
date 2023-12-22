@@ -11,17 +11,17 @@ type TProps = {
 const AuthorMeta = ({author, className}: TProps) => {
     return (
         <div className={clsx("post-author tw-mb-[5px]", className)}>
-            <Anchor path={author.path} className="tw-flex tw-items-center">
-                {author.image?.src && (
+            <Anchor path={author?.path} className="tw-flex tw-items-center">
+                {author?.image?.src && (
                     <Image
-                        alt={author.image?.alt || "Avatar"}
-                        src={author.image.src}
+                        alt={author?.image?.alt || "Avatar"}
+                        src={author?.image.src}
                         className="tw-w-8 tw-h-8 tw-rounded-full tw-mr-2"
                         height="96"
                         width="96"
                     />
                 )}
-                {author.name}
+                {author?.name}
             </Anchor>
         </div>
     );

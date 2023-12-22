@@ -25,20 +25,25 @@ export function SidebarNav({className, items, ...props}: SidebarNavProps) {
             {...props}
         >
             {items.map((item) => (
-                <Link
-                    key={item.href}
-                    href={item.href}
-                    style={{justifyContent: "start"}}
-                    className={cn(
-                        "tw-justify-start",
-                        buttonVariants({variant: "ghost"}),
-                        pathname === item.href
-                            ? "tw-bg-muted tw-hover:bg-muted"
-                            : "tw-hover:bg-transparent tw-hover:underline",
-                    )}
-                >
-                    {item.title}
-                </Link>
+                <>
+                    <div className="tw-flex tw-items-center">
+                        <div className="tw-bg-primary tw-w-1 tw-h-full"></div>
+                        <Link
+                            key={item.href}
+                            href={item.href}
+                            style={{justifyContent: "start"}}
+                            className={cn(
+                                "tw-justify-start tw-rounded-lg tw-flex-grow",
+                                buttonVariants({variant: "ghost"}),
+                                pathname === item.href
+                                    ? "tw-bg-muted tw-hover:bg-muted"
+                                    : "tw-hover:bg-transparent tw-hover:underline",
+                            )}
+                        >
+                            {item.title}
+                        </Link>
+                    </div>
+                </>
             ))}
         </nav>
     )
