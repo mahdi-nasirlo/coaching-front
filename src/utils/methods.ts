@@ -227,7 +227,7 @@ export const nextFocus = (elements: HTMLElement[], forward = true) => {
     elements[nextIndex]?.focus();
 };
 
-export const addIndexToData = (data: any[] | undefined, keyName: string = "Row", startFrom: number = 1) => {
+export const addIndexToData = ({data, keyName = "Row", startFrom = 1}: { data: any[] | undefined, keyName?: string, startFrom: number }) => {
 
     if (data && data?.length) {
         return data?.map((item: any, index: number) => ({
@@ -248,7 +248,7 @@ export const getSessionToken = async () => {
     }
 
     const session = await getSession();
-    
+
     // @ts-ignore
     cachedSession = session?.accessToken || null;
 
