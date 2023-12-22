@@ -7,6 +7,8 @@ import {Button} from "@ui/v2/button";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@ui/v2/form";
 import {Input} from "@ui/v2/input";
 import {useCreateBlogPost} from "../../../hooks/api/posts";
+import {Card, CardContent, CardTitle} from "@ui/v2/card";
+import {Separator} from "@ui/v2/separator";
 
 const apiData = blogApiUrl.post.admin.create
 
@@ -21,43 +23,52 @@ const CreateForm = () => {
 
     async function onSubmit(values: z.infer<typeof apiData.type>) {
         console.log(values)
+        // @ts-ignore
         await createPost.mutateAsync(values)
     }
 
     return (
-        <div>
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="tw-space-y-5">
-                    <FormField
-                        control={form.control}
-                        name="title"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Title</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="pleas inter value" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="slug"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Path</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="pleas inter value" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    <Button className="tw-mt-3" size="sm" type="submit">Submit</Button>
-                </form>
-            </Form>
-        </div>
+        <>
+            <CardTitle>
+                Create Post
+            </CardTitle>
+            <Separator className="tw-mb-6"/>
+            <Card>
+                <CardContent className="tw-pt-6">
+                    <Form {...form} >
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="tw-space-y-5">
+                            <FormField
+                                control={form.control}
+                                name="title"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Title</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="pleas inter value" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="slug"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Path</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="pleas inter value" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <Button className="tw-mt-3" size="sm" type="submit">Submit</Button>
+                        </form>
+                    </Form>
+                </CardContent>
+            </Card>
+        </>
     );
 };
 

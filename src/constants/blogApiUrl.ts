@@ -48,6 +48,13 @@ export const blogApiUrl = {
                     blog_category_id: z.number().optional(),
                     author_id: z.number().optional()
                 })
+            },
+            delete: {
+                url: "/blog/post/delete",
+                type: z.object({
+                    uid: z.string()
+                }),
+                method: "POST"
             }
         }
     }
