@@ -2,8 +2,8 @@ import {useGetPageBlogPostAdmin} from "../../../hooks/api/posts";
 import React from 'react';
 import {Separator} from "@ui/v2/separator";
 import {DataTable} from "@ui/v2/data-table";
-import {columns} from "@containers/Account/blog-post/columns";
-import CreateForm from "@containers/Account/blog-post/create-form";
+import {columns} from "@containers/account/blog-post/columns";
+import CreateForm from "@containers/account/blog-post/create-form";
 import {PaginationState} from "@tanstack/react-table";
 import {CardTitle} from "@ui/v2/card";
 

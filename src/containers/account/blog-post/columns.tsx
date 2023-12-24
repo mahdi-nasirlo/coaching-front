@@ -2,7 +2,7 @@
 
 import {ColumnDef} from "@tanstack/react-table"
 import {blogApiUrl} from "../../../constants/blogApiUrl";
-import {DataTableRowActions} from "@containers/Account/blog-post/data-table-row-action";
+import {DataTableRowActions} from "@containers/account/blog-post/data-table-row-action";
 
 
 export const columns: ColumnDef<typeof blogApiUrl.post.admin.getPage.type>[] = [

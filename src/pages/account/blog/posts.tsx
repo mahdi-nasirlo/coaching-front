@@ -1,6 +1,6 @@
 import type {GetServerSideProps, NextPage} from "next";
 import LayoutAccount from "@layout/layout-account";
-import BlogPost from "@containers/Account/blog-post";
+import BlogPost from "containers/account/blog-post";
 
 type PageProps = NextPage & {
     Layout: typeof LayoutAccount;
