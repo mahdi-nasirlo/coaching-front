@@ -63,7 +63,7 @@ const CreateForm = () => {
                                     </FormItem>
                                 )}
                             />
-                            <Button className="tw-mt-3" size="sm" type="submit">Submit</Button>
+                            <Button className="tw-mt-3 tw-bg-secondary" size="sm" type="submit">Submit</Button>
                         </form>
                     </Form>
                 </CardContent>

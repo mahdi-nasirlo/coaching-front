@@ -40,7 +40,7 @@ export function SidebarNav({className, items, ...props}: SidebarNavProps) {
                                 "tw-justify-start tw-rounded-lg tw-flex-grow",
                                 buttonVariants({variant: "ghost"}),
                                 pathname === item.href || item.regex?.test(`${pathname}`) || item.activeIn?.includes(`${pathname}`)
-                                    ? "tw-bg-muted tw-hover:bg-muted"
+                                    ? "tw-bg-primary tw-text-white hover:tw-text-muted tw-hover:bg-muted"
                                     : "tw-hover:bg-transparent tw-hover:underline",
                             )}
                         >

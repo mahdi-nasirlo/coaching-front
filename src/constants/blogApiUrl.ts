@@ -29,7 +29,8 @@ export const blogApiUrl = {
         },
         admin: {
             getPage: {
-                page: "/account/blog/post",
+                pageUrl: "/account/blog/post",
+                pageName: "blog post",
                 url: "/admin/blog/post/getPage",
                 type: z.object({
                     "title": z.string(),

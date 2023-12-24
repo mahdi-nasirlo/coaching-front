@@ -14,6 +14,8 @@ type TProps = {
     title?: string;
 };
 
+export type {TProps as BreadcrumbType}
+
 const Breadcrumb = ({
                         style,
                         className,
@@ -50,7 +52,7 @@ const Breadcrumb = ({
                     showTitle && "tw-absolute"
                 )}
             >
-                <nav className="tw-container" aria-label="breadcrumbs">
+                <nav aria-label="breadcrumbs">
                     <ul className="breadcrumb tw-flex tw-flex-wrap tw-py-3">
                         {pages.map(({path, label}) => (
                             <li
@@ -58,6 +60,7 @@ const Breadcrumb = ({
                                 className="tw-text-md first:before:tw-hidden before:tw-content-['/'] before:tw-mx-3.8 before:tw-color-body"
                             >
                                 <Anchor
+                                    target="_self"
                                     path={path}
                                     className="tw-text-body tw-capitalize tw-relative before:tw-absolute before:tw-content-[''] before:-tw-bottom-1.5 before:tw-right-0 before:tw-w-0 before:tw-h-px before:tw-transition-all before:tw-bg-heading hover:tw-text-heading hover:before:tw-left-0 hover:before:tw-w-full"
                                 >

@@ -15,7 +15,7 @@ const buttonVariants = cva(
                 outline:
                     "tw-border tw-border-input tw-bg-background tw-hover:bg-accent tw-hover:text-accent-foreground",
                 secondary:
-                    "tw-bg-secondary tw-text-secondary-foreground tw-hover:bg-secondary/80",
+                    "tw-bg-secondary tw-text-white tw-hover:bg-secondary/80",
                 ghost: "tw-hover:bg-accent tw-hover:text-accent-foreground",
                 link: "tw-text-primary tw-underline-offset-4 tw-hover:underline",
             },
