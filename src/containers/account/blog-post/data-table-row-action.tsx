@@ -16,20 +16,22 @@ import {
 } from "@ui/v2/dropdown-menu";
 import {Button} from "@ui/v2/button";
 import {useDeleteBlogPost} from "../../../hooks/api/posts";
+import Anchor from "@ui/anchor";
+import {blogApiUrl} from "../../../constants/blogApiUrl";
+import {TypeRowData} from "@containers/account/blog-post/columns";
 
 
-interface DataTableRowActionsProps<TData> {
-    row: Row<TData>
+interface DataTableRowActionsProps {
+    row: Row<TypeRowData>
 }
 
-export function DataTableRowActions<TData>({
+export function DataTableRowActions({
                                                row,
-                                           }: DataTableRowActionsProps<TData>) {
+                                    }: DataTableRowActionsProps) {
 
     const {mutateAsync} = useDeleteBlogPost()
 
     const handleDelete = async () => {
-        // @ts-ignore
         await mutateAsync({uid: row.original?.path})
     }
 
@@ -47,7 +49,11 @@ export function DataTableRowActions<TData>({
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-[160px]">
-                    <DropdownMenuItem>Edit</DropdownMenuItem>
+                    <DropdownMenuItem>
+                        <Anchor path={blogApiUrl.post.admin.update.page + row.original.path}>
+                            Edit
+                        </Anchor>
+                    </DropdownMenuItem>
                     <DropdownMenuItem>Make a copy</DropdownMenuItem>
                     <DropdownMenuItem>Favorite</DropdownMenuItem>
                     <DropdownMenuSeparator/>

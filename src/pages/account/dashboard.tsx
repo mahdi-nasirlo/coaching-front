@@ -35,7 +35,6 @@ export const getStaticProps: GetStaticProps = () => {
             layout: {
                 headerShadow: true,
                 headerFluid: false,
-                footerMode: "light",
             },
         },
     };

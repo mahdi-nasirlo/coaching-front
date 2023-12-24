@@ -3,9 +3,15 @@
 import {ColumnDef} from "@tanstack/react-table"
 import {blogApiUrl} from "../../../constants/blogApiUrl";
 import {DataTableRowActions} from "@containers/account/blog-post/data-table-row-action";
+import {z} from "zod";
 
 
-export const columns: ColumnDef<typeof blogApiUrl.post.admin.getPage.type>[] = [
+const RowSchema = blogApiUrl.post.admin.getPage.type
+
+export type TypeRowData = z.infer<typeof RowSchema>
+
+
+export const columns: ColumnDef<TypeRowData>[] = [
     {
         accessorKey: "Row",
         header: "Row",
@@ -22,7 +28,7 @@ export const columns: ColumnDef<typeof blogApiUrl.post.admin.getPage.type>[] = [
     {
         accessorKey: "view",
         header: "View",
-        cell: ({row}) => <DataTableRowActions<typeof blogApiUrl.post.admin.getPage.type> row={row}/>,
+        cell: ({row}) => <DataTableRowActions<TypeRowData> row={row}/>,
         meta: {
             align: 'right'
         }

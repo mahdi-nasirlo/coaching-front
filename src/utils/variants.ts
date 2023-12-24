@@ -1,4 +1,4 @@
-import { Variants } from "framer-motion";
+import {Variants} from "framer-motion";
 
 export const scrollUpVariants: Variants = {
     offscreen: {
@@ -204,6 +204,24 @@ export const flyoutSearch02Inner: Variants = {
         transition: {
             duration: 0.4,
             type: "tween",
+        },
+    },
+};
+
+export const accountSection: Variants = {
+    hidden: {
+        opacity: 0,
+        x: -25,
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+    },
+    exit: {
+        opacity: 0,
+        x: 25,
+        transition: {
+            ease: "easeOut",
         },
     },
 };

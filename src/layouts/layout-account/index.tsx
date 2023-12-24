@@ -2,7 +2,7 @@ import {ReactNode} from "react";
 import ScrollToTop from "@ui/scroll-to-top";
 import Header from "../headers/header-01";
 import Footer from "../footers/footer-01";
-import {SidebarNav} from "@components/sidebar-nav";
+import {AccountItemMenu, SidebarNav} from "@components/sidebar-nav";
 
 type TProps = {
     children: ReactNode;
@@ -13,14 +13,15 @@ type TProps = {
     footerMode?: "light" | "dark";
 };
 
-const sidebarNavItems = [
+const sidebarNavItems: AccountItemMenu[] = [
     {
         title: "Profile",
         href: "/account/dashboard",
     },
     {
         title: "Blog Posts",
-        href: "/account/blog/posts",
+        href: "/account/blog/post",
+        regex: new RegExp("^\\/account\\/blog\\/post(\\/.*)?$")
     },
     {
         title: "Appearance",

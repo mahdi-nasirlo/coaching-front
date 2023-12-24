@@ -6,16 +6,20 @@ import {usePathname} from "next/navigation"
 import {cn} from "@/lib/utils"
 import {buttonVariants} from "@ui/v2/button";
 
+export interface AccountItemMenu {
+    href: string
+    title: string,
+    regex?: RegExp,
+    activeIn?: string[]
+}
+
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
-    items: {
-        href: string
-        title: string
-    }[]
+    items: AccountItemMenu[]
 }
 
 export function SidebarNav({className, items, ...props}: SidebarNavProps) {
     const pathname = usePathname()
-
+    
     return (
         <nav
             className={cn(
@@ -35,7 +39,7 @@ export function SidebarNav({className, items, ...props}: SidebarNavProps) {
                             className={cn(
                                 "tw-justify-start tw-rounded-lg tw-flex-grow",
                                 buttonVariants({variant: "ghost"}),
-                                pathname === item.href
+                                pathname === item.href || item.regex?.test(`${pathname}`) || item.activeIn?.includes(`${pathname}`)
                                     ? "tw-bg-muted tw-hover:bg-muted"
                                     : "tw-hover:bg-transparent tw-hover:underline",
                             )}

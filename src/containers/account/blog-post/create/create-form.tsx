@@ -1,12 +1,12 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
 import {z} from "zod";
-import {blogApiUrl} from "../../../constants/blogApiUrl";
+import {blogApiUrl} from "../../../../constants/blogApiUrl";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Button} from "@ui/v2/button";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@ui/v2/form";
 import {Input} from "@ui/v2/input";
-import {useCreateBlogPost} from "../../../hooks/api/posts";
+import {useCreateBlogPost} from "../../../../hooks/api/posts";
 import {Card, CardContent, CardTitle} from "@ui/v2/card";
 import {Separator} from "@ui/v2/separator";
 
