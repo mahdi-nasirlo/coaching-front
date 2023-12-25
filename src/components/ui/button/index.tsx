@@ -196,7 +196,7 @@ const Button = ({
                 onClick={onClick}
                 aria-label={label}
             >
-                {children}asdfasd
+                {children}
             </Anchor>
         );
     }
