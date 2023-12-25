@@ -28,7 +28,7 @@ export const columns: ColumnDef<TypeRowData>[] = [
     {
         accessorKey: "view",
         header: "View",
-        cell: ({row}) => <DataTableRowActions<TypeRowData> row={row}/>,
+        cell: ({row}) => <DataTableRowActions row={row}/>,
         meta: {
             align: 'right'
         }

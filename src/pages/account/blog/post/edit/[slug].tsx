@@ -27,7 +27,7 @@ const EditPage = ({data: {slug}}: PageProps) => {
                 title="Edit Blog Post"
                 description={{
                     currentPage: slug,
-                    pages: [{path: apiData.getPage.pageName, label: apiData.getPage.pageName}],
+                    pages: [{path: apiData.getPage.pageUrl, label: apiData.getPage.pageName}],
                     showTitle: false
                 }}
                 action={<>

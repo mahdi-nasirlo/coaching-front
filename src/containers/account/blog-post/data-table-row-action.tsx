@@ -1,6 +1,6 @@
 "use client"
 
-import {DotsHorizontalIcon} from "@radix-ui/react-icons"
+import {DotsHorizontalIcon, Pencil2Icon} from "@radix-ui/react-icons"
 import {Row} from "@tanstack/react-table"
 import {
     DropdownMenu,
@@ -16,9 +16,9 @@ import {
 } from "@ui/v2/dropdown-menu";
 import {Button} from "@ui/v2/button";
 import {useDeleteBlogPost} from "../../../hooks/api/posts";
-import Anchor from "@ui/anchor";
-import {blogApiUrl} from "../../../constants/blogApiUrl";
 import {TypeRowData} from "@containers/account/blog-post/columns";
+import {blogApiUrl} from "../../../constants/blogApiUrl";
+import Anchor from "@ui/anchor";
 
 
 interface DataTableRowActionsProps {
@@ -36,7 +36,16 @@ export function DataTableRowActions({
     }
 
     return (
-        <>
+        <div className="tw-flex tw-items-center tw-gap-2 tw-justify-end">
+            <Anchor
+                path={blogApiUrl.post.admin.update.page + row.original.path}
+                className="tw-text-secondary tw-font-bold tw-flex tw-items-center tw-gap-1"
+            >
+               <span className="tw-mt-1">
+                    Edit
+               </span>
+                <Pencil2Icon className="tw-h-4 tw-w-4"/>
+            </Anchor>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button
@@ -49,11 +58,6 @@ export function DataTableRowActions({
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-[160px]">
-                    <DropdownMenuItem>
-                        <Anchor path={blogApiUrl.post.admin.update.page + row.original.path}>
-                            Edit
-                        </Anchor>
-                    </DropdownMenuItem>
                     <DropdownMenuItem>Make a copy</DropdownMenuItem>
                     <DropdownMenuItem>Favorite</DropdownMenuItem>
                     <DropdownMenuSeparator/>
@@ -76,6 +80,6 @@ export function DataTableRowActions({
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
-        </>
+        </div>
     )
 }
