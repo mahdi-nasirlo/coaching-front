@@ -6,33 +6,37 @@ import {accountSection} from "@utils/variants";
 
 const Index = () => {
 
-    return (
-        <div>
-            <motion.div
-                className="flex flex-col gap-5"
-                variants={accountSection}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-            >
-                <div className="tw-mb-8">
-                    <CreateForm/>
-                </div>
-            </motion.div>
 
-            <motion.div
-                className="flex flex-col gap-5"
-                variants={accountSection}
-                transition={{duration: 0.5}}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-            >
-                <div className="tw-mb-8">
-                    <DataTable/>
-                </div>
-            </motion.div>
-        </div>
+    return (
+        <>
+            <div className="">
+                <motion.div
+                    key={"create"}
+                    className="flex flex-col gap-5"
+                    variants={accountSection.variants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                >
+                    <div className="tw-mb-8">
+                        <CreateForm/>
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    className="flex flex-col gap-5"
+                    variants={accountSection.variants}
+                    transition={accountSection.transition}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                >
+                    <div className="tw-mb-8">
+                        <DataTable/>
+                    </div>
+                </motion.div>
+            </div>
+        </>
     )
 };
 

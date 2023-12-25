@@ -3,6 +3,8 @@ import ScrollToTop from "@ui/scroll-to-top";
 import Header from "../headers/header-01";
 import Footer from "../footers/footer-01";
 import {AccountItemMenu, SidebarNav} from "@components/sidebar-nav";
+import {AnimatePresence, motion} from "framer-motion";
+import {useRouter} from "next/router";
 
 type TProps = {
     children: ReactNode;
@@ -45,6 +47,9 @@ const LayoutAccount = ({
                            headerTransparent,
                            footerMode = "dark",
                        }: TProps) => {
+
+    const router = useRouter()
+
     return (
         <>
             <Header
@@ -61,7 +66,33 @@ const LayoutAccount = ({
                             <aside className="tw--mx-4 lg:tw-w-1/5">
                                 <SidebarNav items={sidebarNavItems}/>
                             </aside>
-                            <div className="tw-flex-1">{children}</div>
+                            <AnimatePresence exitBeforeEnter>
+                                <motion.div
+                                    key={router.route}
+                                    initial="initialState"
+                                    animate="animateState"
+                                    exit="exitState"
+                                    transition={{duration: 0.2, ease: "easeOut"}}
+                                    variants={{
+                                        initialState: {
+                                            opacity: 0,
+                                            x: "10%"
+                                        },
+                                        animateState: {
+                                            opacity: 1,
+                                            x: "0%",
+                                        },
+                                        exitState: {
+                                            opacity: 0.1,
+                                            x: "-10%",
+                                            transition: {duration: 0.5, ease: "easeOut"}
+                                        }
+                                    }}
+                                    className="tw-flex-1"
+                                >
+                                    {children}
+                                </motion.div>
+                            </AnimatePresence>
                         </div>
                     </div>
                 </main>

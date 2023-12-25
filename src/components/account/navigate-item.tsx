@@ -24,6 +24,7 @@ function NavigateItem({title, description, action, backUrl}: PropType) {
                             {description && typeof description === 'object' && 'currentPage' in description
                                 ? (
                                     <Breadcrumb
+                                        showContainer={false}
                                         style={{padding: 0}}
                                         className="tw-text-sm" {...(description as BreadcrumbType)} />
                                 )

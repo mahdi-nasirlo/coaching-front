@@ -12,6 +12,7 @@ type TProps = {
     currentPage: string;
     showTitle?: boolean;
     title?: string;
+    showContainer?: boolean
 };
 
 export type {TProps as BreadcrumbType}
@@ -23,6 +24,7 @@ const Breadcrumb = ({
                         currentPage,
                         showTitle,
                         title,
+                        showContainer = true,
                     }: TProps) => {
     return (
         <div
@@ -52,7 +54,7 @@ const Breadcrumb = ({
                     showTitle && "tw-absolute"
                 )}
             >
-                <nav aria-label="breadcrumbs">
+                <nav className={`${showContainer && "tw-container"}`} aria-label="breadcrumbs">
                     <ul className="breadcrumb tw-flex tw-flex-wrap tw-py-3">
                         {pages.map(({path, label}) => (
                             <li
