@@ -7,19 +7,19 @@ import {accountSection} from "@utils/variants";
 import {Button} from "@ui/v2/button";
 import NavigateItem from "@components/account/navigate-item";
 import {blogApiUrl} from "../../../../../constants/blogApiUrl";
+import {getAdminBlogPost} from "@/lib/api/blog";
+
+const apiData = blogApiUrl.post.admin
 
 type PageProps = NextPage & {
     data: {
-        slug: string
+        slug: string,
+        post: typeof apiData.getPage.type
     }
     Layout: typeof LayoutAccount;
 };
 
-const apiData = blogApiUrl.post.admin
-const EditPage = ({data: {slug}}: PageProps) => {
-
-    console.log(slug)
-
+const EditPage = ({data: {slug, post}}: PageProps) => {
 
     return (
         <AnimatePresence>
@@ -40,7 +40,7 @@ const EditPage = ({data: {slug}}: PageProps) => {
                 exit="exit"
                 variants={accountSection.variants}
             >
-                <EditForm/>
+                <EditForm post={post}/>
             </motion.div>
         </AnimatePresence>
     );
@@ -52,19 +52,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const {slug} = context.query as { slug: string }
 
-    // const getPost = await getAdminBlogPost(slug)
+    const getPost = await getAdminBlogPost(slug)
 
-    // if (getPost?.status !== 200) {
-    //     return {
-    //         notFound: true,
-    //     }
-    // }
+    if (!getPost?.data) {
+        return {
+            notFound: true,
+        }
+    }
+
+    console.log(getPost?.data)
 
     return {
         props: {
             data: {
                 slug,
-                post: {}
+                post: getPost?.data
             },
             layout: {
                 headerShadow: true,

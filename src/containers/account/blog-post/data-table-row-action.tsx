@@ -26,10 +26,10 @@ interface DataTableRowActionsProps {
 }
 
 export function DataTableRowActions({
-                                               row,
+                                        row,
                                     }: DataTableRowActionsProps) {
 
-    const {mutateAsync} = useDeleteBlogPost()
+    const {mutateAsync} = useDeleteBlogPost(row.original?.path)
 
     const handleDelete = async () => {
         await mutateAsync({uid: row.original?.path})

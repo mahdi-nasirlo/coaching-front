@@ -23,6 +23,7 @@ export interface General<T> {
 }
 
 export interface GeneralErrorType {
+    ok?: string,
     message: string,
     status: number,
     data?: any,

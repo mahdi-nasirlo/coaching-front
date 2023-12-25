@@ -28,7 +28,6 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
     } = props
 
     const BaseAxios = axiosInstance || baseAxois
-    // const token = tokenFromServerSide ?  tokenFromServerSide  : getToken()
 
     const finalUrl = getUrlWithParams(BaseAxios.getUri() + url, params)
 
@@ -47,7 +46,7 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${"token"}`,
+                Authorization: `Bearer ${"2|VmNco5FXdRXwyVawZIHBtwyR7WPjTVxoWg8DKxmzf9fc82e2"}`,
                 ...headers
             },
             method: method || "GET",
@@ -56,7 +55,9 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
 
         const responseBody = await response.data;
 
-        if (response.status === 200) {
+        const isOk = response.status >= 200 && response.status < 300;
+
+        if (isOk) {
             logEntry.message = 'Request successful';
             return responseBody;
         } else {
@@ -66,7 +67,7 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
 
             console.error('Request Error:', logEntry);
 
-            return {status: response.status, message: responseBody?.message, data: responseBody}
+            return {ok: isOk, status: response.status, message: responseBody?.message, data: responseBody}
         }
     } catch (error: any) {
 
@@ -80,7 +81,7 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
         return {
             message: error?.response?.data?.message || error.message,
             status: error?.response?.status || error.status,
-            ok: error?.response?.status === 200,
+            ok: false,
             data: error?.response?.data
         }
 

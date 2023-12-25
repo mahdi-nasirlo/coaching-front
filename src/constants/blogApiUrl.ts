@@ -41,7 +41,7 @@ export const blogApiUrl = {
             },
             create: {
                 page: "/account/blog/post",
-                url: "/blog/post/create",
+                url: "/admin/blog/post/create",
                 type: z.object({
                     title: z.string().min(3),
                     slug: z.string().min(4),
@@ -52,15 +52,20 @@ export const blogApiUrl = {
                     author_id: z.number().optional()
                 })
             },
+            get: {
+                url: "/admin/blog/post/get/",
+                method: "GET",
+            },
             update: {
-                page: "/account/blog/post/edit/"
+                page: "/account/blog/post/edit/",
+                url: "/admin/blog/post/update/"
             },
             delete: {
-                url: "/blog/post/delete",
+                url: "/admin/blog/post/delete/",
                 type: z.object({
                     uid: z.string()
                 }),
-                method: "POST"
+                method: "GET"
             }
         }
     }

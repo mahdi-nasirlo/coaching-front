@@ -22,9 +22,12 @@ const CreateForm = () => {
 
 
     async function onSubmit(values: z.infer<typeof apiData.type>) {
-        console.log(values)
-        // @ts-ignore
-        await createPost.mutateAsync(values)
+
+        const res = await createPost.mutateAsync(values)
+
+        if (res?.status)
+            form.reset(undefined, {keepValues: false})
+
     }
 
     return (

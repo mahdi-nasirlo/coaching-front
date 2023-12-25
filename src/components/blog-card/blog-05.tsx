@@ -45,7 +45,8 @@ const BlogCard = forwardRef<HTMLDivElement, TProps>(
                 )}
                 ref={ref}
             >
-                <div className="tw-relative tw-group tw-overflow-hidden tw-rounded tw-max-h-[300px] md:tw-max-h-[400px]">
+                <div
+                    className="tw-relative tw-group tw-overflow-hidden tw-rounded tw-max-h-[300px] md:tw-max-h-[400px]">
                     {image?.src && (
                         <figure className="tw-transition-transform tw-duration-1500 tw-h-full group-hover:tw-scale-110">
                             <Image
@@ -65,10 +66,10 @@ const BlogCard = forwardRef<HTMLDivElement, TProps>(
 
                 <div className="tw-pt-8 tw-pb-[50px]">
                     <Anchor
-                        path={category.path}
+                        path={category?.slug}
                         className="tw-block tw-text-body tw-font-medium tw-uppercase -tw-tracking-tightest tw-leading-[1.4] tw-mb-[17px]"
                     >
-                        {category.title}
+                        {category?.title}
                     </Anchor>
                     <h3 className="tw-mb-0 tw-text-[26px] xl:tw-text-[34px] tw-leading-[1.42]">
                         <Anchor path={path}>{title}</Anchor>
@@ -92,7 +93,7 @@ const BlogCard = forwardRef<HTMLDivElement, TProps>(
                     </div>
                     <p
                         className="tw-mt-4"
-                        dangerouslySetInnerHTML={{ __html: excerpt }}
+                        dangerouslySetInnerHTML={{__html: excerpt}}
                     />
                     <div className="tw-flex tw-items-center tw-justify-between tw-mt-7.5">
                         <Button path={path}>
@@ -101,7 +102,7 @@ const BlogCard = forwardRef<HTMLDivElement, TProps>(
                                 About this article
                             </span>
                         </Button>
-                        <SocialShare label="Share this post" />
+                        <SocialShare label="Share this post"/>
                     </div>
                 </div>
             </div>

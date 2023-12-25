@@ -24,9 +24,7 @@ export function DataTablePagination<TData>({
         pageSize: pageSize,
         siblingCount: 1
     })
-
-    console.log(paginationRange)
-
+    
     return (
         <div className="tw-py-2">
             <ul className="tw-list-style-none tw-flex tw-items-center tw-space-x-2">

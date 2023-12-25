@@ -7,7 +7,7 @@ import {blogApiUrl} from "../../../../constants/blogApiUrl";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Button} from "@ui/v2/button";
 import {Form} from "@ui/v2/form";
-import {useCreateBlogPost} from "../../../../hooks/api/posts";
+import {useUpdateBlogPost} from "../../../../hooks/api/posts";
 import {Card, CardContent} from "@ui/v2/card";
 import FormFields from "@containers/account/blog-post/form-fields";
 
@@ -15,19 +15,23 @@ const apiData = blogApiUrl.post.admin
 const apiDataCreate = apiData.create
 
 
-const EditForm = () => {
+const EditForm = ({post}: { post: typeof apiData.getPage.type }) => {
 
-    const createPost = useCreateBlogPost()
+    const updatePost = useUpdateBlogPost(post.path)
 
     const form = useForm<z.infer<typeof apiDataCreate.type>>({
         resolver: zodResolver(apiDataCreate.type),
+        defaultValues: {
+            title: post?.title,
+            slug: post?.path,
+        }
     })
 
 
     async function onSubmit(values: z.infer<typeof apiDataCreate.type>) {
-        console.log(values)
-        // @ts-ignore
-        await createPost.mutateAsync(values)
+
+        await updatePost.mutateAsync(values)
+
     }
 
     return (
