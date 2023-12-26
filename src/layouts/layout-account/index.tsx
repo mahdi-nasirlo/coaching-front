@@ -60,7 +60,7 @@ const LayoutAccount = ({
             />
             <div className="tw-bg-gray-50">
                 <main className="tw-relative tw-container">
-                    <div className="tw-space-y-6 tw-p-10 tw-pb-16 md:tw-block">
+                    <div className="tw-space-y-6 tw-py-10 tw-pb-16 md:tw-block">
                         <div
                             className="tw-flex tw-flex-col tw-space-y-8 lg:tw-flex-row lg:tw-space-x-12 lg:tw-space-y-0">
                             <aside className="tw--mx-4 lg:tw-w-1/5">

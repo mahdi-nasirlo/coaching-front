@@ -14,9 +14,9 @@ export const useRequestPost = () => {
 };
 
 export const useGetPageBlogPostAdmin = ({paginationState}: { paginationState: PaginationState }) => useQuery({
-    queryKey: [apiData.getPage.url, paginationState],
+    queryKey: [apiData.admin.getPage.url, paginationState],
     queryFn: () => customeFetcher({
-        url: apiData.getPage.url,
+        url: apiData.admin.getPage.url,
         method: "GET",
         params: {
             page: paginationState.pageIndex,
@@ -35,8 +35,7 @@ export const useCreateBlogPost = () => {
             data: variables,
         }),
         onSuccess: () => {
-            // if (data?.status === 200)
-            queryClient.invalidateQueries({queryKey: [apiData.getPage.url]})
+            queryClient.invalidateQueries({queryKey: [apiData.admin.getPage.url]})
         }
     })
 }

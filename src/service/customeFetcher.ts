@@ -2,6 +2,7 @@ import getUrlWithParams from "./getUrlWithParams";
 import baseAxois from "./base-axois";
 import {AxiosHeaders, AxiosInstance} from "axios";
 import {GeneralErrorType} from "../@types/api-response/general";
+import handleError from "./handleError";
 
 
 type Props = {
@@ -65,6 +66,8 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
             logEntry.message = `Request failed with status: ${response.status}`;
             logEntry.status = `${response.status}`;
 
+            if (response.status == 401) await handleError()
+
             console.error('Request Error:', logEntry);
 
             return {ok: isOk, status: response.status, message: responseBody?.message, data: responseBody}
@@ -75,6 +78,8 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
         logEntry.status = `${error?.response?.status}`;
 
         logEntry.data = JSON.stringify(error?.response?.data)
+
+        if (error?.response?.status == 401) await handleError()
 
         console.error('Request Network/Error:', logEntry);
 
