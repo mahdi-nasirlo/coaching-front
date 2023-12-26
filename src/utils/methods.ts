@@ -2,6 +2,8 @@ import type {Dispatch, SetStateAction} from "react";
 import dayjs from "dayjs";
 import {ICourse, IEvent, SectionType} from "./types";
 import {getSession} from "next-auth/react";
+import {z} from "zod";
+import {UseFormReturn} from "react-hook-form";
 
 export const normalizedData = <T extends object>(
     data: T[],
@@ -259,3 +261,16 @@ export const getSessionToken = async () => {
 
     return cachedSession;
 };
+
+type NullObject = {
+    [key: string]: null;
+};
+
+export function createNullObjectFromSchema<T extends z.ZodObject<any>>(schema: T, form: UseFormReturn<any>): NullObject {
+    const shape = schema.shape;
+    const nullObject: Partial<ReturnType<T['parse']>> = {};
+    for (const key in shape) {
+        form.setValue(key, null)
+    }
+    return nullObject as NullObject;
+}
