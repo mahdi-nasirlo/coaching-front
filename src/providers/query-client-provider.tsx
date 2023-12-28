@@ -2,12 +2,28 @@
 
 import React from "react";
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
-import {MutationCache, QueryClient, QueryClientProvider as TanstackQueryClientProvider} from "@tanstack/react-query";
+import {
+    MutationCache,
+    QueryCache,
+    QueryClient,
+    QueryClientProvider as TanstackQueryClientProvider
+} from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import {GeneralErrorType} from "../@types/api-response/general";
 
 const toastConf = {id: "global-toast"}
 
 const queryClient = new QueryClient({
+    queryCache: new QueryCache({
+        onSuccess: (data: unknown) => {
+
+            const result = data as GeneralErrorType
+
+            if (result?.message) {
+                toast.error(result?.message)
+            }
+        },
+    }),
     mutationCache: new MutationCache({
         onMutate: () => toast.loading("loading...", {...toastConf}),
         onSuccess: (data: unknown) => {

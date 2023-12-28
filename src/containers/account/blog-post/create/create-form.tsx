@@ -9,6 +9,7 @@ import {Input} from "@ui/v2/input";
 import {useCreateBlogPost} from "../../../../hooks/api/posts";
 import {Card, CardContent, CardTitle} from "@ui/v2/card";
 import {Separator} from "@ui/v2/separator";
+import {resetForm} from "@utils/methods";
 
 const apiData = blogApiUrl.post.admin.create
 
@@ -26,7 +27,7 @@ const CreateForm = () => {
         const res = await createPost.mutateAsync(values)
 
         if (res?.status)
-            form.reset(undefined, {keepValues: false})
+            resetForm(apiData.type, form)
 
     }
 

@@ -229,7 +229,11 @@ export const nextFocus = (elements: HTMLElement[], forward = true) => {
     elements[nextIndex]?.focus();
 };
 
-export const addIndexToData = ({data, keyName = "Row", startFrom = 1}: { data: any[] | undefined, keyName?: string, startFrom: number }) => {
+export const addIndexToData = ({data, keyName = "Row", startFrom = 1}: {
+    data: any[] | undefined,
+    keyName?: string,
+    startFrom: number
+}) => {
 
     if (data && data?.length) {
         return data?.map((item: any, index: number) => ({
@@ -266,11 +270,11 @@ type NullObject = {
     [key: string]: null;
 };
 
-export function createNullObjectFromSchema<T extends z.ZodObject<any>>(schema: T, form: UseFormReturn<any>): NullObject {
+export function resetForm<T extends z.ZodObject<any>>(schema: T, form: UseFormReturn<any>): NullObject {
     const shape = schema.shape;
     const nullObject: Partial<ReturnType<T['parse']>> = {};
     for (const key in shape) {
-        form.setValue(key, null)
+        form.setValue(key, "")
     }
     return nullObject as NullObject;
 }

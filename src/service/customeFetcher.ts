@@ -4,7 +4,6 @@ import {AxiosHeaders, AxiosInstance} from "axios";
 import {GeneralErrorType} from "../@types/api-response/general";
 import handleError from "./handleError";
 
-
 type Props = {
     url: string,
     axiosInstance?: AxiosInstance;
