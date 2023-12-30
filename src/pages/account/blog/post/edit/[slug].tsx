@@ -2,7 +2,7 @@ import React from 'react';
 import type {GetServerSideProps, NextPage} from "next";
 import LayoutAccount from "@layout/layout-account";
 import EditForm from "@containers/account/blog-post/edit/edit-form";
-import {AnimatePresence, motion} from "framer-motion";
+import {motion} from "framer-motion";
 import {accountSection} from "@utils/variants";
 import {Button} from "@ui/v2/button";
 import NavigateItem from "@components/account/navigate-item";
@@ -22,7 +22,7 @@ type PageProps = NextPage & {
 const EditPage = ({data: {slug, post}}: PageProps) => {
 
     return (
-        <AnimatePresence>
+        <div>
             <NavigateItem
                 title="Edit Blog Post"
                 description={{
@@ -42,7 +42,7 @@ const EditPage = ({data: {slug, post}}: PageProps) => {
             >
                 <EditForm post={post}/>
             </motion.div>
-        </AnimatePresence>
+        </div>
     );
 };
 

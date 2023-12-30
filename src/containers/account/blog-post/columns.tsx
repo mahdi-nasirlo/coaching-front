@@ -26,6 +26,10 @@ export const columns: ColumnDef<TypeRowData>[] = [
         header: "Path",
     },
     {
+        accessorKey: "content",
+        header: "Content"
+    },
+    {
         accessorKey: "view",
         header: "View",
         cell: ({row}) => <DataTableRowActions row={row}/>,
