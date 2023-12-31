@@ -6,8 +6,8 @@ import {motion} from "framer-motion";
 import {accountSection} from "@utils/variants";
 import {Button} from "@ui/v2/button";
 import NavigateItem from "@components/account/navigate-item";
-import {blogApiUrl} from "../../../../../constants/blogApiUrl";
 import {getAdminBlogPost} from "@/lib/api/blog";
+import {blogApiUrl} from "@/constants/blogApiUrl";
 
 const apiData = blogApiUrl.post.admin
 
@@ -52,15 +52,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const {slug} = context.query as { slug: string }
 
-    const getPost = await getAdminBlogPost(slug)
+    const getPost = await getAdminBlogPost(slug, context)
 
     if (!getPost?.data) {
         return {
             notFound: true,
         }
     }
-
-    console.log(getPost?.data)
 
     return {
         props: {

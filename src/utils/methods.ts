@@ -4,6 +4,7 @@ import {ICourse, IEvent, SectionType} from "./types";
 import {getSession} from "next-auth/react";
 import {z} from "zod";
 import {UseFormReturn} from "react-hook-form";
+import {GetServerSidePropsContext} from "next";
 
 export const normalizedData = <T extends object>(
     data: T[],
@@ -247,13 +248,13 @@ export const addIndexToData = ({data, keyName = "Row", startFrom = 1}: {
 
 let cachedSession: any = null;
 let cacheTimer: any = null;
-export const getSessionToken = async () => {
+export const getSessionToken = async (context: GetServerSidePropsContext | undefined = undefined) => {
 
     if (cachedSession) {
         return cachedSession;
     }
 
-    const session = await getSession();
+    const session = await getSession(context);
 
     // @ts-ignore
     cachedSession = session?.accessToken || null;

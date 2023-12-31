@@ -3,6 +3,8 @@ import baseAxois from "./base-axois";
 import {AxiosHeaders, AxiosInstance} from "axios";
 import {GeneralErrorType} from "../@types/api-response/general";
 import handleError from "./handleError";
+import {getSessionToken} from "@utils/methods";
+import {GetServerSidePropsContext} from "next";
 
 type Props = {
     url: string,
@@ -13,7 +15,8 @@ type Props = {
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | string;
     cache?: RequestCache;
     tokenFromServerSide?: string,
-    token?: string
+    token?: string,
+    context?: GetServerSidePropsContext
 }
 
 async function customFetch(props: Props): Promise<GeneralErrorType | any | undefined> {
@@ -25,7 +28,10 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
         data,
         headers,
         method,
+        context
     } = props
+
+    const token = await getSessionToken(context);
 
     const BaseAxios = axiosInstance || baseAxois
 
@@ -36,6 +42,7 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
         method: method || 'GET',
         path: finalUrl,
         status: "0",
+        token: token,
         message: '',
         data: null as any,
     };
@@ -46,7 +53,7 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                // Authorization: `Bearer ${"2|VmNco5FXdRXwyVawZIHBtwyR7WPjTVxoWg8DKxmzf9fc82e2"}`,
+                Authorization: `Bearer ${token}`,
                 ...headers
             },
             method: method || "GET",
