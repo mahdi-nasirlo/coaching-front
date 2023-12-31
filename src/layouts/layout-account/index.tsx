@@ -58,7 +58,7 @@ const LayoutAccount = ({
                 transparent={headerTransparent}
                 mode={headerMode}
             />
-            <div className="tw-bg-gray-50">
+            <div className="tw-bg-gray-50 tw-min-h-[51vh]">
                 <main className="tw-relative tw-container">
                     <div className="tw-space-y-6 tw-py-10 tw-pb-16 md:tw-block">
                         <div
