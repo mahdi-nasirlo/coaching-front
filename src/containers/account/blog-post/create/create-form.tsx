@@ -4,12 +4,11 @@ import {z} from "zod";
 import {blogApiUrl} from "../../../../constants/blogApiUrl";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Button} from "@ui/v2/button";
-import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@ui/v2/form";
-import {Input} from "@ui/v2/input";
+import {Form} from "@ui/v2/form";
 import {useCreateBlogPost} from "../../../../hooks/api/posts";
 import {Card, CardContent, CardTitle} from "@ui/v2/card";
 import {Separator} from "@ui/v2/separator";
-import {resetForm} from "@utils/methods";
+import FormFields from "@containers/account/blog-post/form-fields";
 
 const apiData = blogApiUrl.post.admin.create
 
@@ -27,7 +26,7 @@ const CreateForm = () => {
         const res = await createPost.mutateAsync(values)
 
         if (res?.status)
-            resetForm(apiData.type, form)
+            form.reset(undefined, {keepValues: false})
 
     }
 
@@ -41,32 +40,7 @@ const CreateForm = () => {
                 <CardContent className="tw-pt-6">
                     <Form {...form} >
                         <form onSubmit={form.handleSubmit(onSubmit)} className="tw-space-y-5">
-                            <FormField
-                                control={form.control}
-                                name="title"
-                                render={({field}) => (
-                                    <FormItem>
-                                        <FormLabel>Title</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="pleas inter value" {...field} />
-                                        </FormControl>
-                                        <FormMessage/>
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="slug"
-                                render={({field}) => (
-                                    <FormItem>
-                                        <FormLabel>Path</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="pleas inter value" {...field} />
-                                        </FormControl>
-                                        <FormMessage/>
-                                    </FormItem>
-                                )}
-                            />
+                            <FormFields form={form}/>
                             <Button className="tw-mt-3 tw-bg-secondary" size="sm" type="submit">Submit</Button>
                         </form>
                     </Form>

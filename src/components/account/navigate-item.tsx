@@ -46,7 +46,7 @@ function NavigateItem({title, description, action, backUrl}: PropType) {
                     </Anchor>}
                 </div>
             </div>
-            <Separator className="tw-mb-6"/>
+            <Separator className="tw-mb-6 tw-mt-3"/>
         </div>
     );
 }

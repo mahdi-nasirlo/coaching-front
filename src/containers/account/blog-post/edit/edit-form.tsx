@@ -17,12 +17,15 @@ const apiDataCreate = apiData.create
 
 const EditForm = ({post}: { post: typeof apiData.getPage.type }) => {
 
+    // @ts-ignore
     const updatePost = useUpdateBlogPost(post.path)
 
     const form = useForm<z.infer<typeof apiDataCreate.type>>({
         resolver: zodResolver(apiDataCreate.type),
         defaultValues: {
+            // @ts-ignore
             title: post?.title,
+            // @ts-ignore
             slug: post?.path,
         }
     })

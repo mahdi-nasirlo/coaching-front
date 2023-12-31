@@ -1,39 +1,37 @@
 import React from 'react';
-import CreateForm from "@containers/account/blog-post/create/create-form";
 import {motion} from "framer-motion";
 import {DataTable} from "@containers/account/blog-post/data-table";
 import {accountSection} from "@utils/variants";
+import NavigateItem from "@components/account/navigate-item";
+import {Button} from "@ui/v2/button";
+import Router from "next/router";
+import {blogApiUrl} from "@/constants/blogApiUrl";
+
+const apiData = blogApiUrl.post.admin
 
 const Index = () => {
-
-
     return (
         <>
             <div className="">
+                <NavigateItem
+                    title="Create Post"
+                    action={<>
+                        <Button
+                            onClick={() => Router.push(apiData.create.pageUrl)}
+                            variant="secondary"
+                            size="sm"
+                        >
+                            create
+                        </Button>
+                    </>}
+                />
                 <motion.div
-                    key={"create"}
-                    className="flex flex-col gap-5"
-                    variants={accountSection.variants}
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                >
-                    <div className="tw-mb-8">
-                        <CreateForm/>
-                    </div>
-                </motion.div>
-
-                <motion.div
-                    className="flex flex-col gap-5"
                     variants={accountSection.variants}
-                    transition={accountSection.transition}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
                 >
-                    <div className="tw-mb-8">
-                        <DataTable/>
-                    </div>
+                    <DataTable/>
                 </motion.div>
             </div>
         </>
