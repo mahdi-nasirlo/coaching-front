@@ -31,7 +31,10 @@
       "@ui/*": ["components/ui/*"],
       "@utils/*": ["utils/*"],
       "@/lib/*": ["lib/*"],
-      "@widgets/*": ["components/widgets/*"],
+      "@/constants/*": [
+        "constants/*"
+      ],
+      "@widgets/*": ["components/widgets/*"]
     }
   },
   "include": ["next-env.d.ts", "next.config.js", "src/**/*.ts", "src/**/*.tsx", "tailwind.config.js", "postcss.config.js", "next-sitemap.config.js"],
