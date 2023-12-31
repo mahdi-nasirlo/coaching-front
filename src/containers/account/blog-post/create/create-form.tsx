@@ -7,8 +7,9 @@ import {Button} from "@ui/v2/button";
 import {Form} from "@ui/v2/form";
 import {useCreateBlogPost} from "../../../../hooks/api/posts";
 import {Card, CardContent} from "@ui/v2/card";
-import {resetForm} from "@utils/methods";
 import FormFields from "@containers/account/blog-post/form-fields";
+import {resetForm} from "@utils/methods";
+import Router from "next/router";
 
 const apiData = blogApiUrl.post.admin.create
 
@@ -25,8 +26,10 @@ const CreateForm = () => {
 
         const res = await createPost.mutateAsync(values)
 
-        if (res?.status)
+        if (res?.status) {
             resetForm(apiData.type, form)
+            await Router.push(blogApiUrl.post.admin.getPage.pageUrl)
+        }
 
     }
 

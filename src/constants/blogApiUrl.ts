@@ -41,7 +41,7 @@ export const blogApiUrl = {
             },
             create: {
                 pageUrl: "/account/blog/post/create",
-                page: "/account/blog/post",
+                pageName: "create",
                 url: "/admin/blog/post/create",
                 type: z.object({
                     title: z.string().min(3),

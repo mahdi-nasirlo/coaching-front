@@ -68,7 +68,7 @@ export const useDeleteBlogPost = (slug: string) => {
         }),
         onSuccess: () => {
             // if (data?.status === 200)
-            queryClient.invalidateQueries({queryKey: [apiData.getPage.url]})
+            queryClient.invalidateQueries({queryKey: [apiData.admin.getPage.url]})
         }
     })
 }
