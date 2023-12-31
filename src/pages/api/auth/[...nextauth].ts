@@ -53,7 +53,7 @@ export const authOptions: AuthOptions = {
         session: ({session, token}) => {
 
             if (token && token.accessToken) {
-                console.log(token)
+               
                 return {
                     accessToken: token.accessToken,
                     ...session

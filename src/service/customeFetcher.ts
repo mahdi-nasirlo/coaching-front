@@ -46,7 +46,7 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${"2|VmNco5FXdRXwyVawZIHBtwyR7WPjTVxoWg8DKxmzf9fc82e2"}`,
+                // Authorization: `Bearer ${"2|VmNco5FXdRXwyVawZIHBtwyR7WPjTVxoWg8DKxmzf9fc82e2"}`,
                 ...headers
             },
             method: method || "GET",
@@ -78,7 +78,7 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
 
         logEntry.data = JSON.stringify(error?.response?.data)
 
-        if (error?.response?.status == 401) await handleError()
+        // if (error?.response?.status == 401) await handleError()
 
         console.error('Request Network/Error:', logEntry);
 
