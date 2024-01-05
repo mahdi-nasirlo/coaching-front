@@ -21,13 +21,11 @@ type PageProps = NextPage<TProps> & {
     Layout: typeof Layout01;
 };
 
-const POSTS_PER_PAGE = 3;
+const POSTS_PER_PAGE = 5;
 
 const BlogClassic: PageProps = ({
                                     data: {blogs, recentPosts, tags, currentPage, numberOfPages},
                                 }) => {
-
-    console.log(blogs)
 
     return (
         <>
@@ -56,7 +54,8 @@ BlogClassic.Layout = Layout01;
 
 export const getServerSideProps: GetServerSideProps = async () => {
 
-    let blogs = await getPageBlogPosts();
+    let blogs = await getPageBlogPosts(1, POSTS_PER_PAGE)
+
 
     const {blogs: recentPosts} = getAllBlogs(["title"], 0, 5);
     const tags = getTags();
@@ -67,7 +66,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
                 recentPosts,
                 tags,
                 currentPage: 1,
-                numberOfPages: Math.ceil(blogs?.meta.total || 0 / POSTS_PER_PAGE)
+                numberOfPages: Math.floor((blogs?.meta.total || 0) / POSTS_PER_PAGE)
             },
             layout: {
                 headerShadow: true,
