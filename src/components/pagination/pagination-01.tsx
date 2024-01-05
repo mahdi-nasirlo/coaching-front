@@ -9,11 +9,11 @@ type TProps = {
 };
 
 const Pagination = ({
-    currentPage,
-    numberOfPages,
-    rootPage = "blog",
-    className,
-}: TProps) => {
+                        currentPage,
+                        numberOfPages,
+                        rootPage = "blog",
+                        className,
+                    }: TProps) => {
     const isFirst = currentPage === 1;
     const isLast = currentPage === numberOfPages;
     const previousPage =
@@ -23,7 +23,7 @@ const Pagination = ({
     const nextPage = `/${rootPage}/page/${(currentPage + 1).toString()}`;
 
     let showPagi: (string | number)[] = [];
-    Array.from({ length: numberOfPages }, () => {
+    Array.from({length: numberOfPages}, () => {
         const prev = currentPage - 1;
         const next = currentPage + 1;
         switch (true) {
@@ -31,7 +31,7 @@ const Pagination = ({
                 break;
             case numberOfPages <= 4:
                 showPagi = [
-                    ...Array.from({ length: numberOfPages }, (_, i) => i + 1),
+                    ...Array.from({length: numberOfPages}, (_, i) => i + 1),
                 ];
                 break;
             case currentPage === 1:
@@ -96,7 +96,7 @@ const Pagination = ({
                                     "tw-block tw-text-center tw-w-12 tw-h-12 tw-leading-[48px] tw-rounded-full -tw-tracking-tightest hover:tw-text-heading",
                                     currentPage !== pagi && "tw-text-gray-400",
                                     currentPage === pagi &&
-                                        "tw-pointer-events-none tw-bg-gray-500 tw-text-heading"
+                                    "tw-pointer-events-none tw-bg-gray-200 tw-text-heading"
                                 )}
                                 path={`${
                                     pagi === 1
