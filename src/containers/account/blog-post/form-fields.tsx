@@ -3,6 +3,7 @@ import {UseFormReturn} from "react-hook-form";
 import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@ui/v2/form";
 import {Input} from "@ui/v2/input";
 import {Editor} from "@ui/v2/editor";
+import {BlogCategoryField} from "@components/fields/admin/blog-category-field";
 
 interface PropType {
     form: UseFormReturn<any>
@@ -44,6 +45,35 @@ const CreateForm = ({form}: PropType) => {
                     )}
                 />
                 <FormField
+                    name={"blog_category_id"}
+                    render={({field}) => (
+                        <FormItem
+                            className="tw-col-span-3"
+                        >
+                            <FormLabel>Category</FormLabel>
+                            <FormControl>
+                                <BlogCategoryField onValueChange={field.onChange} value={field.value}/>
+                            </FormControl>
+                            <FormMessage/>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    name={"image"}
+                    render={({field}) => (
+                        <FormItem
+                            className="tw-col-span-3"
+                        >
+                            <FormLabel>Image</FormLabel>
+                            <FormControl>
+                                <Input type="file" {...field}/>
+                            </FormControl>
+                            <FormMessage/>
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    name={"content"}
                     render={({field}) => (
                         <FormItem
                             className="tw-col-span-6"
@@ -55,9 +85,9 @@ const CreateForm = ({form}: PropType) => {
                                     {...field}
                                 />
                             </FormControl>
+                            <FormMessage/>
                         </FormItem>
                     )}
-                    name={"content"}
                 />
             </div>
         </>

@@ -26,7 +26,7 @@ const CreateForm = () => {
 
         const res = await createPost.mutateAsync(values)
 
-        if (res?.status) {
+        if (res?.ok) {
             resetForm(apiData.type, form)
             await Router.push(blogApiUrl.post.admin.getPage.pageUrl)
         }

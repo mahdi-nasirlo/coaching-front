@@ -7,6 +7,7 @@ import {Button} from "@ui/v2/button";
 import NavigateItem from "@components/account/navigate-item";
 import {blogApiUrl} from "@/constants/blogApiUrl";
 import CreateForm from "@containers/account/blog-post/create/create-form";
+import Router from "next/router";
 
 const apiData = blogApiUrl.post.admin
 
@@ -26,7 +27,7 @@ const CreatePage: PageProps = () => {
                     showTitle: false
                 }}
                 action={<>
-                    <Button variant="link" className="tw-text-red-500" size="sm">delete</Button>
+                    <Button variant="ghost" onClick={() => Router.push(apiData.getPage.pageUrl)} size="sm">back</Button>
                 </>}
             />
             <motion.div

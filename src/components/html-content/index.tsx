@@ -1,12 +1,12 @@
 import clsx from "clsx";
-import { IContent, ListContentType } from "@utils/types";
+import {IContent, ListContentType} from "@utils/types";
 
 type TProps = {
     body: IContent[];
     className?: string;
 };
 
-const HTMLContent = ({ body, className }: TProps) => {
+const HTMLContent = ({body, className}: TProps) => {
     const generateList = (
         type: "list" | "order-list",
         content: ListContentType[] | string[],
@@ -36,16 +36,16 @@ const HTMLContent = ({ body, className }: TProps) => {
     return (
         <div
             className={clsx(
-                "tw-prose prose-h2:tw-text-xl sm:prose-h2:tw-text-4xl sm:prose-h3:tw-text-3xl tw-max-w-none",
+                "html-content tw-prose prose-h2:tw-text-xl sm:prose-h2:tw-text-4xl sm:prose-h3:tw-text-3xl tw-max-w-none",
                 className
             )}
         >
-            {body.map(({ id, type, content }) => {
+            {body.map(({id, type, content}) => {
                 if (type === "text" && typeof content === "string") {
                     return (
                         <p
                             key={id}
-                            dangerouslySetInnerHTML={{ __html: content }}
+                            dangerouslySetInnerHTML={{__html: content}}
                         />
                     );
                 }
@@ -60,7 +60,7 @@ const HTMLContent = ({ body, className }: TProps) => {
                     return (
                         <Tag
                             key={id}
-                            dangerouslySetInnerHTML={{ __html: content }}
+                            dangerouslySetInnerHTML={{__html: content}}
                         />
                     );
                 }

@@ -27,6 +27,8 @@ const BlogClassic: PageProps = ({
                                     data: {blogs, recentPosts, tags, currentPage, numberOfPages},
                                 }) => {
 
+    console.log(blogs)
+
     return (
         <>
             <SEO title="Blog Classic"/>

@@ -1,12 +1,13 @@
 import {forwardRef} from "react";
 import clsx from "clsx";
+import {IBlog} from "@utils/types";
+import Image from "@ui/image";
 import Anchor from "@ui/anchor";
 import AuthorMeta from "@components/blog-meta/author";
 import BlogMetaItem from "@components/blog-meta/meta-item";
-import {IBlog} from "@utils/types";
-import Button from "@components/ui/button";
+import Button from "@ui/button";
 import SocialShare from "@components/social-share/layout-03";
-import Image from "@ui/image";
+import HTMLContent from "@components/html-content";
 
 type TProps = Pick<
     IBlog,
@@ -91,16 +92,14 @@ const BlogCard = forwardRef<HTMLDivElement, TProps>(
                             icon="far fa-eye"
                         />
                     </div>
-                    <p
-                        className="tw-mt-4"
-                        dangerouslySetInnerHTML={{__html: excerpt}}
-                    />
+                    <HTMLContent className="tw-mt-4 blog-card-summery"
+                                 body={[{type: "text", content: excerpt, id: "summeryblogid", text: ""}]}/>
                     <div className="tw-flex tw-items-center tw-justify-between tw-mt-7.5">
                         <Button path={path}>
                             Read More
                             <span className="tw-sr-only">
-                                About this article
-                            </span>
+                                    About this article
+                                </span>
                         </Button>
                         <SocialShare label="Share this post"/>
                     </div>
