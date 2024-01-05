@@ -7,6 +7,7 @@ import BlogArea from "@containers/blog-full/layout-03";
 import {BlogMetaType, IBlog} from "@utils/types";
 import {getAllBlogs, getTags} from "../../../../lib/blog";
 import {getPageBlogPosts} from "@/lib/api/blog";
+import {blogApiUrl} from "@/constants/blogApiUrl";
 
 type TProps = {
     data: {
@@ -22,7 +23,7 @@ type PageProps = NextPage<TProps> & {
     Layout: typeof Layout01;
 };
 
-const POSTS_PER_PAGE = 5;
+const apiData = blogApiUrl.post.getPage
 
 const BlogClassic: PageProps = ({
                                     data: {blogs, recentPosts, tags, currentPage, numberOfPages},
@@ -31,8 +32,9 @@ const BlogClassic: PageProps = ({
         <>
             <SEO title={`Blog Classic - Page - ${currentPage}`}/>
             <Breadcrumb
-                pages={[{path: "/", label: "home"}]}
-                currentPage="Blog Classic"
+                pages={[{path: "/", label: "home"}, {label: apiData.pageName, path: apiData.pageUrl}]}
+                currentPage={`Page ${currentPage}`}
+                title={apiData.pageName}
             />
             <BlogArea
                 data={{
@@ -59,7 +61,7 @@ interface Params extends ParsedUrlQuery {
 export const getServerSideProps: GetServerSideProps<TProps, Params> = async ({params}) => {
     const page = params?.page;
     const currentPage = !page || Number.isNaN(+page) ? 1 : +page;
-    const blogs = await getPageBlogPosts(page, POSTS_PER_PAGE)
+    const blogs = await getPageBlogPosts(page, apiData.POSTS_PER_PAGE)
 
     const {blogs: recentPosts} = getAllBlogs(["title"], 0, 5);
     const tags = getTags();
@@ -70,7 +72,7 @@ export const getServerSideProps: GetServerSideProps<TProps, Params> = async ({pa
                 recentPosts,
                 tags,
                 currentPage,
-                numberOfPages: Math.floor((blogs?.meta.total || 0) / POSTS_PER_PAGE)
+                numberOfPages: Math.floor((blogs?.meta.total || 0) / apiData.POSTS_PER_PAGE)
             },
             layout: {
                 headerShadow: true,

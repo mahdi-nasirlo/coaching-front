@@ -6,6 +6,7 @@ import BlogArea from "@containers/blog-full/layout-03";
 import {BlogMetaType, IBlog} from "@utils/types";
 import {getAllBlogs, getTags} from "../../../lib/blog";
 import {getPageBlogPosts} from "../../../lib/api/blog";
+import {blogApiUrl} from "@/constants/blogApiUrl";
 
 type TProps = {
     data: {
@@ -21,7 +22,7 @@ type PageProps = NextPage<TProps> & {
     Layout: typeof Layout01;
 };
 
-const POSTS_PER_PAGE = 5;
+const apiData = blogApiUrl.post.getPage
 
 const BlogClassic: PageProps = ({
                                     data: {blogs, recentPosts, tags, currentPage, numberOfPages},
@@ -32,7 +33,8 @@ const BlogClassic: PageProps = ({
             <SEO title="Blog Classic"/>
             <Breadcrumb
                 pages={[{path: "/", label: "home"}]}
-                currentPage="All Blog Posts"
+                currentPage={apiData.pageName}
+                title={apiData.pageName}
             />
             <BlogArea
                 data={{
@@ -54,7 +56,7 @@ BlogClassic.Layout = Layout01;
 
 export const getServerSideProps: GetServerSideProps = async () => {
 
-    let blogs = await getPageBlogPosts(1, POSTS_PER_PAGE)
+    let blogs = await getPageBlogPosts(1, apiData.POSTS_PER_PAGE)
 
 
     const {blogs: recentPosts} = getAllBlogs(["title"], 0, 5);
@@ -66,7 +68,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
                 recentPosts,
                 tags,
                 currentPage: 1,
-                numberOfPages: Math.floor((blogs?.meta.total || 0) / POSTS_PER_PAGE)
+                numberOfPages: Math.floor((blogs?.meta.total || 0) / apiData.POSTS_PER_PAGE)
             },
             layout: {
                 headerShadow: true,

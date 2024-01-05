@@ -10,6 +10,9 @@ export const blogApiUrl = {
     },
     post: {
         getPage: {
+            POSTS_PER_PAGE: 5,
+            pageUrl: "/blog/blog-classic",
+            pageName: "Blog Posts",
             url: "/blog/post/getPage",
             type: typeof {
                 title: string,
