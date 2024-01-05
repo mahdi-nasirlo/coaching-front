@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import {IContent, ListContentType} from "@utils/types";
+import {useEffect, useState} from "react";
 
 type TProps = {
     body: IContent[];
@@ -7,6 +8,13 @@ type TProps = {
 };
 
 const HTMLContent = ({body, className}: TProps) => {
+
+    const [isClient, setIsClient] = useState(false)
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
     const generateList = (
         type: "list" | "order-list",
         content: ListContentType[] | string[],
@@ -34,60 +42,62 @@ const HTMLContent = ({body, className}: TProps) => {
         );
     };
     return (
-        <div
-            className={clsx(
-                "html-content tw-prose prose-h2:tw-text-xl sm:prose-h2:tw-text-4xl sm:prose-h3:tw-text-3xl tw-max-w-none",
-                className
-            )}
-        >
-            {body.map(({id, type, content}) => {
-                if (type === "text" && typeof content === "string") {
-                    return (
-                        <p
-                            key={id}
-                            dangerouslySetInnerHTML={{__html: content}}
-                        />
-                    );
-                }
-                if (
-                    (type === "h3" ||
-                        type === "h4" ||
-                        type === "h5" ||
-                        type === "blockquote") &&
-                    typeof content === "string"
-                ) {
-                    const Tag = type;
-                    return (
-                        <Tag
-                            key={id}
-                            dangerouslySetInnerHTML={{__html: content}}
-                        />
-                    );
-                }
+        <div>
+            {isClient && <div
+                className={clsx(
+                    "html-content tw-prose prose-h2:tw-text-xl sm:prose-h2:tw-text-4xl sm:prose-h3:tw-text-3xl tw-max-w-none",
+                    className
+                )}
+            >
+                {body.map(({id, type, content}) => {
+                    if (type === "text" && typeof content === "string") {
+                        return (
+                            <p
+                                key={id}
+                                dangerouslySetInnerHTML={{__html: content}}
+                            />
+                        );
+                    }
+                    if (
+                        (type === "h3" ||
+                            type === "h4" ||
+                            type === "h5" ||
+                            type === "blockquote") &&
+                        typeof content === "string"
+                    ) {
+                        const Tag = type;
+                        return (
+                            <Tag
+                                key={id}
+                                dangerouslySetInnerHTML={{__html: content}}
+                            />
+                        );
+                    }
 
-                if (
-                    (type === "order-list" || type === "list") &&
-                    Array.isArray(content)
-                ) {
-                    return generateList(type, content, id);
-                }
-                if (
-                    type === "iframe" &&
-                    typeof content === "object" &&
-                    !Array.isArray(content) &&
-                    content.src
-                ) {
-                    return (
-                        <iframe
-                            key={id}
-                            title={content?.alt || "Iframe"}
-                            src={content.src}
-                        />
-                    );
-                }
+                    if (
+                        (type === "order-list" || type === "list") &&
+                        Array.isArray(content)
+                    ) {
+                        return generateList(type, content, id);
+                    }
+                    if (
+                        type === "iframe" &&
+                        typeof content === "object" &&
+                        !Array.isArray(content) &&
+                        content.src
+                    ) {
+                        return (
+                            <iframe
+                                key={id}
+                                title={content?.alt || "Iframe"}
+                                src={content.src}
+                            />
+                        );
+                    }
 
-                return null;
-            })}
+                    return null;
+                })}
+            </div>}
         </div>
     );
 };
