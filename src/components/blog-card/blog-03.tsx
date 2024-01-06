@@ -36,10 +36,10 @@ const BlogCard = forwardRef<HTMLDivElement, TProps>(
                 <div className="info tw-pt-[26px]">
                     <div className="tw-text-base tw-font-medium tw-uppercase -tw-tracking-tightest tw-leading-[1.4] tw-mb-1.5">
                         <Anchor
-                            path={category.path}
+                            path={category?.path}
                             className="tw-text-inherit"
                         >
-                            {category.title}
+                            {category?.title}
                         </Anchor>
                     </div>
 

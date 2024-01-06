@@ -254,6 +254,10 @@ export const getSessionToken = async (context: GetServerSidePropsContext | undef
         return cachedSession;
     }
 
+    if (typeof window === "undefined" && typeof document === "undefined" && typeof context === "undefined") {
+        return ""
+    }
+
     const session = await getSession(context);
 
     // @ts-ignore

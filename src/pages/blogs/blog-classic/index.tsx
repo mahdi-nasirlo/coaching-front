@@ -4,9 +4,9 @@ import Layout01 from "@layout/layout-01";
 import Breadcrumb from "@components/breadcrumb";
 import BlogArea from "@containers/blog-full/layout-03";
 import {BlogMetaType, IBlog} from "@utils/types";
-import {getAllBlogs, getTags} from "../../../lib/blog";
-import {getPageBlogPosts} from "../../../lib/api/blog";
 import {blogApiUrl} from "@/constants/blogApiUrl";
+import {getPageBlogPosts} from "@/lib/api/blog";
+import {getAllBlogs, getTags} from "@/lib/blog";
 
 type TProps = {
     data: {
