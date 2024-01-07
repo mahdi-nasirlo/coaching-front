@@ -19,7 +19,7 @@ type Props = {
     context?: GetServerSidePropsContext
 }
 
-async function customFetch(props: Props): Promise<GeneralErrorType | any | undefined> {
+async function customFetcher(props: Props): Promise<GeneralErrorType | any | undefined> {
 
     const {
         url,
@@ -100,4 +100,4 @@ async function customFetch(props: Props): Promise<GeneralErrorType | any | undef
 
 }
 
-export default customFetch
+export default customFetcher

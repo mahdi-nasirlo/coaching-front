@@ -1,7 +1,6 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
 import {z} from "zod";
-import {blogApiUrl} from "../../../../constants/blogApiUrl";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Button} from "@ui/v2/button";
 import {Form} from "@ui/v2/form";
@@ -10,6 +9,7 @@ import {Card, CardContent} from "@ui/v2/card";
 import FormFields from "@containers/account/blog-post/form-fields";
 import {resetForm} from "@utils/methods";
 import Router from "next/router";
+import {blogApiUrl} from "@/constants/blogApiUrl";
 
 const apiData = blogApiUrl.post.admin.create
 

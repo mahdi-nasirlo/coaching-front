@@ -4,6 +4,7 @@ import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@ui/v2/f
 import {Input} from "@ui/v2/input";
 import {Editor} from "@ui/v2/editor";
 import {BlogCategoryField} from "@components/fields/admin/blog-category-field";
+import {FileUploadInput} from "@ui/v2/file-upload-input";
 
 interface PropType {
     form: UseFormReturn<any>
@@ -62,11 +63,11 @@ const CreateForm = ({form}: PropType) => {
                     name={"image"}
                     render={({field}) => (
                         <FormItem
-                            className="tw-col-span-3"
+                            className="tw-col-span-6"
                         >
                             <FormLabel>Image</FormLabel>
                             <FormControl>
-                                <Input type="file" {...field}/>
+                                <FileUploadInput {...field}/>
                             </FormControl>
                             <FormMessage/>
                         </FormItem>
