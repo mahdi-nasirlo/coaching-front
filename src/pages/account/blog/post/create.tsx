@@ -20,7 +20,7 @@ const CreatePage: PageProps = () => {
     return (
         <div>
             <NavigateItem
-                title="Create Post"
+                title={apiData.create.pageName}
                 description={{
                     currentPage: apiData.create.pageName,
                     pages: [{path: apiData.getPage.pageUrl, label: apiData.getPage.pageName}],

@@ -16,7 +16,7 @@ const Index = () => {
         <>
             <div className="">
                 <NavigateItem
-                    title="Create Post"
+                    title={apiData.getPage.pageName}
                     action={<>
                         <Button
                             onClick={() => Router.push(apiData.create.pageUrl)}

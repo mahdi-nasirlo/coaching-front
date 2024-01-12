@@ -7,8 +7,6 @@ import {Form} from "@ui/v2/form";
 import {useCreateBlogPost} from "../../../../hooks/api/posts";
 import {Card, CardContent} from "@ui/v2/card";
 import FormFields from "@containers/account/blog-post/form-fields";
-import {resetForm} from "@utils/methods";
-import Router from "next/router";
 import {blogApiUrl} from "@/constants/blogApiUrl";
 
 const apiData = blogApiUrl.post.admin.create
@@ -24,12 +22,14 @@ const CreateForm = () => {
 
     async function onSubmit(values: z.infer<typeof apiData.type>) {
 
-        const res = await createPost.mutateAsync(values)
+        await createPost.mutateAsync(values)
 
-        if (res?.ok) {
-            resetForm(apiData.type, form)
-            await Router.push(blogApiUrl.post.admin.getPage.pageUrl)
-        }
+        // console.log(res?.status)
+        //
+        // if (res?.status) {
+        //     resetForm(apiData.type, form)
+        //     await Router.push(blogApiUrl.post.admin.getPage.pageUrl)
+        // }
 
     }
 
