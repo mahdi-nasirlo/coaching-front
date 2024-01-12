@@ -28,5 +28,6 @@ module.exports = withPWA(
         webpack(config) {
             return config;
         },
+        output: "standalone",
     })
 );
