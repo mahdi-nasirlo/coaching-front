@@ -17,9 +17,9 @@ const BlogDetails = ({
                          views,
                          content,
                          tags,
-}: IBlog) => {
+                     }: IBlog) => {
     return (
-        <article className="blog-details tw-pb-7.5 tw-mb-10 tw-border-b tw-border-b-gray-500">
+        <article className="blog-details tw-pb-7.5 tw-mb-10 tw-border-b tw-border-b-gray-300">
             <div className="entry-header tw-mb-5">
                 {image?.src && (
                     <figure className="tw-mb-7">
@@ -32,16 +32,16 @@ const BlogDetails = ({
                     </figure>
                 )}
 
-                <div className="tw-font-medium tw-uppercase -tw-tracking-tightest tw-mb-4">
-                    <Anchor path={category.path}>{category.title}</Anchor>
-                </div>
+                {category && <div className="tw-font-medium tw-uppercase -tw-tracking-tightest tw-mb-4">
+                    <Anchor path={category?.path}>{category?.title}</Anchor>
+                </div>}
 
                 <h2 className="tw-mb-5">{title}</h2>
                 <div className="tw-text-md tw-mt-5 tw-text-gray-300 tw-flex tw-items-center tw-flex-wrap">
-                    <AuthorMeta
+                    {author && <AuthorMeta
                         author={author}
                         className="tw-pr-5 md:tw-pr-8"
-                    />
+                    />}
                     <BlogMetaItem
                         className="tw-pr-5 md:tw-pr-8"
                         text={dayjs(postedAt).format("MMM DD, YYYY")}
@@ -59,12 +59,12 @@ const BlogDetails = ({
                     />
                 </div>
             </div>
-            <MarkdownRenderer
+            {content && <MarkdownRenderer
                 className="entry-content tw-mb-[54px]"
                 content={content}
-            />
+            />}
             <div className="entry-footer tw-flex tw-items-center tw-justify-center sm:tw-justify-between tw-flex-wrap">
-                <TagMeta tags={tags} />
+                {Array.isArray(tags) && <TagMeta tags={tags}/>}
                 <SocialShare
                     label="Share this post"
                     className="tw-mt-5 sm:tw-mt-0"
