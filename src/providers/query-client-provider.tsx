@@ -27,13 +27,14 @@ const queryClient = new QueryClient({
     mutationCache: new MutationCache({
         onMutate: () => toast.loading("loading...", {...toastConf}),
         onSuccess: (data: unknown) => {
+            console.log(data)
             // @ts-ignore
-            if (data?.ok) {
+            if (data?.success) {
                 // @ts-ignore
                 toast.success(data?.message || "successfully operation", {...toastConf})
-            }
-            // @ts-ignore
-            toast.error(data?.message || data?.error || "unsuccessfully operation", {...toastConf})
+            } else
+                // @ts-ignore
+                toast.error(data?.message || data?.error || "unsuccessfully operation", {...toastConf})
         },
         onError: error => toast.error(error?.message + "test" || "somethings wrong !", {...toastConf})
     })
