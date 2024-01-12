@@ -1,17 +1,12 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import simpleFetcher from "../../service/simpleFetcher";
 import {blogApiUrl} from "../../constants/blogApiUrl";
 import customeFetcher from "../../service/customeFetcher";
 import {PaginationState} from "@tanstack/react-table";
 import {z} from "zod";
-import {useRouter} from "next/router";
+import Router, {useRouter} from "next/router";
 
 
 const apiData = blogApiUrl.post
-
-export const useRequestPost = () => {
-    return useQuery({queryKey: ["/blog/posts"], queryFn: simpleFetcher});
-};
 
 export const useGetPageBlogPostAdmin = ({paginationState}: { paginationState: PaginationState }) => useQuery({
     queryKey: [apiData.admin.getPage.url, paginationState],
@@ -34,8 +29,11 @@ export const useCreateBlogPost = () => {
             url: apiData.admin.create.url,
             data: variables,
         }),
-        onSuccess: () => {
-            queryClient.invalidateQueries({queryKey: [apiData.admin.getPage.url]})
+        onSuccess: async (data) => {
+            if (data?.success) {
+                await Router.push(apiData.admin.getPage.pageUrl)
+                await queryClient.invalidateQueries({queryKey: [apiData.admin.getPage.url]})
+            }
         }
     })
 }
