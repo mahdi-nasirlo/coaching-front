@@ -9,6 +9,10 @@ export const blogApiUrl = {
         }
     },
     post: {
+        get: {
+            url: "/blog/post/get/",
+            method: "GET",
+        },
         getPage: {
             POSTS_PER_PAGE: 4,
             pageUrl: "/blogs/blog-classic",
@@ -77,7 +81,7 @@ export const blogApiUrl = {
                 type: z.object({
                     uid: z.string()
                 }),
-                method: "GET"
+                method: "POST"
             }
         }
     }

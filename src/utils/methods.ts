@@ -63,7 +63,7 @@ export const isObjectEmpty = (object: { [key: string]: unknown }) => {
 
 export const toCapitalize = (text: string) => {
     return (
-        text.toLowerCase().charAt(0).toUpperCase() + text.slice(1).toLowerCase()
+        text?.toLowerCase().charAt(0).toUpperCase() + text?.slice(1).toLowerCase()
     );
 };
 
