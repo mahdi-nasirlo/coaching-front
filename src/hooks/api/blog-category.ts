@@ -4,7 +4,12 @@ import customeFetcher from "../../service/customeFetcher";
 
 const apiData = blogCategoryApiUrl
 
-export const useGetAllBlogCategory = () => useQuery({
+export type GetAllCategoryType = {
+    id: number,
+    name: string,
+    slug: string,
+}
+export const useGetAllBlogCategory = () => useQuery<GetAllCategoryType[]>({
     queryKey: [apiData.getAll.url],
     queryFn: () => customeFetcher({
         url: apiData.getAll.url,
