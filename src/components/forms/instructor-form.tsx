@@ -1,38 +1,45 @@
-import { useState } from "react";
 import clsx from "clsx";
-import { useForm, SubmitHandler } from "react-hook-form";
-import Alert from "@ui/alert";
-import Anchor from "@ui/anchor";
+import {useForm} from "react-hook-form";
 import Button from "@ui/button";
 import Input from "@ui/form-elements/input";
 import Textarea from "@ui/form-elements/textarea";
-import Feedback from "@ui/form-elements/feedback";
-import { hasKey } from "@utils/methods";
+import {z} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {Form, FormControl, FormField, FormItem, FormMessage,} from "@components/ui/v2/form";
+import {coachApiUrl} from "@/constants/coach";
+import Alert from "@ui/alert";
+import Anchor from "@ui/anchor";
+import {useSession} from "next-auth/react";
+import {useRegisterCoach} from "../../hooks/api/coach";
+import {resetForm} from "@utils/methods";
 
 type TProps = {
     className?: string;
 };
 
-interface IFormValues {
-    name: string;
-    email: string;
-    phone: string;
-    message: string;
-}
+const apiData = coachApiUrl.register;
 
-const InstructorForm = ({ className }: TProps) => {
-    const [message, setMessage] = useState("");
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<IFormValues>();
+const InstructorForm = ({className}: TProps) => {
 
-    const onSubmit: SubmitHandler<IFormValues> = (data) => {
-        // eslint-disable-next-line no-console
-        console.log(data);
-        setMessage("Thank you for your message!");
+    const session = useSession()
+
+    const register = useRegisterCoach()
+
+    const form = useForm<z.infer<typeof apiData.type>>({
+        resolver: zodResolver(apiData.type),
+    });
+
+    const onSubmit = async (data: z.infer<typeof apiData.type>) => {
+
+        const res = await register.mutateAsync(data)
+
+        if (res?.status) {
+            resetForm(apiData.type, form)
+        }
+        
     };
+
+
     return (
         <div
             className={clsx(
@@ -43,15 +50,93 @@ const InstructorForm = ({ className }: TProps) => {
             <h4 className="tw-text-[28px] tw-mb-5 sm:tw-text-[34px] sm:tw-mb-9 tw-leading-snug tw-text-center">
                 Register to become an Intructor
             </h4>
-            <form
+            {session.status === "unauthenticated" && <Alert color="secondary" className="tw-mb-5">
+                <i className="far fa-exclamation-circle"/>
+                Please <Anchor path="/login-register">login</Anchor> to send
+                your request!
+            </Alert>}
+            <Form {...form} >
+                <form
+                    className="become-teacher-form"
+                    onSubmit={form.handleSubmit(onSubmit)}
+                >
+                    <div className="tw-grid md:tw-grid-cols-2 md:tw-gap-3 md:tw-gap-y-0">
+                        <FormField
+                            name="name"
+                            control={form.control}
+                            render={({field}) => (
+                                <FormItem className="tw-mb-3.8">
+                                    <label
+                                        htmlFor="name"
+                                        className="tw-sr-only"
+                                    >
+                                        Name
+                                    </label>
+                                    <FormControl>
+                                        <Input
+                                            id="name"
+                                            placeholder="Your Name *"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            name="phone_number"
+                            control={form.control}
+                            render={({field}) => (
+                                <FormItem className="tw-mb-3.8">
+                                    <label
+                                        htmlFor="phone"
+                                        className="tw-sr-only"
+                                    >
+                                        Phone
+                                    </label>
+                                    <FormControl>
+                                        <Input
+                                            id="phone"
+                                            placeholder="Your phone number"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            name="about_me"
+                            control={form.control}
+                            render={({field}) => (
+                                <FormItem className="tw-mb-5 tw-col-span-2">
+                                    <label
+                                        htmlFor="message"
+                                        className="tw-sr-only"
+                                    >
+                                        About Me
+                                    </label>
+                                    <FormControl>
+                                        <Textarea
+                                            id="message"
+                                            placeholder="Your About Me"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                    <div className="tw-text-center">
+                        <Button className="tw-w-full" type="submit">Get the learning program</Button>
+                    </div>
+                </form>
+            </Form>
+            {/* <form
                 className="become-teacher-form"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <Alert className="tw-mb-5">
-                    <i className="far fa-exclamation-circle" />
-                    Please <Anchor path="/login-register">login</Anchor> to send
-                    your request!
-                </Alert>
                 <div className="tw-grid md:tw-grid-cols-2 md:tw-gap-7.5">
                     <div className="tw-mb-3.8">
                         <label htmlFor="name" className="tw-sr-only">
@@ -124,9 +209,8 @@ const InstructorForm = ({ className }: TProps) => {
 
                 <div className="tw-text-center">
                     <Button type="submit">Get the learning program</Button>
-                    {message && <Feedback state="success">{message}</Feedback>}
                 </div>
-            </form>
+            </form> */}
         </div>
     );
 };
