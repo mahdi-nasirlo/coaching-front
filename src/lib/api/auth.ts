@@ -1,5 +1,5 @@
 import customeFetcher from "../../service/customeFetcher";
-import {authApiUrl} from "../../constants/authApiUrl";
+import {authApiUrl} from "../../constants/auth";
 import {z} from "zod";
 
 const apiData = authApiUrl.login

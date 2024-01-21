@@ -1,4 +1,4 @@
-import {General, GeneralErrorType} from "../../@types/api-response/general";
+import {General, GeneralResponseType} from "../../@types/api-response/general";
 import customFetcher from "../../service/customeFetcher";
 import {GetServerSidePropsContext} from "next";
 import {blogApiUrl} from "@/constants/blogApiUrl";
@@ -20,13 +20,13 @@ export const getPageBlogPosts = async (page: number | string = 1, perPage: numbe
     })
 };
 
-export const getBlogPost = (slug: string, context: GetServerSidePropsContext): Promise<GeneralErrorType | undefined> => customFetcher({
+export const getBlogPost = (slug: string, context: GetServerSidePropsContext): Promise<GeneralResponseType | undefined> => customFetcher({
     url: blogApiData.get.url + slug,
     method: blogApiData.get.method,
     context
 })
 
-export const getAdminBlogPost = (slug: string, context: GetServerSidePropsContext): Promise<GeneralErrorType | undefined> => customFetcher({
+export const getAdminBlogPost = (slug: string, context: GetServerSidePropsContext): Promise<GeneralResponseType | undefined> => customFetcher({
     url: blogApiData.admin.get.url + slug,
     method: blogApiData.admin.get.method,
     context

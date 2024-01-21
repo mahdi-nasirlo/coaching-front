@@ -2,6 +2,11 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "@ui/form-elements/input";
 import Button from "@ui/button";
 import { hasKey } from "@utils/methods";
+import { authApiUrl } from "@/constants/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@components/ui/v2/form";
+import { useRegister } from "hooks/api/useLogin";
 
 interface IFormValues {
     email: string;
@@ -10,23 +15,129 @@ interface IFormValues {
     confirmPassword: string;
 }
 
-const RegisterForm = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        getValues,
-    } = useForm<IFormValues>();
+const apiData = authApiUrl.register
 
-    const onSubmit: SubmitHandler<IFormValues> = (data) => {
-        // eslint-disable-next-line no-console
+const RegisterForm = () => {
+
+    const register = useRegister()
+
+    const form = useForm<z.infer<typeof apiData.schema>>({
+        resolver: zodResolver(apiData.schema)
+    })
+
+    const onSubmit = async (data: z.infer<typeof apiData.schema>) => {
+
         console.log(data);
+
+        await register.mutateAsync(data)
     };
 
     return (
         <div className="tw-px-[50px]">
             <h3 className="tw-text-h2 tw-mb-5">Register</h3>
-            <form onSubmit={handleSubmit(onSubmit)} noValidate>
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)}>
+
+                    <FormField
+                        name="email"
+                        control={form.control}
+                        render={({ field, fieldState }) => <FormItem className="tw-mb-5">
+                            <label
+                                htmlFor="email"
+                                className="tw-text-heading tw-text-md"
+                            >
+                                Email *
+                            </label>
+                            <FormControl>
+                                <Input
+                                    id="email"
+                                    state={fieldState.error ? "error" : "success"}
+                                    placeholder="email"
+                                    bg="light"
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>}
+                    />
+
+                    <FormField
+                        name="name"
+                        control={form.control}
+                        render={({ field, fieldState }) => <FormItem className="tw-mb-5">
+                            <label
+                                htmlFor="reg_username"
+                                className="tw-text-heading tw-text-md"
+                            >
+                                Username *
+                            </label>
+                            <FormControl>
+                                <Input
+                                    id="reg_username"
+                                    placeholder="Username"
+                                    bg="light"
+                                    state={fieldState?.error ? "error" : "success"}
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>}
+                    />
+
+                    <FormField
+                        name="password"
+                        control={form.control}
+                        render={({ field, fieldState }) => <FormItem className="tw-mb-5">
+                            <label
+                                htmlFor="password"
+                                className="tw-text-heading tw-text-md"
+                            >
+                                Password *
+                            </label>
+                            <FormControl>
+                                <Input
+                                    id="password"
+                                    placeholder="Password"
+                                    bg="light"
+                                    type="password"
+                                    state={fieldState?.error ? "error" : "success"}
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>}
+                    />
+
+                    <FormField
+                        name="password_confirmation"
+                        control={form.control}
+                        render={({ field, fieldState }) => <FormItem className="tw-mb-5">
+                            <label
+                                htmlFor="password_confirmation"
+                                className="tw-text-heading tw-text-md"
+                            >
+                                Confirm Password *
+                            </label>
+                            <FormControl>
+                                <Input
+                                    id="password_confirmation"
+                                    placeholder="Password"
+                                    bg="light"
+                                    type="password"
+                                    state={fieldState?.error ? "error" : "success"}
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>}
+                    />
+
+                    <Button type="submit" fullwidth className="tw-mt-7.5">
+                        Register
+                    </Button>
+                </form>
+            </Form>
+            {/* <form onSubmit={handleSubmit(onSubmit)} noValidate>
                 <div className="tw-mb-7.5">
                     <label
                         htmlFor="email"
@@ -123,10 +234,8 @@ const RegisterForm = () => {
                     />
                 </div>
 
-                <Button type="submit" fullwidth className="tw-mt-7.5">
-                    Register
-                </Button>
-            </form>
+            
+            </form> */}
         </div>
     );
 };
