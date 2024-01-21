@@ -1,7 +1,7 @@
 import getUrlWithParams from "./getUrlWithParams";
 import baseAxois from "./base-axois";
 import {AxiosHeaders, AxiosInstance} from "axios";
-import {GeneralErrorType} from "../@types/api-response/general";
+import {GeneralResponseType} from "../@types/api-response/general";
 import handleError from "./handleError";
 import {getSessionToken} from "@utils/methods";
 import {GetServerSidePropsContext} from "next";
@@ -19,7 +19,7 @@ type Props = {
     context?: GetServerSidePropsContext
 }
 
-async function customFetcher(props: Props): Promise<GeneralErrorType | any | undefined> {
+async function customFetcher(props: Props): Promise<GeneralResponseType | any | undefined> {
 
     const {
         url,

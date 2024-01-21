@@ -22,9 +22,10 @@ export interface General<T> {
     }
 }
 
-export interface GeneralErrorType {
+export interface GeneralResponseType {
     ok?: string,
     message: string,
     status: number,
+    success?: string,
     data?: any,
 }

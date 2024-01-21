@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
     MutationCache,
     QueryCache,
@@ -9,15 +9,15 @@ import {
     QueryClientProvider as TanstackQueryClientProvider
 } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import {GeneralErrorType} from "../@types/api-response/general";
+import { GeneralResponseType } from "../@types/api-response/general";
 
-const toastConf = {id: "global-toast"}
+const toastConf = { id: "global-toast" }
 
 const queryClient = new QueryClient({
     queryCache: new QueryCache({
         onSuccess: (data: unknown) => {
 
-            const result = data as GeneralErrorType
+            const result = data as GeneralResponseType
 
             if (result?.message) {
                 toast.error(result?.message)
@@ -25,27 +25,31 @@ const queryClient = new QueryClient({
         },
     }),
     mutationCache: new MutationCache({
-        onMutate: () => toast.loading("loading...", {...toastConf}),
+        onMutate: () => toast.loading("loading...", { ...toastConf }),
         onSuccess: (data: unknown) => {
             console.log(data)
             // @ts-ignore
             if (data?.success) {
                 // @ts-ignore
-                toast.success(data?.message || "successfully operation", {...toastConf})
+                toast.success(data?.message || "successfully operation", { ...toastConf })
             } else
                 // @ts-ignore
-                toast.error(data?.message || data?.error || "unsuccessfully operation", {...toastConf})
+                toast.error(data?.message || data?.error || "unsuccessfully operation", { ...toastConf })
         },
-        onError: error => toast.error(error?.message + "test" || "somethings wrong !", {...toastConf})
+        onError: error => {
+            console.log(error);
+
+            toast.error(error?.message + "test" || "somethings wrong !", { ...toastConf })
+        }
     })
 });
 
-const QueryClientProvider = ({children}: { children: React.ReactNode }) => {
+const QueryClientProvider = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <TanstackQueryClientProvider client={queryClient}>
             {children}
-            <ReactQueryDevtools initialIsOpen={false}/>
+            <ReactQueryDevtools initialIsOpen={false} />
         </TanstackQueryClientProvider>
     );
 };
