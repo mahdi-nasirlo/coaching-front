@@ -1,3 +1,5 @@
+import { z } from "zod"
+
 export interface General<T> {
     "data": T,
     "links": {
@@ -29,3 +31,14 @@ export interface GeneralResponseType {
     success?: string,
     data?: any,
 }
+
+
+const generalResponseZod = z.object({
+    ok: z.boolean(),
+    status: z.number(),
+    notify: z.boolean().or(z.undefined()),
+    success: z.boolean(),
+    message: z.string(),
+})
+
+export {generalResponseZod}

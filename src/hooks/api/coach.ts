@@ -2,7 +2,7 @@ import {useMutation} from "@tanstack/react-query";
 import {coachApiUrl} from "@/constants/coach";
 import customeFetcher from "../../service/customeFetcher";
 import {z} from "zod";
-import {GeneralResponseType} from "../../@types/api-response/general";
+import {GeneralResponseType} from "../../@types/general";
 
 const apiData = coachApiUrl
 

@@ -9,7 +9,9 @@ import {
     QueryClientProvider as TanstackQueryClientProvider
 } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { GeneralResponseType } from "../@types/api-response/general";
+import { GeneralResponseType, generalResponseZod } from "../@types/general";
+import { z } from "zod";
+import { getResponseError, getResponseStatus, getResponseSuccess } from "@utils/getResponse";
 
 const toastConf = { id: "global-toast" }
 
@@ -26,15 +28,29 @@ const queryClient = new QueryClient({
     }),
     mutationCache: new MutationCache({
         onMutate: () => toast.loading("loading...", { ...toastConf }),
-        onSuccess: (data: unknown) => {
-            console.log(data)
-            // @ts-ignore
-            if (data?.success) {
-                // @ts-ignore
-                toast.success(data?.message || "successfully operation", { ...toastConf })
-            } else
-                // @ts-ignore
-                toast.error(data?.message || data?.error || "unsuccessfully operation", { ...toastConf })
+        onSuccess: async (data) => {
+
+            const result: z.infer<typeof generalResponseZod> = data as any
+
+            const status = getResponseStatus(result)
+
+            console.log(result);
+
+            if (status && result?.notify) {
+                toast.success(getResponseSuccess(result), { ...toastConf })
+            }
+
+            if (!status) {
+                toast.error(getResponseError(result), { ...toastConf })
+            }
+
+            if (status && !result?.notify) {
+                toast.dismiss(toastConf.id)
+            }
+
+            // if (result.status === 401) {
+            //     redirectToSso.execute(result)
+            // }
         },
         onError: error => {
             console.log(error);

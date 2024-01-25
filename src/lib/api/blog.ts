@@ -1,4 +1,4 @@
-import {General, GeneralResponseType} from "../../@types/api-response/general";
+import {General, GeneralResponseType} from "../../@types/general";
 import customFetcher from "../../service/customeFetcher";
 import {GetServerSidePropsContext} from "next";
 import {blogApiUrl} from "@/constants/blogApiUrl";

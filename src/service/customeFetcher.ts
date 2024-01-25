@@ -1,7 +1,7 @@
 import getUrlWithParams from "./getUrlWithParams";
 import baseAxois from "./base-axois";
 import {AxiosHeaders, AxiosInstance} from "axios";
-import {GeneralResponseType} from "../@types/api-response/general";
+import {GeneralResponseType} from "../@types/general";
 import handleError from "./handleError";
 import {getSessionToken} from "@utils/methods";
 import {GetServerSidePropsContext} from "next";
@@ -14,8 +14,8 @@ type Props = {
     headers?: AxiosHeaders;
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | string;
     cache?: RequestCache;
-    tokenFromServerSide?: string,
     token?: string,
+    notify?: boolean,
     context?: GetServerSidePropsContext
 }
 
@@ -28,7 +28,8 @@ async function customFetcher(props: Props): Promise<GeneralResponseType | any | 
         data,
         headers,
         method,
-        context
+        context,
+        notify
     } = props
 
     const token = await getSessionToken(context);
@@ -63,37 +64,35 @@ async function customFetcher(props: Props): Promise<GeneralResponseType | any | 
         const responseBody = await response.data;
 
         const isOk = response.status >= 200 && response.status < 300;
+        
+        logEntry.status = `${response.status}`;
+        logEntry.message = `${isOk}`;
 
-        if (isOk) {
-            logEntry.message = 'Request successful';
-            return responseBody;
-        } else {
+        console.log(logEntry);
 
-            logEntry.message = `Request failed with status: ${response.status}`;
-            logEntry.status = `${response.status}`;
-
-            if (response.status == 401) await handleError()
-
-            console.error('Request Error:', logEntry);
-
-            return {ok: isOk, status: response.status, message: responseBody?.message, data: responseBody}
+        return {
+            ok: isOk,
+            status: response.status,
+            success: responseBody?.success,
+            notify: notify,
+            message: responseBody?.message,
+            data: responseBody?.data
         }
+
     } catch (error: any) {
 
         logEntry.message = error.message;
         logEntry.status = `${error?.response?.status}`;
-
         logEntry.data = JSON.stringify(error?.response?.data)
-
-        // if (error?.response?.status == 401) await handleError()
 
         console.error('Request Network/Error:', logEntry);
 
-        return {
+         return {
+            notify: notify || true,
             message: error?.response?.data?.message || error.message,
             status: error?.response?.status || error.status,
             ok: false,
-            data: error?.response?.data
+            ...error?.response?.data
         }
 
     }

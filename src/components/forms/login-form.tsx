@@ -1,13 +1,13 @@
-import {SubmitHandler, useForm} from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import Input from "@ui/form-elements/input";
 import Checkbox from "@ui/form-elements/checkbox";
-import {hasKey} from "@utils/methods";
-import {useLogin} from "../../hooks/api/useLogin";
+import { hasKey } from "@utils/methods";
+import { useLogin } from "../../hooks/api/useLogin";
 import Router from "next/router";
 import Button from "@ui/button";
-import {useSession} from "next-auth/react";
-import {useEffect} from "react";
-import {useSearchParams} from "next/navigation";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 
 interface IFormValues {
@@ -32,14 +32,14 @@ const LoginForm = () => {
     const {
         register,
         handleSubmit,
-        formState: {errors},
+        formState: { errors },
     } = useForm<IFormValues>();
 
     const onSubmit: SubmitHandler<IFormValues> = async (data) => {
 
         const res = await login.mutateAsync(data)
 
-        console.log(res)
+        // console.log(res)
 
         if (res?.ok) {
             await Router.push(searchParams.get("callbackUrl") || res.url || "/")
@@ -98,7 +98,7 @@ const LoginForm = () => {
                         })}
                     />
                 </div>
-                <Checkbox name="remember" id="remember" label="Remember me"/>
+                <Checkbox name="remember" id="remember" label="Remember me" />
                 <Button disabled={login.isPending} type="submit" fullwidth className="tw-mt-7.5">
                     Log In
                 </Button>
