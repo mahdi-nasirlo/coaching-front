@@ -1,7 +1,7 @@
-import axios, {AxiosInstance} from "axios";
+import axios, { AxiosInstance } from "axios";
 
 const baseAxois: AxiosInstance = axios.create({
-    baseURL: `${process.env.NEXT_PUBLIC_BACK_END_URL}/api/v1`,
+    baseURL: `${process.env.NEXT_PUBLIC_BACK_END_URL}/api`,
 });
 
 // baseAxois.interceptors.request.use(async (config) => {
