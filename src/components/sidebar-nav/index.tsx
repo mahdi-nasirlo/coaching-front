@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import {usePathname} from "next/navigation"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import {cn} from "@/lib/utils"
-import {buttonVariants} from "@ui/v2/button";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@ui/v2/button";
 
 export interface AccountItemMenu {
-    href: string
-    title: string,
-    regex?: RegExp,
-    activeIn?: string[]
+    href: string;
+    title: string;
+    regex?: RegExp;
+    activeIn?: string[];
 }
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
-    items: AccountItemMenu[]
+    items: AccountItemMenu[];
 }
 
-export function SidebarNav({className, items, ...props}: SidebarNavProps) {
-    const pathname = usePathname()
-    
+export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
+    const pathname = usePathname();
+
     return (
         <nav
             className={cn(
@@ -35,13 +35,15 @@ export function SidebarNav({className, items, ...props}: SidebarNavProps) {
                         <Link
                             key={item.href}
                             href={item.href}
-                            style={{justifyContent: "start"}}
+                            style={{ justifyContent: "start" }}
                             className={cn(
                                 "tw-justify-start tw-rounded-lg tw-flex-grow",
-                                buttonVariants({variant: "ghost"}),
-                                pathname === item.href || item.regex?.test(`${pathname}`) || item.activeIn?.includes(`${pathname}`)
+                                buttonVariants({ variant: "ghost" }),
+                                pathname === item.href ||
+                                    item.regex?.test(`${pathname}`) ||
+                                    item.activeIn?.includes(`${pathname}`)
                                     ? "tw-bg-primary tw-text-white hover:tw-text-muted tw-hover:bg-muted"
-                                    : "tw-hover:bg-transparent tw-hover:underline",
+                                    : "tw-hover:bg-transparent tw-hover:underline"
                             )}
                         >
                             {item.title}
@@ -50,5 +52,5 @@ export function SidebarNav({className, items, ...props}: SidebarNavProps) {
                 </>
             ))}
         </nav>
-    )
+    );
 }

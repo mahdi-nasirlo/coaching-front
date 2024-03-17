@@ -1,10 +1,10 @@
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 import ScrollToTop from "@ui/scroll-to-top";
 import Header from "../headers/header-01";
 import Footer from "../footers/footer-01";
-import {AccountItemMenu, SidebarNav} from "@components/sidebar-nav";
-import {AnimatePresence, motion} from "framer-motion";
-import {useRouter} from "next/router";
+import { AccountItemMenu, SidebarNav } from "@components/sidebar-nav";
+import { AnimatePresence, motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 type TProps = {
     children: ReactNode;
@@ -23,7 +23,12 @@ const sidebarNavItems: AccountItemMenu[] = [
     {
         title: "Blog Posts",
         href: "/account/blog/post",
-        regex: new RegExp("^\\/account\\/blog\\/post(\\/.*)?$")
+        regex: new RegExp("^\\/account\\/blog\\/post(\\/.*)?$"),
+    },
+    {
+        title: "Collection",
+        href: "/account/collection-group",
+        regex: new RegExp("^\\/account\\collection"),
     },
     {
         title: "Appearance",
@@ -37,18 +42,17 @@ const sidebarNavItems: AccountItemMenu[] = [
         title: "Display",
         href: "/examples/forms/display",
     },
-]
+];
 
 const LayoutAccount = ({
-                           children,
-                           headerShadow,
-                           headerFluid,
-                           headerMode,
-                           headerTransparent,
-                           footerMode = "dark",
-                       }: TProps) => {
-
-    const router = useRouter()
+    children,
+    headerShadow,
+    headerFluid,
+    headerMode,
+    headerTransparent,
+    footerMode = "dark",
+}: TProps) => {
+    const router = useRouter();
 
     return (
         <>
@@ -61,10 +65,9 @@ const LayoutAccount = ({
             <div className="tw-bg-gray-50 tw-min-h-[60vh]">
                 <main className="tw-relative tw-container">
                     <div className="tw-space-y-6 tw-py-10 tw-pb-16 md:tw-block">
-                        <div
-                            className="tw-flex tw-flex-col tw-space-y-8 lg:tw-flex-row lg:tw-space-x-12 lg:tw-space-y-0">
+                        <div className="tw-flex tw-flex-col tw-space-y-8 lg:tw-flex-row lg:tw-space-x-12 lg:tw-space-y-0">
                             <aside className="tw--mx-4 lg:tw-w-1/5">
-                                <SidebarNav items={sidebarNavItems}/>
+                                <SidebarNav items={sidebarNavItems} />
                             </aside>
                             <AnimatePresence exitBeforeEnter>
                                 <motion.div
@@ -72,11 +75,14 @@ const LayoutAccount = ({
                                     initial="initialState"
                                     animate="animateState"
                                     exit="exitState"
-                                    transition={{duration: 0.2, ease: "easeOut"}}
+                                    transition={{
+                                        duration: 0.2,
+                                        ease: "easeOut",
+                                    }}
                                     variants={{
                                         initialState: {
                                             opacity: 0,
-                                            x: "10%"
+                                            x: "10%",
                                         },
                                         animateState: {
                                             opacity: 1,
@@ -85,8 +91,11 @@ const LayoutAccount = ({
                                         exitState: {
                                             opacity: 0.1,
                                             x: "-10%",
-                                            transition: {duration: 0.5, ease: "easeOut"}
-                                        }
+                                            transition: {
+                                                duration: 0.5,
+                                                ease: "easeOut",
+                                            },
+                                        },
                                     }}
                                     className="tw-flex-1"
                                 >
@@ -97,8 +106,8 @@ const LayoutAccount = ({
                     </div>
                 </main>
             </div>
-            <Footer mode={footerMode}/>
-            <ScrollToTop/>
+            <Footer mode={footerMode} />
+            <ScrollToTop />
         </>
     );
 };

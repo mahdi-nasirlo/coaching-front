@@ -2,7 +2,7 @@ import { authApiUrl } from "@/constants/auth";
 import { GeneralResponseType } from "@/type/general";
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "next-auth/react";
-import customFetcher from "service/customeFetcher";
+import customFetcher from "service/custome-fetcher";
 import { z } from "zod";
 
 const apiData = authApiUrl;

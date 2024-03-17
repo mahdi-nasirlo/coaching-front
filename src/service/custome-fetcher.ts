@@ -1,4 +1,4 @@
-import getUrlWithParams from "./getUrlWithParams";
+import getUrlWithParams from "./get-url-with-params";
 import baseAxois from "./base-axois";
 import { AxiosHeaders, AxiosInstance } from "axios";
 import { GeneralResponseType } from "../@types/general";
@@ -65,7 +65,7 @@ async function customFetcher(
             ok: isOk,
             status: response.status,
             success: responseBody?.success,
-            notify: notify,
+            notify: notify ?? false,
             message: responseBody?.message,
             data: responseBody?.data,
         };
