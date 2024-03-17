@@ -1,9 +1,8 @@
 "use client";
 
-import NavigateItem from "@components/account/navigate-item";
 import {
     useGetAllCollectionWithChild,
-    useGetBreadcrumbCollection,
+    // useGetBreadcrumbCollection,
 } from "hooks/api/collection-group";
 import Empty from "@components/ui/v2/empty";
 import { Card } from "@components/ui/v2/card";
@@ -35,6 +34,7 @@ export default function CollectionList({
             <div className="tw-grid tw-grid-cols-7 tw-gap-3">
                 {data?.map((folder, index) => (
                     <Link
+                        key={index}
                         href={`/account/collection/${folder.id}/${collectionGroupID}`}
                     >
                         <Card

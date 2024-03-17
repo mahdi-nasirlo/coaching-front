@@ -2,7 +2,6 @@ import React from "react";
 import {
     Select,
     SelectContent,
-    SelectItem,
     SelectTrigger,
     SelectValue,
 } from "@ui/v2/select";
@@ -11,7 +10,7 @@ import { useGetAllBlogCategory } from "../../../hooks/api/blog-category";
 
 const BlogCategoryField = React.forwardRef<HTMLInputElement, SelectProps>(
     ({ ...props }) => {
-        const { data, isLoading } = useGetAllBlogCategory();
+        const { isLoading } = useGetAllBlogCategory();
 
         return (
             <div>
