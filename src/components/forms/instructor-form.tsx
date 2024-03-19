@@ -1,17 +1,23 @@
 import clsx from "clsx";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Button from "@ui/button";
 import Input from "@ui/form-elements/input";
 import Textarea from "@ui/form-elements/textarea";
-import {z} from "zod";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {Form, FormControl, FormField, FormItem, FormMessage,} from "@components/ui/v2/form";
-import {coachApiUrl} from "@/constants/coach";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormMessage,
+} from "@components/ui/v2/form";
+import { coachApiUrl } from "@/constants/coach";
 import Alert from "@ui/alert";
 import Anchor from "@ui/anchor";
-import {useSession} from "next-auth/react";
-import {useRegisterCoach} from "../../hooks/api/coach";
-import {resetForm} from "@utils/methods";
+import { useSession } from "next-auth/react";
+import { useRegisterCoach } from "../../hooks/api/coach";
+import { resetForm } from "@utils/methods";
 
 type TProps = {
     className?: string;
@@ -19,26 +25,22 @@ type TProps = {
 
 const apiData = coachApiUrl.register;
 
-const InstructorForm = ({className}: TProps) => {
+const InstructorForm = ({ className }: TProps) => {
+    const session = useSession();
 
-    const session = useSession()
-
-    const register = useRegisterCoach()
+    const register = useRegisterCoach();
 
     const form = useForm<z.infer<typeof apiData.type>>({
         resolver: zodResolver(apiData.type),
     });
 
     const onSubmit = async (data: z.infer<typeof apiData.type>) => {
+        const res = await register.mutateAsync(data);
 
-        const res = await register.mutateAsync(data)
-
-        if (res?.status) {
-            resetForm(apiData.type, form)
+        if (res?.success) {
+            resetForm(apiData.type, form);
         }
-        
     };
-
 
     return (
         <div
@@ -50,12 +52,14 @@ const InstructorForm = ({className}: TProps) => {
             <h4 className="tw-text-[28px] tw-mb-5 sm:tw-text-[34px] sm:tw-mb-9 tw-leading-snug tw-text-center">
                 Register to become an Intructor
             </h4>
-            {session.status === "unauthenticated" && <Alert color="secondary" className="tw-mb-5">
-                <i className="far fa-exclamation-circle"/>
-                Please <Anchor path="/login-register">login</Anchor> to send
-                your request!
-            </Alert>}
-            <Form {...form} >
+            {session.status === "unauthenticated" && (
+                <Alert color="secondary" className="tw-mb-5">
+                    <i className="far fa-exclamation-circle" />
+                    Please <Anchor path="/login-register">login</Anchor> to send
+                    your request!
+                </Alert>
+            )}
+            <Form {...form}>
                 <form
                     className="become-teacher-form"
                     onSubmit={form.handleSubmit(onSubmit)}
@@ -64,7 +68,7 @@ const InstructorForm = ({className}: TProps) => {
                         <FormField
                             name="name"
                             control={form.control}
-                            render={({field}) => (
+                            render={({ field }) => (
                                 <FormItem className="tw-mb-3.8">
                                     <label
                                         htmlFor="name"
@@ -79,14 +83,14 @@ const InstructorForm = ({className}: TProps) => {
                                             {...field}
                                         />
                                     </FormControl>
-                                    <FormMessage/>
+                                    <FormMessage />
                                 </FormItem>
                             )}
                         />
                         <FormField
                             name="phone_number"
                             control={form.control}
-                            render={({field}) => (
+                            render={({ field }) => (
                                 <FormItem className="tw-mb-3.8">
                                     <label
                                         htmlFor="phone"
@@ -101,14 +105,14 @@ const InstructorForm = ({className}: TProps) => {
                                             {...field}
                                         />
                                     </FormControl>
-                                    <FormMessage/>
+                                    <FormMessage />
                                 </FormItem>
                             )}
                         />
                         <FormField
                             name="about_me"
                             control={form.control}
-                            render={({field}) => (
+                            render={({ field }) => (
                                 <FormItem className="tw-mb-5 tw-col-span-2">
                                     <label
                                         htmlFor="message"
@@ -123,13 +127,15 @@ const InstructorForm = ({className}: TProps) => {
                                             {...field}
                                         />
                                     </FormControl>
-                                    <FormMessage/>
+                                    <FormMessage />
                                 </FormItem>
                             )}
                         />
                     </div>
                     <div className="tw-text-center">
-                        <Button className="tw-w-full" type="submit">Get the learning program</Button>
+                        <Button className="tw-w-full" type="submit">
+                            Get the learning program
+                        </Button>
                     </div>
                 </form>
             </Form>

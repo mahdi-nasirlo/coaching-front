@@ -1,4 +1,18 @@
-import {z} from "zod";
+import { generalResponseZod, paginationReponseZod } from "@/type/general";
+import { z } from "zod";
+
+const getPageItem = z.object({
+    id: z.number(),
+    user_id: z.number(),
+    phone_number: z.string(),
+    status: z.number(),
+    resume_file: z.string().nullable(),
+    name: z.string(),
+    education_record: z.string().nullable(),
+    job_experience: z.string().nullable(),
+    resume: z.string().nullable(),
+    about_me: z.string().nullable(),
+});
 
 export const coachApiUrl = {
     register: {
@@ -13,6 +27,41 @@ export const coachApiUrl = {
                 ),
             about_me: z.string().min(24, "Message is required"),
             resume_file: z.any().optional(),
+        }),
+    },
+    getPage: {
+        url: "/admin/coach",
+        method: "GET",
+        item: getPageItem,
+        response: generalResponseZod.extend({
+            data: paginationReponseZod.extend({
+                data: z.array(getPageItem),
+            }),
+        }),
+    },
+    adminGet: {
+        url: "/admin/coach/",
+        method: "GET",
+        response: generalResponseZod.extend({
+            data: z.object({
+                id: z.number(),
+                user_id: z.number(),
+                phone_number: z.string(),
+                status: z.number(),
+                resume_file: z.string().nullable(),
+                name: z.string(),
+                education_record: z.string().nullable(),
+                job_experience: z.string().nullable(),
+                resume: z.string().nullable(),
+                about_me: z.string().nullable(),
+            }),
+        }),
+    },
+    adminUpdate: {
+        url: "/admin/coach/",
+        method: "PUT",
+        type: z.object({
+            status: z.number(),
         }),
     },
 };

@@ -31,6 +31,10 @@ const sidebarNavItems: AccountItemMenu[] = [
         regex: new RegExp("^\\/account\\collection"),
     },
     {
+        title: "Coaches",
+        href: "/account/coaches",
+    },
+    {
         title: "Appearance",
         href: "/examples/forms/appearance",
     },
