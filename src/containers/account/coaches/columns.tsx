@@ -39,8 +39,6 @@ export const columns: ColumnDef<TypeRowData>[] = [
                     return <Badge>Regected</Badge>;
                 case 4:
                     return <Badge>Active</Badge>;
-                case 5:
-                    return <Badge>In Avtive</Badge>;
                 default:
                     return <Badge>{row.original.status}</Badge>;
             }

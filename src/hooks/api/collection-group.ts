@@ -54,13 +54,14 @@ const useGetAllCollectionWithChild = (
         select: (data) => data.data,
     });
 
-const useGetAllCollection = () =>
+const useGetAllCollection = (data: z.infer<typeof getAllCollection.type>) =>
     useQuery({
         queryKey: [getAllCollection.url],
         queryFn: () =>
             customFetcher({
                 url: getAllCollection.url,
                 method: getAllCollection.method,
+                params: data,
             }),
         select: (data: z.infer<typeof getAllCollection.response>) => data.data,
     });
