@@ -6,7 +6,7 @@ import { GeneralResponseType } from "../../@types/general";
 import customFetcher from "../../service/custome-fetcher";
 import { PaginationState } from "@tanstack/react-table";
 
-const { register, getPage, adminGet, adminUpdate } = coachApiUrl;
+const { register, getPage, adminGet, adminUpdate, adminCreate } = coachApiUrl;
 
 const useRegisterCoach = () =>
     useMutation({
@@ -68,9 +68,20 @@ const useUpdateAdminCoach = (id: string | number) => {
     });
 };
 
+const useCreateAdminCoach = () =>
+    useMutation({
+        mutationFn: (data: z.infer<typeof adminCreate.type.request>) =>
+            customFetcher({
+                url: adminCreate.url,
+                method: adminCreate.method,
+                data,
+            }),
+    });
+
 export {
     useRegisterCoach,
     useGetPageCoaches,
     useGetAdminCoach,
     useUpdateAdminCoach,
+    useCreateAdminCoach,
 };

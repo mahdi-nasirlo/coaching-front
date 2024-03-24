@@ -35,6 +35,10 @@ const sidebarNavItems: AccountItemMenu[] = [
         href: "/account/coaches",
     },
     {
+        title: "Schedule Meeting",
+        href: "/account/meeting/create",
+    },
+    {
         title: "Appearance",
         href: "/examples/forms/appearance",
     },
@@ -73,7 +77,7 @@ const LayoutAccount = ({
                             <aside className="tw--mx-4 lg:tw-w-1/5">
                                 <SidebarNav items={sidebarNavItems} />
                             </aside>
-                            <AnimatePresence exitBeforeEnter>
+                            <AnimatePresence mode="wait">
                                 <motion.div
                                     key={router.route}
                                     initial="initialState"

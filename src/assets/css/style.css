@@ -1,0 +1,11 @@
+.sticky_navigation_bar {
+    @apply tw-sticky tw-flex tw-items-center tw-justify-end tw-bottom-0 tw-left-0 tw-z-50 tw-w-full tw-h-16 tw-bg-white tw-bg-opacity-40 tw-backdrop-blur-lg tw-border-t;
+}
+
+.profile_image_uploader {
+    box-shadow: 0px -255px 54px -222px rgba(255, 0, 0, 0.73) inset;
+}
+
+.aragment {
+    @apply tw-w-full tw-flex tw-items-center;
+}

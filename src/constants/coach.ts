@@ -64,4 +64,42 @@ export const coachApiUrl = {
             status: z.number(),
         }),
     },
+    adminCreate: {
+        url: "/admin/coach",
+        method: "POST",
+        type: {
+            request: z.object({
+                profile_image: z.number(),
+                name: z.string().max(125),
+                phone_number: z
+                    .string()
+                    .regex(
+                        /^09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}/i,
+                        "pleas inter valid number"
+                    ),
+                about_me: z.string().min(24),
+                pricing: z
+                    .array(
+                        z.object({
+                            collection_id: z
+                                .string({
+                                    required_error: "please choose collection.",
+                                    invalid_type_error:
+                                        "please choose collection.",
+                                })
+                                .refine(
+                                    (arg) =>
+                                        arg !== "please choose collection.",
+                                    "please choose collection."
+                                ),
+                            price: z.number(),
+                        })
+                    )
+                    .min(1),
+                resume: z.string().min(24).optional(),
+                job_experience: z.string().min(24).optional(),
+                education_record: z.string().min(24).optional(),
+            }),
+        },
+    },
 };

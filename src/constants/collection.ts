@@ -73,6 +73,11 @@ const collectionConstance = {
     getAllCollection: {
         url: "/admin/collection/get-all",
         method: "GET",
+        type: z
+            .object({
+                collection_group_id: z.string().optional(),
+            })
+            .optional(),
         item: getAllCollectionItem,
         response: generalResponseZod.extend({
             data: z.array(getAllCollectionItem),
