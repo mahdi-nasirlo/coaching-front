@@ -35,7 +35,7 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
                         <Link
                             key={item.href}
                             href={item.href}
-                            style={{ justifyContent: "start" }}
+                            style={{ justifyContent: "start !important" }}
                             className={cn(
                                 "tw-justify-start tw-rounded-lg tw-flex-grow",
                                 buttonVariants({ variant: "ghost" }),
