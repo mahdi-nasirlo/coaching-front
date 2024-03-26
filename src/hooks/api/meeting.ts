@@ -1,12 +1,11 @@
 import { meetingConstants } from "@/constants/meeting";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import customFetcher from "service/custome-fetcher";
 import { z } from "zod";
 
 const { createMeeting } = meetingConstants;
 
 const useCreateMeeting = () => {
-    const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: async (

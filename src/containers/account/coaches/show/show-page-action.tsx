@@ -1,6 +1,6 @@
 import { coachApiUrl } from "@/constants/coach";
 import { Button } from "@components/ui/v2/button";
-import { useUpdateAdminCoach } from "hooks/api/coach";
+import { useUpdateStatusAdminCoach } from "hooks/api/coach";
 import { Loader2 } from "lucide-react";
 import React from "react";
 import { z } from "zod";
@@ -10,7 +10,7 @@ export default function ShowPageAction({
 }: {
     data: z.infer<typeof coachApiUrl.adminGet.response.shape.data> | undefined;
 }) {
-    const { mutateAsync, isPending } = useUpdateAdminCoach(data?.id as number);
+    const { mutateAsync, isPending } = useUpdateStatusAdminCoach(data?.id as number);
 
     return (
         <>

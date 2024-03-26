@@ -1,12 +1,11 @@
 "use client";
 
-import { UseFormReturn, useFieldArray, useForm } from "react-hook-form";
+import { UseFormReturn, useFieldArray } from "react-hook-form";
 import CollectionCoachSelectField from "@components/fields/admin/collection-coach-select-field";
 import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@components/ui/v2/card";
@@ -18,9 +17,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@components/ui/v2/form";
-
-import React, { useState } from "react";
-import MultipleSelector, { Option } from "@components/ui/v2/multiple-selector";
+import React from "react";
 import { Editor } from "@components/ui/v2/editor";
 import {
     Tabs,
@@ -44,7 +41,7 @@ import { cn } from "@/lib/utils";
 import { coachApiUrl } from "@/constants/coach";
 import { z } from "zod";
 
-const formSchema = coachApiUrl.adminCreate.type.request;
+const formSchema = coachApiUrl.adminUpdate.type.request;
 
 export default function MeetingFormFileds({
     form,
@@ -285,7 +282,7 @@ const CollectionControll = ({
 }) => {
     const { append, fields, remove } = useFieldArray({
         control: form.control,
-        name: "pricing",
+        name: "prices",
     });
 
     return (
@@ -297,7 +294,7 @@ const CollectionControll = ({
                             Coach Collection & Pricing
                         </div>
                         <span className="tw-text-destructive tw-text-sm tw-ml-2">
-                            {form.formState.errors.pricing?.message}
+                            {form.formState.errors.prices?.message}
                         </span>
                     </div>
                     <Button
@@ -328,13 +325,13 @@ const CollectionControll = ({
                                             <FormField
                                                 control={form.control}
                                                 key={field.id}
-                                                name={`pricing.${index}.collection_id`}
+                                                name={`prices.${index}.collection_id`}
                                                 render={({ field }) => (
                                                     <FormItem className="tw-col-span-3">
                                                         <FormLabel
                                                             className={cn(
                                                                 index !== 0 &&
-                                                                    "sr-only"
+                                                                "sr-only"
                                                             )}
                                                         >
                                                             Collection
@@ -342,7 +339,7 @@ const CollectionControll = ({
                                                         <FormDescription
                                                             className={cn(
                                                                 index !== 0 &&
-                                                                    "sr-only"
+                                                                "sr-only"
                                                             )}
                                                         >
                                                             Please input the
@@ -361,13 +358,13 @@ const CollectionControll = ({
                                             <FormField
                                                 control={form.control}
                                                 key={field.id}
-                                                name={`pricing.${index}.price`}
+                                                name={`prices.${index}.price`}
                                                 render={({ field }) => (
                                                     <FormItem className="tw-col-span-3">
                                                         <FormLabel
                                                             className={cn(
                                                                 index !== 0 &&
-                                                                    "sr-only"
+                                                                "sr-only"
                                                             )}
                                                         >
                                                             Price
@@ -375,7 +372,7 @@ const CollectionControll = ({
                                                         <FormDescription
                                                             className={cn(
                                                                 index !== 0 &&
-                                                                    "sr-only"
+                                                                "sr-only"
                                                             )}
                                                         >
                                                             Please input the
@@ -383,7 +380,7 @@ const CollectionControll = ({
                                                             meeting.
                                                         </FormDescription>
                                                         <FormControl>
-                                                            <Input {...field} />
+                                                            <Input type="number" {...field} />
                                                         </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
@@ -417,7 +414,7 @@ const CollectionControll = ({
                                     </div>
                                     <span className="text-destructive font-medium text-sm mt-1">
                                         {
-                                            form.formState.errors.pricing?.[
+                                            form.formState.errors.prices?.[
                                                 index
                                             ]?.message
                                         }
@@ -430,44 +427,6 @@ const CollectionControll = ({
                         </div>
                     </CardContent>
                 </Card>
-
-                {/* <Dialog open={open} onOpenChange={setOpen} modal={true}>
-                <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                        <DialogTitle>انتخاب دسته بندی</DialogTitle>
-                        <Separator />
-                    </DialogHeader>
-                    <Form {...form}>
-                        <form
-                            onSubmit={form.handleSubmit(handleAddCollection)}
-                            className="space-y-8"
-                        >
-                            <FormField
-                                control={form.control}
-                                name="collectionId"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>عنوان</FormLabel>
-                                        <FormControl>
-                                            <CollectionSelect {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </form>
-                    </Form>
-                    <DialogFooter>
-                        <Button
-                            className="flex items-center"
-                            onClick={form.handleSubmit(handleAddCollection)}
-                            type="submit"
-                        >
-                            ذخیره
-                        </Button>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog> */}
             </div>
         </>
     );

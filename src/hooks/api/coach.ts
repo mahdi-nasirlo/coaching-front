@@ -6,7 +6,7 @@ import { GeneralResponseType } from "../../@types/general";
 import customFetcher from "../../service/custome-fetcher";
 import { PaginationState } from "@tanstack/react-table";
 
-const { register, getPage, adminGet, adminUpdate, adminCreate } = coachApiUrl;
+const { register, getPage, adminGet, adminUpdate, adminUpdateStatus } = coachApiUrl;
 
 const useRegisterCoach = () =>
     useMutation({
@@ -41,20 +41,20 @@ const useGetPageCoaches = ({
 
 const useGetAdminCoach = (id: number) =>
     useQuery({
-        queryKey: [adminGet.url, id],
+        queryKey: [adminGet.url, `${id}`],
         queryFn: () =>
             customFetcher({ url: adminGet.url + id, method: adminGet.method }),
         select: (data: z.infer<typeof adminGet.response>) => data.data,
     });
 
-const useUpdateAdminCoach = (id: string | number) => {
+const useUpdateStatusAdminCoach = (id: string | number) => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: (data: z.infer<typeof adminUpdate.type>) =>
+        mutationFn: (data: z.infer<typeof adminUpdateStatus.type>) =>
             customeFetcher({
-                url: adminUpdate.url + id,
-                method: adminUpdate.method,
+                url: adminUpdateStatus.url + id,
+                method: adminUpdateStatus.method,
                 data,
             }),
         onSuccess: (data, variables) => {
@@ -68,12 +68,12 @@ const useUpdateAdminCoach = (id: string | number) => {
     });
 };
 
-const useCreateAdminCoach = () =>
+const useUpdateAdminCoach = (id: number | string | undefined) =>
     useMutation({
-        mutationFn: (data: z.infer<typeof adminCreate.type.request>) =>
+        mutationFn: (data: z.infer<typeof adminUpdate.type.request>) =>
             customFetcher({
-                url: adminCreate.url,
-                method: adminCreate.method,
+                url: adminUpdate.url + id,
+                method: adminUpdateStatus.method,
                 data,
             }),
     });
@@ -82,6 +82,7 @@ export {
     useRegisterCoach,
     useGetPageCoaches,
     useGetAdminCoach,
-    useUpdateAdminCoach,
-    useCreateAdminCoach,
+    useUpdateStatusAdminCoach,
+    useUpdateAdminCoach
+    // useCreateAdminCoach,
 };

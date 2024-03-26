@@ -1,28 +1,23 @@
 import React from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import LayoutAccount from "@layout/layout-account";
-import EditForm from "@containers/account/blog-post/edit/edit-form";
-import { motion } from "framer-motion";
-import { accountSection } from "@utils/variants";
-import { Button } from "@ui/v2/button";
-import NavigateItem from "@components/account/navigate-item";
-import { blogApiUrl } from "@/constants/blogApiUrl";
 import { getAdminCoach } from "@/lib/api/coach";
 import ShowCoach from "@containers/account/coaches/show";
+import { z } from "zod";
+import { coachApiUrl } from "@/constants/coach";
+import { DehydratedState, HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query";
 
 type PageProps = NextPage & {
-    data: {
-        id: number;
-        // post: typeof apiData.getPage.type;
-    };
+    data: z.infer<typeof coachApiUrl.adminGet.response.shape.data>;
     Layout: typeof LayoutAccount;
+    dehydratedState: DehydratedState
 };
 
 const EditPage = (props: PageProps) => {
     return (
-        <div>
+        <HydrationBoundary state={props.dehydratedState}>
             <ShowCoach coachId={props.data.id} />
-        </div>
+        </HydrationBoundary>
     );
 };
 
@@ -33,17 +28,23 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const getCoach = await getAdminCoach(id as string);
 
-    // if (!getPost?.data) {
-    //     return {
-    //         notFound: true,
-    //     }
-    // }
+    const queryClient = new QueryClient();
+
+    await queryClient.prefetchQuery({
+        queryKey: [coachApiUrl.adminGet.url, id],
+        queryFn: () => getCoach
+    });
+
+    if (getCoach?.status == 404) {
+        return {
+            notFound: true,
+        }
+    }
 
     return {
         props: {
-            data: {
-                id: id || false,
-            },
+            data: getCoach?.data,
+            dehydratedState: dehydrate(queryClient),
             layout: {
                 headerShadow: true,
                 headerFluid: false,

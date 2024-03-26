@@ -4,10 +4,7 @@ import { DataTable } from "@containers/account/coaches/data-table";
 import { accountSection } from "@utils/variants";
 import NavigateItem from "@components/account/navigate-item";
 import { Button } from "@ui/v2/button";
-import Router from "next/router";
-import { blogApiUrl } from "@/constants/blogApiUrl";
 
-// const apiData = blogApiUrl.post.admin;
 
 const Index = () => {
     return (

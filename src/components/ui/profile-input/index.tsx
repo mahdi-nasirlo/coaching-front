@@ -2,16 +2,14 @@ import * as React from "react";
 
 import { cx } from "class-variance-authority";
 import Image from "next/image";
-import { uploadFileApiUrl } from "@/constants/upload-file";
 import { AnimatePresence, motion } from "framer-motion";
 import { Loader2, XIcon } from "lucide-react";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
-import { useLoadFile, useUploadFile } from "hooks/api/file-managment";
-import { an } from "@fullcalendar/core/internal-common";
+import { useUploadFile } from "hooks/api/file-managment";
 import { ControllerRenderProps } from "react-hook-form";
 
 export interface InputProps
-    extends React.InputHTMLAttributes<HTMLInputElement> {}
+    extends React.InputHTMLAttributes<HTMLInputElement> { }
 
 const ProfileInput = (
     props: ControllerRenderProps<any, string> & {
@@ -60,12 +58,12 @@ const ProfileInput = (
                 multiple={false}
                 ref={myRefname}
                 onChange={handleOnChange}
-                // {...props}
+            // {...props}
             />
             <div
                 className={cx(
                     props.className,
-                    "tw-w-full tw-h-full tw-overflow-hidden tw-bg-warmGray-100 tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-rounded-full hover:tw-scale-105 hover:tw-bg-warmGray-300 tw-transition-all tw-duration-300"
+                    "tw-w-15 tw-h-15 tw-overflow-hidden tw-bg-warmGray-100 tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-rounded-full hover:tw-scale-105 hover:tw-bg-warmGray-300 tw-transition-all tw-duration-300"
                 )}
                 onClick={() => myRefname?.current?.click()}
             >

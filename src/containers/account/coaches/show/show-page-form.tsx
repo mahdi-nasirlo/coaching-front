@@ -1,30 +1,28 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { accountSection } from "@utils/variants";
-import NavigateItem from "@components/account/navigate-item";
-import MeetingFormFileds from "../meeting-form-fields";
 import { Form } from "@components/ui/v2/form";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@components/ui/v2/button";
-import { useCreateAdminCoach } from "hooks/api/coach";
+import { useUpdateAdminCoach } from "hooks/api/coach";
 import { coachApiUrl } from "@/constants/coach";
+import MeetingFormFileds from "@containers/account/meeting/meeting-form-fields";
 
-// calender
-// import FullCalendar from "@fullcalendar/react";
-// import faLocale from "@fullcalendar/core/locales/fa";
-// import dayGridPlugin from "@fullcalendar/daygrid";
 
-const formSchema = coachApiUrl.adminCreate.type.request;
+const formSchema = coachApiUrl.adminUpdate.type.request;
 
-const Index = () => {
-    const { mutateAsync } = useCreateAdminCoach();
+const ShowPageForm = ({ data: coachData }: { data: z.infer<typeof coachApiUrl.adminGet.response.shape.data> | undefined }) => {
+
+    const { mutateAsync } = useUpdateAdminCoach(coachData?.id);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
+        //@ts-ignore
+        defaultValues: coachData
     });
 
     const handleOnSubmit = (
@@ -36,10 +34,21 @@ const Index = () => {
         mutateAsync(data);
     };
 
+
+    useEffect(() => {
+        console.log(coachData);
+
+        if (coachData) {
+            form.setValue("name", coachData.name)
+            form.setValue("phone_number", coachData.phone_number)
+            form.setValue("about_me", coachData?.about_me as string)
+            form.setValue("prices", coachData.prices)
+        }
+    }, [coachData])
+
     return (
         <>
             <div className="">
-                <NavigateItem title={"Add Meeting"} />
                 <motion.div
                     initial="hidden"
                     animate="visible"
@@ -65,4 +74,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default ShowPageForm;

@@ -21,7 +21,7 @@ export default function CollectionCoachSelectField(
             </SelectTrigger>
             <SelectContent>
                 {data?.map((item, index) => (
-                    <SelectItem key={index} value={`${item.id}`}>
+                    <SelectItem key={index} value={item.id}>
                         {item.name}
                     </SelectItem>
                 ))}

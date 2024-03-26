@@ -5,11 +5,12 @@ import { useGetAdminCoach } from "hooks/api/coach";
 import { motion } from "framer-motion";
 import React from "react";
 import { accountSection } from "@utils/variants";
-import { Button } from "@components/ui/v2/button";
 import ShowPageAction from "./show-page-action";
+import ShowPageForm from "./show-page-form";
 
-export default function ShowCoach({ coachId: id }: { coachId: number }) {
-    const { data } = useGetAdminCoach(id);
+
+export default function ShowCoach({ coachId }: { coachId: number }) {
+    const { data } = useGetAdminCoach(coachId);
 
     return (
         <>
@@ -32,7 +33,9 @@ export default function ShowCoach({ coachId: id }: { coachId: number }) {
                 animate="visible"
                 exit="exit"
                 variants={accountSection.variants}
-            ></motion.div>
+            >
+                <ShowPageForm data={data} />
+            </motion.div>
         </>
     );
 }

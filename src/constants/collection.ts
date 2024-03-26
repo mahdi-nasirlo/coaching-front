@@ -31,7 +31,7 @@ const createCollectionFormType = z.object({
 });
 
 const getAllCollectionItem = z.object({
-    id: z.number(),
+    id: z.string(),
     name: z.string(),
     group: z.object({
         id: z.number(),
