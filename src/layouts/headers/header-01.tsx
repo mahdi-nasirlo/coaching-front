@@ -1,14 +1,16 @@
-import {useEffect, useState} from "react";
-import {useRouter} from "next/router";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import clsx from "clsx";
 import Logo from "@components/logo";
 import SearchForm from "@components/forms/search-form";
 import MainMenu from "@components/menu/main-menu";
 import BurgerButton from "@ui/burger-button";
-import menu from "@data/menu";
-import {useSticky} from "@hooks";
+import { useSticky } from "@hooks";
 import UserNav from "@components/user-nav/userNav";
+import { useGetAllCollectionGroup } from "hooks/api/collection-group";
+import menu from "@data/menu";
+import { useGetMenuDependency } from "hooks/api/dependency";
 
 const MobileMenu = dynamic(() => import("../../components/menu/mobile-menu"), {
     ssr: false,
@@ -27,11 +29,12 @@ type TProps = {
     mode?: "light" | "dark";
 };
 
-const Header = ({shadow, fluid, transparent, mode}: TProps) => {
+const Header = ({ shadow, fluid, transparent, mode }: TProps) => {
     const router = useRouter();
     const [visibleSearch, setVisibleSearch] = useState(false);
     const [offcanvas, setOffcanvas] = useState(false);
-    const {sticky, measuredRef} = useSticky();
+    const { sticky, measuredRef } = useSticky();
+    const { data } = useGetMenuDependency()
 
     useEffect(() => {
         setOffcanvas(false);
@@ -50,7 +53,7 @@ const Header = ({shadow, fluid, transparent, mode}: TProps) => {
                 <div
                     ref={measuredRef}
                     className={clsx(
-                        "header-inner tw-py-[19px] xl:tw-py-0 tw-z-50 tw-transition-all tw-left-0 tw-top-0 tw-w-full tw-h-auto",
+                        "header-inner tw-py-[19px] xl:tw-py-0 tw-z-50 tw-transition-all tw-left-0 tw-top-0 tw-w-full tw-h-full",
                         !sticky && "tw-absolute",
                         sticky &&
                         "tw-fixed tw-shadow-3md tw-shadow-black/10 tw-animate-headerSlideDown",
@@ -66,7 +69,7 @@ const Header = ({shadow, fluid, transparent, mode}: TProps) => {
                 >
                     <div
                         className={clsx(
-                            "tw-container tw-grid tw-grid-flow-col xl:tw-grid-cols-[22%_minmax(56%,_1fr)_22%] tw-items-center",
+                            "tw-container tw-my-auto tw-grid tw-grid-flow-col xl:tw-grid-cols-[22%_minmax(56%,_1fr)_22%] tw-items-center",
                             fluid && "tw-max-w-full tw-px-3.8 3xl:tw-px-37"
                         )}
                     >
@@ -78,12 +81,12 @@ const Header = ({shadow, fluid, transparent, mode}: TProps) => {
                         <MainMenu
                             className="tw-hidden xl:tw-block"
                             align="center"
-                            menu={menu}
+                            menu={data}
                             color={mode}
                         />
                         <div className="tw-flex tw-justify-end tw-items-center">
                             <div>
-                                <UserNav mode={mode}/>
+                                <UserNav mode={mode} />
                             </div>
                             <div className="tw-hidden md:tw-block md:tw-max-w-[250px] md:tw-pl-2.5">
                                 <SearchForm
@@ -103,7 +106,7 @@ const Header = ({shadow, fluid, transparent, mode}: TProps) => {
                                     }
                                     aria-label="Search Toggle"
                                 >
-                                    <i className="far fa-search tw-text-lg"/>
+                                    <i className="far fa-search tw-text-lg" />
                                 </button>
                                 <FlyoutSearchForm
                                     show={visibleSearch}
@@ -119,13 +122,13 @@ const Header = ({shadow, fluid, transparent, mode}: TProps) => {
                         </div>
                     </div>
                 </div>
-                <div className="tw-h-20"/>
+                <div className="tw-h-20" />
             </header>
-            <MobileMenu
+            {/* <MobileMenu
                 isOpen={offcanvas}
                 onClose={() => setOffcanvas(false)}
                 menu={menu}
-            />
+            /> */}
         </>
     );
 };

@@ -336,10 +336,10 @@ const CollectionControll = ({
                 <Card>
                     <CardContent className="tw-mt-4">
                         <div className="col-span-full space-y-3">
-                            {fields.map((field: any, index) => (
+                            {fields.map((field, index) => (
                                 <>
                                     <div
-                                        key={index}
+                                        key={field.id}
                                         className="tw-w-full aragment tw-justify-between tw-py-1"
                                     >
                                         <div className="tw-grid tw-gap-2 tw-grid-cols-6 tw-w-full">

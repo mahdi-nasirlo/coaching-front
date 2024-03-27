@@ -10,7 +10,7 @@ type TProps = {
     hoverStyle?: "A" | "B";
     color?: "light" | "dark";
     align?: "left" | "right" | "center";
-    menu: TMenu[];
+    menu: TMenu[] | undefined;
 };
 
 const MainMenu = ({ className, hoverStyle, menu, color, align }: TProps) => {
@@ -35,7 +35,7 @@ const MainMenu = ({ className, hoverStyle, menu, color, align }: TProps) => {
             )}
         >
             <ul aria-label="Main Menu" role="menubar">
-                {menu.map(({ id, label, path, submenu, megamenu }) => {
+                {Array.isArray(menu) && menu?.map(({ id, label, path, submenu, megamenu }) => {
                     const hasSubmenu = !!submenu || !!megamenu;
                     return (
                         <li

@@ -10,8 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@components/ui/v2/button";
 import { useUpdateAdminCoach } from "hooks/api/coach";
 import { coachApiUrl } from "@/constants/coach";
-import MeetingFormFileds from "@containers/account/meeting/meeting-form-fields";
-
+import MeetingFormFileds from "./meeting-form-fields";
 
 const formSchema = coachApiUrl.adminUpdate.type.request;
 
