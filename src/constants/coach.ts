@@ -83,7 +83,7 @@ export const coachApiUrl = {
     },
     adminUpdate: {
         url: "/admin/coach/",
-        method: "POST",
+        method: "PUT",
         type: {
             request: z.object({
                 profile_image: z.number(),

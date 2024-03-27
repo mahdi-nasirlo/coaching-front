@@ -26,7 +26,7 @@ import {
     TabsTrigger,
 } from "@components/ui/v2/tabs";
 import { Input } from "@components/ui/v2/input";
-import { Button } from "@components/ui/v2/button";
+import { Button, buttonVariants } from "@components/ui/v2/button";
 import { Textarea } from "@components/ui/v2/textarea";
 import { ProfileInput } from "@components/ui/profile-input";
 import {
@@ -57,12 +57,32 @@ export default function MeetingFormFileds({
     );
 }
 
-const BasicInfo = ({ form }: { form: UseFormReturn<any> }) => {
+const BasicInfo = ({ form }: { form: UseFormReturn<z.infer<typeof formSchema>> }) => {
+
+    const {
+        formState: {
+            errors: { education_record, job_experience, resume },
+        },
+    } = form;
+
     return (
         <Tabs defaultValue="resume" className="tw-col-span-full">
             <div className="tw-flex tw-justify-between tw-items-center">
-                <div className="tw-text-secondary tw-mb-2 tw-col-span-full tw-text-lg tw-font-bold">
-                    Basic Info
+                <div>
+                    <div className="tw-text-secondary tw-col-span-full tw-text-lg tw-font-bold">
+                        Basic Info
+                    </div>
+                    <span className="tw-text-destructive tw-text-sm">
+                        {job_experience && <div>
+                            job_experience: {job_experience?.message}
+                        </div>}
+                        {education_record && <div>
+                            education_record: {education_record?.message}
+                        </div>}
+                        {resume && <div>
+                            resume: {resume?.message}
+                        </div>}
+                    </span>
                 </div>
                 <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="resume">Resume</TabsTrigger>
@@ -90,7 +110,7 @@ const BasicInfo = ({ form }: { form: UseFormReturn<any> }) => {
                     </CardHeader>
                     <CardContent className="space-y-2">
                         <FormField
-                            name="attribute_data.name"
+                            name="resume"
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem className="tw-col-span-12">
@@ -125,7 +145,7 @@ const BasicInfo = ({ form }: { form: UseFormReturn<any> }) => {
                     </CardHeader>
                     <CardContent className="space-y-2">
                         <FormField
-                            name="attribute_data.name"
+                            name="job_experience"
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem className="tw-col-span-12">
@@ -160,7 +180,7 @@ const BasicInfo = ({ form }: { form: UseFormReturn<any> }) => {
                     </CardHeader>
                     <CardContent className="space-y-2">
                         <FormField
-                            name="attribute_data.name"
+                            name="education_record"
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem className="tw-col-span-12">
@@ -190,20 +210,18 @@ const ProfileInfo = ({
 }) => {
     const {
         formState: {
-            errors: { education_record, job_experience, resume },
+            errors: { profile_image },
         },
     } = form;
     return (
         <div>
             <div className="tw-flex tw-justify-between tw-items-center">
-                <div className="tw-flex tw-items-center tw-flex-col tw-mb-2 ">
+                <div className="tw-flex tw-items-start tw-flex-col tw-mb-2 ">
                     <div className="tw-text-secondary tw-col-span-full tw-text-lg tw-font-bold">
                         Profile
                     </div>
-                    <span className="tw-text-destructive tw-text-sm tw-ml-2">
-                        {education_record?.message ||
-                            job_experience?.message ||
-                            resume?.message}
+                    <span className="tw-text-destructive tw-text-sm">
+                        {profile_image?.message}
                     </span>
                 </div>
             </div>
@@ -285,6 +303,9 @@ const CollectionControll = ({
         name: "prices",
     });
 
+    console.log(fields);
+
+
     return (
         <>
             <div>
@@ -293,8 +314,8 @@ const CollectionControll = ({
                         <div className="tw-text-secondary tw-col-span-full tw-text-lg tw-font-bold">
                             Coach Collection & Pricing
                         </div>
-                        <span className="tw-text-destructive tw-text-sm tw-ml-2">
-                            {form.formState.errors.prices?.message}
+                        <span className="tw-text-destructive tw-text-sm">
+                            {form.formState.errors.profile_image?.message}
                         </span>
                     </div>
                     <Button
@@ -393,12 +414,13 @@ const CollectionControll = ({
                                                     index == 0 && "tw-mt-14"
                                                 )}
                                             >
-                                                <Button
-                                                    variant="link"
-                                                    size="sm"
+                                                <div
+                                                    className={cn(buttonVariants({ variant: "link" }))}
+                                                // variant="link"
+                                                // size="sm"
                                                 >
                                                     <DotsVerticalIcon />
-                                                </Button>
+                                                </div>
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent className="min-w-40">
                                                 <DropdownMenuItem

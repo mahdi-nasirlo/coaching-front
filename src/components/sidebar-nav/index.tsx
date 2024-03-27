@@ -37,7 +37,7 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
                             href={item.href}
                             style={{ justifyContent: "start !important" }}
                             className={cn(
-                                "tw-justify-start tw-rounded-lg tw-flex-grow",
+                                "account-nav-item tw-justify-start tw-rounded-lg tw-flex-grow",
                                 buttonVariants({ variant: "ghost" }),
                                 pathname === item.href ||
                                     item.regex?.test(`${pathname}`) ||

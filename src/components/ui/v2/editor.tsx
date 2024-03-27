@@ -23,7 +23,7 @@ const Editor = (props: ControllerRenderProps<any, string> & PropsType) => {
                 {...props}
                 tinymceScriptSrc={"/tinymce/tinymce.min.js"}
                 initialValue={props.value}
-                // onChange={(t: any) => props.onChange(t.level.content)}
+                onChange={(t: any) => props.onChange(t.level.content)}
                 init={{
                     height: props?.height || 500,
                     menubar: false,

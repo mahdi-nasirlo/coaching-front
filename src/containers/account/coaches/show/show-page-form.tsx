@@ -43,6 +43,8 @@ const ShowPageForm = ({ data: coachData }: { data: z.infer<typeof coachApiUrl.ad
             form.setValue("phone_number", coachData.phone_number)
             form.setValue("about_me", coachData?.about_me as string)
             form.setValue("prices", coachData.prices)
+            form.setValue("resume", coachData.resume || "")
+            form.setValue("education_record", coachData.education_record || "")
         }
     }, [coachData])
 

@@ -9,3 +9,7 @@
 .aragment {
     @apply tw-w-full tw-flex tw-items-center;
 }
+
+.account-nav-item {
+    @apply tw-justify-start !important;
+}

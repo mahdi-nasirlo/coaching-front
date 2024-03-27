@@ -73,7 +73,7 @@ const useUpdateAdminCoach = (id: number | string | undefined) =>
         mutationFn: (data: z.infer<typeof adminUpdate.type.request>) =>
             customFetcher({
                 url: adminUpdate.url + id,
-                method: adminUpdateStatus.method,
+                method: adminUpdate.method,
                 data,
             }),
     });
